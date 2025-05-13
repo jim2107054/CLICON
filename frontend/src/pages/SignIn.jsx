@@ -1,6 +1,7 @@
 import React from 'react'
 import FirstNavbar from '../components/navbars/FirstNavbar'
 import SecondNavbar from '../components/navbars/SecondNavbar'
+import Footer from '../components/Footer'
 
 const SignIn = () => {
   return (
@@ -8,6 +9,7 @@ const SignIn = () => {
       <FirstNavbar />
       <hr className="border-0 border-t border-green-700 m-0" />
       <SecondNavbar />
+      <Footer/>
     </div>
   )
 }
