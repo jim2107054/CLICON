@@ -2,7 +2,7 @@ import { assets } from "../../assets/assets"
 const FirstNavbar = () => {
   return (
     <div>
-        <div className="bg-secondary flex flex-col gap-52 md:flex-row py-1 justify-center items-center">
+        <div className="bg-secondary flex flex-col gap-52 md:flex-row py-1 justify-around items-center">
         {/*------Left Part-------*/}
         <div>
             <p className="text-white font-base">Welcome to Clicon online eCommerce store. </p>
