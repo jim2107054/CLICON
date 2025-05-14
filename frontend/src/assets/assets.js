@@ -15,6 +15,7 @@ import location from './mapLocation.png'
 import compare from './compare.png'
 import headphone from './Headphones.png'
 import needHelp from './needHelp.png'
+import eye from './Eye.png'
 
 export const assets = {
     fackbook,
@@ -33,5 +34,6 @@ export const assets = {
     location,
     compare,
     headphone,
-    needHelp
+    needHelp,
+    eye
 }

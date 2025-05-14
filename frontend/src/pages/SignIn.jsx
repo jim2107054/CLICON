@@ -3,6 +3,7 @@ import FirstNavbar from '../components/navbars/FirstNavbar'
 import SecondNavbar from '../components/navbars/SecondNavbar'
 import Footer from '../components/Footer'
 import ThirdNavbar from '../components/navbars/ThirdNavbar'
+import Login from '../components/Login'
 
 const SignIn = () => {
   return (
@@ -11,6 +12,7 @@ const SignIn = () => {
       <hr className="border-0 border-t border-green-700 m-0" />
       <SecondNavbar />
       <ThirdNavbar/>
+      <Login/>
       <Footer/>
     </div>
   )
