@@ -8,12 +8,7 @@ import Login from '../components/Login'
 const SignIn = () => {
   return (
     <div>
-      <FirstNavbar />
-      <hr className="border-0 border-t border-green-700 m-0" />
-      <SecondNavbar />
-      <ThirdNavbar/>
       <Login/>
-      <Footer/>
     </div>
   )
 }
