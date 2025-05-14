@@ -6,3 +6,7 @@
 .popular-tag-footer{
     @apply bg-inherit px-2 py-0.5 rounded border border-gray-500
 }
+
+.thirdNavbar.active{
+    @apply text-yellow-400
+}
