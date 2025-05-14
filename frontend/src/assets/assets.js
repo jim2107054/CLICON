@@ -16,6 +16,8 @@ import compare from './compare.png'
 import headphone from './Headphones.png'
 import needHelp from './needHelp.png'
 import eye from './Eye.png'
+import checks from './Checks.png'
+import aboutOne from './aboutPage1.png'
 
 export const assets = {
     fackbook,
@@ -35,5 +37,7 @@ export const assets = {
     compare,
     headphone,
     needHelp,
-    eye
+    eye,
+    checks,
+    aboutOne
 }
