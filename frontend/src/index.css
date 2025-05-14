@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.popular-tag-footer{
+    @apply bg-inherit px-2 py-0.5 rounded border border-gray-500
+}

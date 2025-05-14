@@ -9,6 +9,8 @@ import search from './search.png'
 import hert from './Heart.png'
 import cart from './ShoppingCartSimple.png'
 import user from './User.png'
+import appleIcon from './Apple.png'
+import playStoreIcon from './playstore.png'
 
 export const assets = {
     fackbook,
@@ -21,5 +23,7 @@ export const assets = {
     search,
     hert,
     cart,
-    user
+    user,
+    appleIcon,
+    playStoreIcon
 }
