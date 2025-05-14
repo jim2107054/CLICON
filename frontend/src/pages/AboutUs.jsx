@@ -2,6 +2,11 @@ import React from "react";
 import { assets } from "../assets/assets";
 import CoreTeamMemberCard from "../components/CoreTeamMemberCard";
 import { CoreTeamMembers } from "../assets/assets";
+import {flashSaleToday} from "../assets/assets";
+import {bestSellers} from "../assets/assets";
+import {topRated} from "../assets/assets";
+import {newArrival} from "../assets/assets";
+import AboutUsSales from "../components/AboutUsSales";
 
 const AboutUs = () => {
   return (
@@ -83,15 +88,47 @@ const AboutUs = () => {
          src={assets.aboutBanner} alt="Banner" />
       </div>
       {/*------------Fourth Div----------*/}
-      <div className="flex flex-col gap-10 px-36 py-10">
+      <div className="flex flex-col lg:flex-row gap-10 px-36 py-10">
         {/*--------FLASH SALE TODAY-----------*/}
-        <div></div>
+        <div className="">
+            <p className="font-medium text-xl">FLASH SALE TODAY</p>
+            <div>
+                {
+                    flashSaleToday.map((item,index)=>
+                    <AboutUsSales key={index} image={item.image} price={item.price} description={item.description}/>)
+                }
+            </div>
+        </div>
         {/*--------BEST SELLERS-----------*/}
-        <div></div>
+        <div>
+            <p className="font-medium text-xl">BEST SELLERS</p>
+            <div>
+                {
+                    bestSellers.map((item,index)=>
+                    <AboutUsSales key={index} image={item.image} price={item.price} description={item.description}/>)
+                }
+            </div>
+        </div>
         {/*--------TOP RATED-----------*/}
-        <div></div>
+        <div>
+            <p className="font-medium text-xl">TOP RATED</p>
+            <div>
+                {
+                    topRated.map((item,index)=>
+                    <AboutUsSales key={index} image={item.image} price={item.price} description={item.description}/>)
+                }
+            </div>
+        </div>
         {/*--------NEW ARRIVAL-----------*/}
-        <div></div>
+        <div>
+            <p className="font-medium text-xl">NEW ARRIVAL</p>
+            <div>
+                {
+                    newArrival.map((item,index)=>
+                    <AboutUsSales key={index} image={item.image} price={item.price} description={item.description}/>)
+                }
+            </div>
+        </div>
       </div>
     </div>
   );
