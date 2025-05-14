@@ -3,11 +3,12 @@ import { assets } from "../assets/assets";
 
 const CustomerSupport = () => {
   return (
-    <div>
-      <div className="flex flex-col lg:flex-row gap-10 px-36 py-10">
+    <div className="">
+      <div className="flex flex-col gap-10 px-36 py-10">
         {/*------------First Div----------*/}
-        <div className="flex flex-col-reverse w-full lg:flex-row gap-10">
-          <div className="flex flex-col gap-2 w-1/2 px-10 py-5">
+        <div className="w-full flex flex-col-reverse lg:flex-row gap-10">
+          {/*---------Left side--------------*/}
+          <div className="flex flex-col gap-2 w-1/2 justify-center px-10 py-5">
             <p className="bg-yellow-300 w-fit px-2 py-1 rounded-sm font-medium">
               Help Center
             </p>
@@ -30,13 +31,20 @@ const CustomerSupport = () => {
               </button>
             </div>
           </div>
+          {/*---------Right side--------------*/}
           <div className="bg-yellow-500 w-1/2">
-            <img src="" alt="" />
-            adfasffffffffff
-          </div>
+              <img
+                className="w-full"
+                src={assets.customerSupport}
+                alt="support Image"
+              />
+            </div>
         </div>
         {/*------------Second Div----------*/}
-        <div></div>
+        <div>
+          <h1>What can we assist you with today?</h1>
+          <div></div>
+        </div>
         {/*------------Third Div----------*/}
         <div></div>
         {/*------------Fourth Div----------*/}

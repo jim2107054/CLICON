@@ -23,6 +23,7 @@ import amazom from './amazon.png'
 import philips from './philips.png'
 import toshiba from './toshiba.png'
 import samsung from './samsung.png'
+import customerSupport from './customer-supportImage.png'
 
 // import core team member photo
 import member1 from './CoreTeamMember/member1.png'
@@ -88,6 +89,7 @@ export const assets = {
     philips,
     toshiba,
     samsung,
+    customerSupport,
 }
 
 export const CoreTeamMembers = [
