@@ -3,7 +3,7 @@ import { assets } from "../../assets/assets";
 const SecondNavbar = () => {
   return (
     <div>
-      <div className="bg-secondary grid grid-cols-[1fr_3fr_1fr] gap-10 px-10 py-2 items-center">
+      <div className="bg-secondary grid grid-cols-[1fr_3fr_1fr] gap-10 px-24 py-2 items-center">
         {/*----------logo-----------*/}
         <div className="flex justify-center">
           <img className="h-10" src={assets.logo} alt="logo" />

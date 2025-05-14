@@ -7,10 +7,14 @@ import rebbit from './Reddit.png'
 import logo from './Logo.png'
 import search from './search.png'
 import hert from './Heart.png'
-import cart from './ShoppingCartSimple.png'
+import cart from './ShoppingCart.png'
 import user from './User.png'
 import appleIcon from './Apple.png'
 import playStoreIcon from './playstore.png'
+import location from './mapLocation.png'
+import compare from './compare.png'
+import headphone from './Headphones.png'
+import needHelp from './needHelp.png'
 
 export const assets = {
     fackbook,
@@ -25,5 +29,9 @@ export const assets = {
     cart,
     user,
     appleIcon,
-    playStoreIcon
+    playStoreIcon,
+    location,
+    compare,
+    headphone,
+    needHelp
 }

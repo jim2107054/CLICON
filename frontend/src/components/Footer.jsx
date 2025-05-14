@@ -98,7 +98,7 @@ const Footer = () => {
       {/*-------div for copyright-------*/}
       <div>
         <p className="text-white text-sm justify-center text-center pt-3">
-          CLICON - eCommerce © 2025. Design by MD Jahid Hasan Jim
+          CLICON - eCommerce © 2025. Created by MD Jahid Hasan Jim
         </p>
       </div>
     </div>
