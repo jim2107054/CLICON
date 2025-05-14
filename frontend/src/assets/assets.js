@@ -18,6 +18,11 @@ import needHelp from './needHelp.png'
 import eye from './Eye.png'
 import checks from './Checks.png'
 import aboutOne from './aboutPage1.png'
+import google from './google.png'
+import amazom from './amazon.png'
+import philips from './philips.png'
+import toshiba from './toshiba.png'
+import samsung from './samsung.png'
 
 // import core team member photo
 import member1 from './CoreTeamMember/member1.png'
@@ -78,6 +83,11 @@ export const assets = {
     member7,
     member8,
     aboutBanner,
+    google,
+    amazom,
+    philips,
+    toshiba,
+    samsung,
 }
 
 export const CoreTeamMembers = [
