@@ -24,6 +24,13 @@ import philips from './philips.png'
 import toshiba from './toshiba.png'
 import samsung from './samsung.png'
 import customerSupport from './customer-supportImage.png'
+import truck from './Truck.png'
+import LockOpen from './LockOpen.png'
+import creditCard from './CreditCard.png'
+import stack from './Stack.png'
+import vector from './Vector.png'
+import storefront from './Storefront.png'
+
 
 // import core team member photo
 import member1 from './CoreTeamMember/member1.png'
@@ -90,6 +97,12 @@ export const assets = {
     toshiba,
     samsung,
     customerSupport,
+    truck,
+    LockOpen,
+    creditCard,
+    stack,
+    vector,
+    storefront
 }
 
 export const CoreTeamMembers = [
