@@ -13,6 +13,7 @@ import AboutUs from './pages/AboutUs';
 import CustomerSupport from './pages/CustomerSupport';
 import BlogList from './pages/BlogList';
 import BlogDetails from './pages/BlogDetails';
+import ErrorPageNotFound from './pages/ErrorPageNotFound';
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
       <SecondNavbar />
       <ThirdNavbar/>
       <Routes>
+        <Route path='/' element={<SignIn/>} />
         <Route path='/login' element={<SignIn/>} />
         <Route path='/signup' element={<SignUp/>} />
         <Route path='/password' element={<ForgetPassword/>} />
@@ -32,6 +34,8 @@ const App = () => {
         <Route path='/customer-support' element={<CustomerSupport/>} />
         <Route path='/blogs' element={<BlogList/>} />
         <Route path='/blog-details' element={<BlogDetails/>} />
+         {/* Catch-all route for unmatched paths */}
+         <Route path='*' element={<ErrorPageNotFound/>}/>
       </Routes>
       <Footer/>
     </div>

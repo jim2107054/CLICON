@@ -30,6 +30,7 @@ import creditCard from './CreditCard.png'
 import stack from './Stack.png'
 import vector from './Vector.png'
 import storefront from './Storefront.png'
+import oppsError from './Oops404Error.png'
 
 
 // import core team member photo
@@ -102,7 +103,8 @@ export const assets = {
     creditCard,
     stack,
     vector,
-    storefront
+    storefront,
+    oppsError,
 }
 
 export const CoreTeamMembers = [
