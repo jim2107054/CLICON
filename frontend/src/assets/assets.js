@@ -20,14 +20,16 @@ import checks from './Checks.png'
 import aboutOne from './aboutPage1.png'
 
 // import core team member photo
-import member1 from './member1.png'
-import member2 from './member2.png'
-import member3 from './member3.png'
-import member4 from './member4.png'
-import member5 from './member5.png'
-import member6 from './member6.png'
-import member7 from './member7.png'
-import member8 from './member8.png'
+import member1 from './CoreTeamMember/member1.png'
+import member2 from './CoreTeamMember/member2.png'
+import member3 from './CoreTeamMember/member3.png'
+import member4 from './CoreTeamMember/member4.png'
+import member5 from './CoreTeamMember/member5.png'
+import member6 from './CoreTeamMember/member6.png'
+import member7 from './CoreTeamMember/member7.png'
+import member8 from './CoreTeamMember/member8.png'
+
+import aboutBanner from './about-us/Banner.png'
 
 
 export const assets = {
@@ -59,6 +61,7 @@ export const assets = {
     member6,
     member7,
     member8,
+    aboutBanner,
 }
 
 export const CoreTeamMembers = [

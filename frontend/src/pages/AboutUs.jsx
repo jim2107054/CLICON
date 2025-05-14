@@ -1,5 +1,7 @@
 import React from "react";
 import { assets } from "../assets/assets";
+import CoreTeamMemberCard from "../components/CoreTeamMemberCard";
+import { CoreTeamMembers } from "../assets/assets";
 
 const AboutUs = () => {
   return (
@@ -58,12 +60,37 @@ const AboutUs = () => {
           </div>
         </div>
         {/*------------Second Div----------*/}
-        <div>
-            <h1>Our core team member</h1>
+        <div className="flex flex-col gap-5">
+          <h1 className="text-3xl font-semibold text-center my-5">
+            Our core team member
+          </h1>
+          <div className="flex flex-col md:flex-row flex-wrap w-full gap-x-8 gap-y-5">
+            {CoreTeamMembers.map((member, index) => (
+              <CoreTeamMemberCard
+                key={index}
+                image={member.image}
+                name={member.name}
+                position={member.position}
+              />
+            ))}
+          </div>
         </div>
-        {/*------------Third Div----------*/}
+      </div>
+      {/*------------Third Div----------*/}
+      <div>
+        <img
+        className="w-full object-cover my-5"
+         src={assets.aboutBanner} alt="Banner" />
+      </div>
+      {/*------------Fourth Div----------*/}
+      <div className="flex flex-col gap-10 px-36 py-10">
+        {/*--------FLASH SALE TODAY-----------*/}
         <div></div>
-        {/*------------Fourth Div----------*/}
+        {/*--------BEST SELLERS-----------*/}
+        <div></div>
+        {/*--------TOP RATED-----------*/}
+        <div></div>
+        {/*--------NEW ARRIVAL-----------*/}
         <div></div>
       </div>
     </div>
