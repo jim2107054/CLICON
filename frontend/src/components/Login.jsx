@@ -1,8 +1,10 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import {FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="flex flex-col justify-center items-center my-20">
@@ -40,7 +42,7 @@ const Login = () => {
           <button className="bg-[#FA8232] flex items-center justify-center gap-3 h-11 rounded-md text-white font-medium mt-5">
             SIGN IN <span className="items-center justify-center"> <FaArrowRight/> </span>
           </button>
-          <p className="text-base font-light my-2 text-center">Create a new account <span className="text-base text-blue-500 font-medium ml-2">Sign Up</span></p>
+          <p className="text-base font-light my-2 text-center">Create a new account <span onClick={()=>navigate('/signup')} className="text-base cursor-pointer text-blue-500 font-medium ml-2">Sign Up</span></p>
         </div>
       </div>
     </div>

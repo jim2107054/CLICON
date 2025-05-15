@@ -31,6 +31,8 @@ import stack from './Stack.png'
 import vector from './Vector.png'
 import storefront from './Storefront.png'
 import oppsError from './Oops404Error.png'
+import appleBlack from './AppleBlack.png'
+import googleBlack from './GoogleBlack.png'
 
 
 // import core team member photo
@@ -105,6 +107,8 @@ export const assets = {
     vector,
     storefront,
     oppsError,
+    appleBlack,
+    googleBlack,
 }
 
 export const CoreTeamMembers = [
