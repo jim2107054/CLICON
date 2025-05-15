@@ -9,6 +9,7 @@ export default {
       colors:{
         primary: "#1E3A8A",
         secondary: "#1B6392",
+        btnColor: "#FA8232",
       }
     },
   },
