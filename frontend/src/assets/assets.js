@@ -249,3 +249,60 @@ export const newArrival = [
         description:"Wyze Cam Pan v2 1080p Pan/Tilt/Zoom Wi-Fi Indoor Smar..."
     }
 ]
+
+export const faqsData = [
+    {
+        id: 1,
+        question: "Suspendisse ultrices pharetra libero sed interdum.",
+        answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ea inventore, distinctio quas odit eligendi. Consequuntur hic iure officia enim, repellat provident ut iste in optio totam! In omnis modi aspernatur aut autem voluptate dolore ratione. Distinctio excepturi harum odio quia, deleniti fuga? A mollitia fugit aliquid atque aperiam laborum!",
+        points:[
+            "Vivamus sed est non arcu porta aliquet et vitae nulla.",
+            "Integer et lacus vitae justo fermentum rutrum. In nec ultrices massa.",
+            "Proin blandit nunc risus, at semper turpis sagittis nec.",
+            "Donec nec ligula id enim efficitur fringilla.",
+        ]
+    },
+    {
+        id: 2,
+        question: "Fusce molestie condimentum facilisis.",
+        answer: "lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ea inventore, distinctio quas odit eligendi. Consequuntur hic iure officia enim, repellat provident ut iste in optio totam! In omnis modi aspernatur aut autem voluptate dolore ratione. Distinctio excepturi harum odio quia, deleniti fuga? A mollitia fugit aliquid atque aperiam laborum!",
+        points:[
+            "Vivamus sed est non arcu porta aliquet et vitae nulla.",
+            "Proin blandit nunc risus, at semper turpis sagittis nec.",
+            "Donec nec ligula id enim efficitur fringilla.",
+        ]
+    },
+    {
+        id: 3,
+        question: "Quisque quis nunc quis urna tempor lobortis vel non orci. ",
+        answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ea inventore, distinctio quas odit eligendi. Consequuntur hic iure officia enim, repellat provident ut iste in optio totam! In omnis modi aspernatur aut autem voluptate dolore ratione. Distinctio excepturi harum odio quia, deleniti fuga? A mollitia fugit aliquid atque aperiam laborum!",
+        points:[
+            "Vivamus sed est non arcu porta aliquet et vitae nulla.",
+            "Integer et lacus vitae justo fermentum rutrum. In nec ultrices massa.",
+            "Proin blandit nunc risus, at semper turpis sagittis nec.",
+            "Donec nec ligula id enim efficitur fringilla.",
+            "Vivamus sed est non arcu porta aliquet et vitae nulla.",
+        ]
+    },
+    {
+        id: 4,
+        question: "Donec rutrum ultrices ante nec malesuada. In accumsan eget nisi a rhoncus",
+        answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ea inventore, distinctio quas odit eligendi. Consequuntur hic iure officia enim, repellat provident ut iste in optio totam! In omnis modi aspernatur aut autem voluptate dolore ratione. Distinctio excepturi harum odio quia, deleniti fuga? A mollitia fugit aliquid atque aperiam laborum!",
+        points:[
+            "Vivamus sed est non arcu porta aliquet et vitae nulla.",
+            "Integer et lacus vitae justo fermentum rutrum. In nec ultrices massa.",
+            "Proin blandit nunc risus, at semper turpis sagittis nec.",
+            "Donec nec ligula id enim efficitur fringilla.",
+            "Proin blandit nunc risus, at semper turpis sagittis nec.",
+        ]
+    },
+    {
+        id: 5,
+        question: "Nulla sed sapien maximus, faucibus massa vitae.",
+        answer: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo ea inventore, distinctio quas odit eligendi. Consequuntur hic iure officia enim, repellat provident ut iste in optio totam! In omnis modi aspernatur aut autem voluptate dolore ratione. Distinctio excepturi harum odio quia, deleniti fuga? A mollitia fugit aliquid atque aperiam laborum!",
+        points:[
+            "Proin blandit nunc risus, at semper turpis sagittis nec.",
+            "Donec nec ligula id enim efficitur fringilla.",
+        ]
+    }
+]
