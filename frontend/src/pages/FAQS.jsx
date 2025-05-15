@@ -6,14 +6,14 @@ import FAQItem from "../components/FAQItem";
 const FAQS = () => {
   return (
     <div>
-      <div className="flex flex-col gap-10 px-36 py-10">
+      <div className="flex flex-col gap-10 px-2 py-2 lg:px-36 lg:py-10">
         <div className="flex flex-col lg:flex-row lg:gap-20 gap-16">
           {/*-------Left Div-------*/}
           <div className="flex flex-col gap-5 w-full lg:w-1/2">
             <h1 className="text-3xl font-medium mb-3">
               Frequently Asked Questions{" "}
             </h1>
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col w-full gap-2">
               {faqsData.length > 0 &&
                 faqsData.map((faq, index) => (
                   <FAQItem
