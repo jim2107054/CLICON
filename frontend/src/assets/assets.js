@@ -33,6 +33,8 @@ import storefront from './Storefront.png'
 import oppsError from './Oops404Error.png'
 import appleBlack from './AppleBlack.png'
 import googleBlack from './GoogleBlack.png'
+import call from './call.png'
+import message from './message.png'
 
 
 // import core team member photo
@@ -109,6 +111,8 @@ export const assets = {
     oppsError,
     appleBlack,
     googleBlack,
+    call,
+    message,
 }
 
 export const CoreTeamMembers = [

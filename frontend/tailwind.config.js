@@ -10,6 +10,8 @@ export default {
         primary: "#1E3A8A",
         secondary: "#1B6392",
         btnColor: "#FA8232",
+        blueButton:"#2DA5F3",
+        greenButton:"#2DB224",
       }
     },
   },
