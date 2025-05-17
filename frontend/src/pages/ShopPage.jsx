@@ -1,4 +1,5 @@
 import React from "react";
+import { assets } from './../assets/assets';
 
 const ShopPage = () => {
   return (
@@ -226,7 +227,29 @@ const ShopPage = () => {
           </div>
         </div>
         {/*------------Right Div---------------*/}
-        <div></div>
+        <div className="w-full bg-gray-400 lg:w-3/4 p-5">
+          {/*-----------Right Div Top------ */}
+          <div className="w-full bg-yellow-400 mb-5 flex flex-col items-center justify-between md:flex-row gap-5">
+            <div className="flex relative w-full lg:w-1/2 group items-center">
+              <input className="border w-full px-5 py-1 rounded-md h-10 border-black" type="text" placeholder="Search for anything....."/>
+              <img className="h-5 absolute right-2 " src={assets.search} alt="searchIcon" />
+            </div>
+            <div className="flex gap-2 items-center">
+              <p className="text-xl font-light">Sort by:</p>
+              <select className="border h-10 border-gray-200 rounded px-2 py-1">
+                <option value="default">Default</option>
+                <option value="latest">Latest</option>
+                <option value="popular">Most Popular</option>
+                <option value="lowToHigh">Price: Low to High</option>
+                <option value="highToLow">Price: High to Low</option>
+              </select>
+            </div>
+          </div>
+          {/*---------------Right Div Bottom-------------- */}
+          <div className="bg-red-500">
+            df
+          </div>
+        </div>
       </div>
     </div>
   );
