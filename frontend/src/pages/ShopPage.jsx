@@ -91,14 +91,14 @@ const ShopPage = () => {
           {/*-----------Left Div Price Range------ */}
           <div>
             <p className="font-medium my-2">PRICE RANGE</p>
-            <div className="flex gap-3 my-2">
+            <div className="flex gap-2 my-2">
               <input
-                className="h-5 w-1/2 text-gray-700 rounded border border-gray-800 px-5 py-4"
+                className="h-5 w-1/2 text-gray-700 rounded border border-gray-800 px-2 py-4"
                 type="number"
                 placeholder="Min price"
               />
               <input
-                className="h-5 w-1/2 text-gray-700 rounded border border-gray-800 px-5 py-4"
+                className="h-5 w-1/2 text-gray-700 rounded border border-gray-800 px-2 py-4"
                 type="number"
                 placeholder="Max price"
               />
