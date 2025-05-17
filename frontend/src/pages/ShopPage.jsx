@@ -160,55 +160,55 @@ const ShopPage = () => {
           <div>
             <p className="font-medium my-2">POPULAR BRANDS</p>
             <div className="flex flex-wrap">
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Apple</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Google</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Microsoft</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Samsung</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Dell</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>HP</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Symphony</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Xiaomi</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Sony</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Panasonic</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>LG</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>Intel</span>
               </p>
-              <p className="flex w-1/2 gap-2 items-center text-center">
+              <p className="flex w-1/2 gap-2 cursor-pointer hover:font-medium items-center text-center">
                 <input className="ShopPage-CheckBox" type="checkbox" />
                 <span>One Plus</span>
               </p>
