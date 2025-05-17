@@ -1,11 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import { assets } from "./../assets/assets";
 import ItemCard from "../components/ItemCard";
 import shopItems from "../assets/ShopItem";
-import { FaArrowRight } from "react-icons/fa";
+import {FaArrowRight } from "react-icons/fa";
 import { GrCart } from "react-icons/gr";
+import { BsArrowLeftSquare } from "react-icons/bs";
+import { BsArrowRightSquare } from "react-icons/bs";
 
 const ShopPage = () => {
+  const perPageItems = 12;
+  const totalNumberOfPages = Math.ceil(shopItems.length / perPageItems);
+  const [currentPage, setCurrentPage] = useState(1);
   return (
     <div>
       <div className="flex flex-col gap-10 md:flex-row px-5 lg:px-36 py-5">
@@ -235,18 +240,37 @@ const ShopPage = () => {
               <div>
                 <img src={assets.shopPage} alt="" />
                 <div className="flex gap-2 mt-2 mb-1 items-center justify-center">
-                  <img className="h-8 w-8" src={assets.appleBlack} alt="apple watch" />
+                  <img
+                    className="h-8 w-8"
+                    src={assets.appleBlack}
+                    alt="apple watch"
+                  />
                   <p className="text-2xl font-medium">WATCH</p>
                 </div>
-                <p className="text-xs text-center font-bold text-red-500">SERIES 7</p>
+                <p className="text-xs text-center font-bold text-red-500">
+                  SERIES 7
+                </p>
               </div>
               {/*----last part---*/}
               <div>
-                <p className="text-[18px] text-center font-medium">Heavy on Features. Light on Price.</p>
-                <p className="text-xs text-center my-3">Only for: <span className="border-2 px-1 py-0.5 rounded bg-yellow-400 text-lg font-medium">$299 USD</span></p>
+                <p className="text-[18px] text-center font-medium">
+                  Heavy on Features. Light on Price.
+                </p>
+                <p className="text-xs text-center my-3">
+                  Only for:{" "}
+                  <span className="border-2 px-1 py-0.5 rounded bg-yellow-400 text-lg font-medium">
+                    $299 USD
+                  </span>
+                </p>
                 <div className="flex flex-col gap-2">
-                  <button className="flex justify-center items-center gap-2 bg-btnColor px-5 py-2 text-sm text-white font-medium rounded-md hover:scale-105 transition-all duration-300 cursor-pointer"><GrCart/>ADD TO CART</button>
-                  <button className="flex justify-center items-center gap-2 bg-white px-5 py-2 text-sm text-btnColor border border-btnColor font-medium rounded-md hover:scale-105 transition-all duration-300 cursor-pointer">VIEW DETAILS<FaArrowRight/> </button>
+                  <button className="flex justify-center items-center gap-2 bg-btnColor px-5 py-2 text-sm text-white font-medium rounded-md hover:scale-105 transition-all duration-300 cursor-pointer">
+                    <GrCart />
+                    ADD TO CART
+                  </button>
+                  <button className="flex justify-center items-center gap-2 bg-white px-5 py-2 text-sm text-btnColor border border-btnColor font-medium rounded-md hover:scale-105 transition-all duration-300 cursor-pointer">
+                    VIEW DETAILS
+                    <FaArrowRight />{" "}
+                  </button>
                 </div>
               </div>
             </div>
@@ -281,18 +305,55 @@ const ShopPage = () => {
           </div>
           {/*---------------Right Div Bottom-------------- */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 gap-y-8">
-            {shopItems.slice(0, 24).map((item, index) => (
-              <ItemCard
-                key={index}
-                id={item.id}
-                image={item.image}
-                rating={item.rating}
-                sell={item.sell}
-                title={item.title}
-                price={item.price}
-                offer={item.offer}
-              />
-            ))}
+            {shopItems
+              .slice(currentPage - 1, currentPage + perPageItems - 1)
+              .map((item, index) => (
+                <ItemCard
+                  key={index}
+                  id={item.id}
+                  image={item.image}
+                  rating={item.rating}
+                  sell={item.sell}
+                  title={item.title}
+                  price={item.price}
+                  offer={item.offer}
+                />
+              ))}
+          </div>
+          <div className="flex justify-center items-center my-16">
+            <div className="flex gap-5 justify-center items-center py-5">
+              <button
+                onClick={() => setCurrentPage(currentPage - 1)}
+                disabled={currentPage === 1}
+                className={`text-4xl text-btnColor ${
+                  currentPage === 1 ? "text-gray-500" : ""
+                }`}
+              >
+                <BsArrowLeftSquare />
+              </button>
+              {Array.from({ length: totalNumberOfPages }, (_, index) => (
+                <button
+                  key={index}
+                  className={`text-2xl rounded-md border border-btnColor h-10 w-10 items-center justify-center text-btnColor ${
+                    currentPage === index + 1
+                      ? "font-bold bg-btnColor text-white"
+                      : ""
+                  }`}
+                  onClick={() => setCurrentPage(index + 1)}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                onClick={() => setCurrentPage(currentPage + 1)}
+                disabled={currentPage === totalNumberOfPages}
+                className={`text-4xl text-btnColor ${
+                  currentPage === totalNumberOfPages ? "text-gray-500" : ""
+                }`}
+              >
+                <BsArrowRightSquare />
+              </button>
+            </div>
           </div>
         </div>
       </div>
