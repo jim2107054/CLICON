@@ -14,3 +14,11 @@
 .customer-assist{
     @apply flex cursor-pointer hover:scale-105 transition-all duration-300 border border-orange-400 rounded w-1/5 gap-2 items-center px-5 py-2
 }
+
+.ShopPage-CheckBox{
+    @apply flex items-center gap-2 size-4
+}
+
+.shopPage-PopularTag{
+    @apply border border-gray-400 px-3 font-medium py-1 rounded hover:bg-btnColor hover:text-white cursor-pointer hover:border-white transition-all duration-300
+}
