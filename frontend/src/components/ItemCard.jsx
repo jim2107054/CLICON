@@ -6,7 +6,7 @@ const ItemCard = (props) => {
 
   return (
     <div>
-      <div key={id} className="flex flex-col border border-b-2 cursor-pointer rounded-md overflow-hidden hover:shadow-lg transition-shadow duration-500 ease-in-out hover:scale-105">
+      <div key={id} className="flex flex-col border border-b-2 cursor-pointer rounded-md overflow-hidden hover:shadow-lg transition-shadow hover:-translate-y-2 hover:duration-500 hover:scale-105">
         {/* Image Section */}
         <div className="relative flex px-2 py-1 w-full h-[50%]">
           <div className="h-[50%]"><img className="h-full w-full" src={image} alt="product" /></div>
