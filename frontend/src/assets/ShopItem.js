@@ -239,7 +239,34 @@ const shopItems = [
         title: "Tribit FlyBuds C1",
         price: 49.99,
         offer:"HOT",
-    }
+    },
+    {
+      id:25,
+      image:shopImg1,
+      rating:5,
+      sell:738,
+      title:"TOZO T6 Wireless Earbuds Bluetooth Headphon...",
+      price:29.99,
+      offer:"HOT",
+    },
+    {
+      id:26,
+      image:shopImg2,
+      rating:5,
+      sell:536,
+      title:"Samsung Electronics Samsung Galexy S21 5G",
+      price:2300,
+      offer:"",
+    },
+    {
+      id:27,
+      image:shopImg3,
+      rating:5,
+      sell:423,
+      title:"Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
+      price:360,
+      offer:"BEST DEALS" ,
+    },
 ];
 
 export default shopItems;

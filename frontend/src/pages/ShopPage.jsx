@@ -306,7 +306,7 @@ const ShopPage = () => {
           {/*---------------Right Div Bottom-------------- */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 gap-y-8">
             {shopItems
-              .slice(currentPage - 1, currentPage + perPageItems - 1)
+              .slice((currentPage - 1)*perPageItems, perPageItems*(currentPage-1) + perPageItems)
               .map((item, index) => (
                 <ItemCard
                   key={index}
