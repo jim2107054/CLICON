@@ -13,8 +13,11 @@ const ProductDetails = () => {
                     <img className='w-full' src={productImage} alt="" />
                 </div>
                 {/*--------Product small images*/}
-                <div className='flex px-5 gap-5'>
+                <div className='flex px-5 gap-5 overflow-x-scroll scroll-smooth scrollbar-hide'>
                     <img onClick={()=>setProductImage(assets.laptopDetails)} className='w-[100px] h-[80px] rounded cursor-pointer border-btnColor border-2' src={assets.laptopDetails} alt="" />
+                    <img onClick={()=>setProductImage(assets.laptopDetails1)} className='w-[100px] h-[80px] rounded cursor-pointer border-btnColor border-2' src={assets.laptopDetails1} alt="" />
+                    <img onClick={()=>setProductImage(assets.laptopDetails2)} className='w-[100px] h-[80px] rounded cursor-pointer border-btnColor border-2' src={assets.laptopDetails2} alt="" />
+                    <img onClick={()=>setProductImage(assets.laptopDetails3)} className='w-[100px] h-[80px] rounded cursor-pointer border-btnColor border-2' src={assets.laptopDetails3} alt="" />
                     <img onClick={()=>setProductImage(assets.laptopDetails1)} className='w-[100px] h-[80px] rounded cursor-pointer border-btnColor border-2' src={assets.laptopDetails1} alt="" />
                     <img onClick={()=>setProductImage(assets.laptopDetails2)} className='w-[100px] h-[80px] rounded cursor-pointer border-btnColor border-2' src={assets.laptopDetails2} alt="" />
                     <img onClick={()=>setProductImage(assets.laptopDetails3)} className='w-[100px] h-[80px] rounded cursor-pointer border-btnColor border-2' src={assets.laptopDetails3} alt="" />
