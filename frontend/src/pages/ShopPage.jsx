@@ -2,6 +2,8 @@ import React from "react";
 import { assets } from "./../assets/assets";
 import ItemCard from "../components/ItemCard";
 import shopItems from "../assets/ShopItem";
+import { FaArrowRight } from "react-icons/fa";
+import { GrCart } from "react-icons/gr";
 
 const ShopPage = () => {
   return (
@@ -227,11 +229,33 @@ const ShopPage = () => {
               <span className="shopPage-PopularTag">Samsung</span>
             </div>
           </div>
+          {/*-----------Left Div Last Part------ */}
+          <div className="my-5 border-2 border-orange-300 rounded">
+            <div className="flex flex-col gap-5 p-5">
+              <div>
+                <img src={assets.shopPage} alt="" />
+                <div className="flex gap-2 mt-2 mb-1 items-center justify-center">
+                  <img className="h-8 w-8" src={assets.appleBlack} alt="apple watch" />
+                  <p className="text-2xl font-medium">WATCH</p>
+                </div>
+                <p className="text-xs text-center font-bold text-red-500">SERIES 7</p>
+              </div>
+              {/*----last part---*/}
+              <div>
+                <p className="text-[18px] text-center font-medium">Heavy on Features. Light on Price.</p>
+                <p className="text-xs text-center my-3">Only for: <span className="border-2 px-1 py-0.5 rounded bg-yellow-400 text-lg font-medium">$299 USD</span></p>
+                <div className="flex flex-col gap-2">
+                  <button className="flex justify-center items-center gap-2 bg-btnColor px-5 py-2 text-sm text-white font-medium rounded-md hover:scale-105 transition-all duration-300 cursor-pointer"><GrCart/>ADD TO CART</button>
+                  <button className="flex justify-center items-center gap-2 bg-white px-5 py-2 text-sm text-btnColor border border-btnColor font-medium rounded-md hover:scale-105 transition-all duration-300 cursor-pointer">VIEW DETAILS<FaArrowRight/> </button>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         {/*------------Right Div---------------*/}
         <div className="w-full lg:w-3/4 px-3 py-5 items-center justify-center">
           {/*-----------Right Div Top------ */}
-          <div className="w-full mb-5 flex flex-col items-center justify-between md:flex-row gap-5">
+          <div className="w-full mb-9 flex flex-col items-center justify-between md:flex-row gap-5">
             <div className="flex relative w-full lg:w-1/2 group items-center">
               <input
                 className="border w-full px-5 py-1 rounded-md h-10 border-black"
@@ -256,7 +280,7 @@ const ShopPage = () => {
             </div>
           </div>
           {/*---------------Right Div Bottom-------------- */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 gap-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 gap-y-8">
             {shopItems.slice(0, 24).map((item, index) => (
               <ItemCard
                 key={index}

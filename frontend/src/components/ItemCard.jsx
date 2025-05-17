@@ -12,7 +12,7 @@ const ItemCard = (props) => {
           <div className="h-[50%]"><img className="h-full w-full" src={image} alt="product" /></div>
           {offer && (
             <span
-              className={`absolute top-1 left-1 px-2 py-0.5 text-sm rounded text-white ${
+              className={`absolute top-1 left-1 px-2 py-0.5 text-sm font-light rounded text-white ${
                 offer === "HOT"
                   ? "bg-red-600"
                   : offer === "BEST DEALS"
