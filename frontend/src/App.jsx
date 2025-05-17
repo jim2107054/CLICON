@@ -15,6 +15,7 @@ import BlogList from './pages/BlogList';
 import BlogDetails from './pages/BlogDetails';
 import ErrorPageNotFound from './pages/ErrorPageNotFound';
 import ShopPage from './pages/ShopPage';
+import ProductDetails from './pages/ProductDetails';
 
 const App = () => {
   return (
@@ -36,7 +37,8 @@ const App = () => {
         <Route path='/blogs' element={<BlogList/>} />
         <Route path='/blog-details' element={<BlogDetails/>} />
         {/* Add more routes as needed */}
-        <Route path='/shop' element=<ShopPage/> />
+        <Route path='/shop' element={<ShopPage/>} />
+        <Route path='/shop/:productId' element={<ProductDetails/>} />
          {/* Catch-all route for unmatched paths */}
          <Route path='*' element={<ErrorPageNotFound/>}/>
       </Routes>

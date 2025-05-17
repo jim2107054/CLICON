@@ -36,6 +36,10 @@ import googleBlack from './GoogleBlack.png'
 import call from './call.png'
 import message from './message.png'
 import shopPage from './shopPage.png'
+import laptopDetails from './MainImage.png'
+import laptopDetails1 from './laptopDetails1.jpeg'
+import laptopDetails2 from './laptopDetails2.jpeg'
+import laptopDetails3 from './laptopDetails3.jpeg'
 
 
 // import core team member photo
@@ -115,6 +119,10 @@ export const assets = {
     call,
     message,
     shopPage,
+    laptopDetails,
+    laptopDetails1,
+    laptopDetails2,
+    laptopDetails3,
 }
 
 export const CoreTeamMembers = [
