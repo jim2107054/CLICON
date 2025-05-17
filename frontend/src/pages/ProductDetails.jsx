@@ -43,9 +43,9 @@ const ProductDetails = () => {
   const smallImagePages = Math.ceil(smallImageLength / 5);
   return (
     <div>
-      <div className="flex flex-col lg:flex-row px-36 py-5 gap-10 mb-10">
+      <div className="flex flex-col lg:flex-row px-36 py-5 gap-10 lg:gap-16 mb-10">
         {/*--------Left Div-----------*/}
-        <div className="flex flex-col w-full lg:w-1/2">
+        <div className="flex bg-gary-100 flex-col w-full lg:w-1/2">
           {/*--------Product large image*/}
           <div className="flex w-[616px] h-[464px] p-5 justify-center">
             <img className="w-full" src={productImage} alt="" />
@@ -102,11 +102,30 @@ const ProductDetails = () => {
           </div>
         </div>
         {/*--------Right Div-----------*/}
-        <div className="flex flex-col w-full lg:w-1/2">
-          {/*--------Product large image*/}
-          <div className="flex justify-center border-2">
-            <img src={assets.laptopDetails} alt="" />
+        <div className="flex bg-gray-100 lg:px-5 flex-col w-full lg:w-1/2">
+        {/*--------Product Details 1st part---------*/}
+          <div>
+            <p className="text-base font-medium my-1">4.7 Star Rating <span className="text-base text-gray-600">(21,671 User feedback)</span></p>
+            <p className="text-xl font-medium leading-none my-2">2020 Apple MacBook Pro with Apple M1 Chip (13-inch, 8GB RAM, 256GB SSD Storage) - Space Gray</p>
           </div>
+          {/*--------Product Details 2nd part---------*/}
+          <div className="flex justify-between my-5">
+            <div>
+            <p className="text-sm text-gray-700">Sku: <span className="font-medium">A264671</span></p>
+            <p className="text-sm text-gray-700">Brand: <span className="font-medium">Apple</span></p>
+            </div>
+            <div>
+                <p className="text-sm text-gray-700">Availability: <span className="text-greenButton">In Stock</span></p>
+                <p className="text-sm text-gray-700">Category: <span className="font-medium">Electronics Devices</span></p>
+            </div>
+          </div>
+            {/*--------Product Details 3rd part---------*/}
+            <div className="flex  gap-3 mb-2">
+                <p className="text-xl font-medium text-blue-400">$1699</p>
+                <p className="text-base text-gray-500 line-through font-medium">$1999.00</p>
+                <p className="border bg-yellow-400 px-1 py-0.5 rounded-md">21% OFF</p>
+            </div>
+            <hr />
         </div>
       </div>
     </div>
