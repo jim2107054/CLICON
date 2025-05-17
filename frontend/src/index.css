@@ -16,7 +16,7 @@
 }
 
 .ShopPage-CheckBox{
-    @apply flex items-center gap-2 size-4
+    @apply flex items-center gap-2 size-4 cursor-pointer
 }
 
 .shopPage-PopularTag{

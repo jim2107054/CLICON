@@ -103,43 +103,43 @@ const ShopPage = () => {
             <div>
               <ul className="">
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $0 - $100
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $100 - $200
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $200 - $300
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $300 - $400
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $400 - $500
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $500 - $600
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $600 - $700
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $700 - $800
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $800 - $900
                 </li>
                 <li className="flex gap-2">
-                  <input type="checkbox" />
+                  <input className="cursor-pointer" type="checkbox" />
                   $900 - $1000
                 </li>
               </ul>
