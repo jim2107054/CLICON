@@ -22,3 +22,12 @@
 .shopPage-PopularTag{
     @apply border border-gray-400 px-3 font-medium py-1 rounded hover:bg-btnColor hover:text-white cursor-pointer hover:border-white transition-all duration-300
 }
+
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari */
+}
