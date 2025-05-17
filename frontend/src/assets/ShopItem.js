@@ -29,7 +29,7 @@ const shopItems = [
     image: shopImg1,
     rating: 5,
     sell: 738,
-    title: "TOZO T6 True Wireless Earbuds Bluetooth Headphon...",
+    title: "TOZO T6 Wireless Earbuds Bluetooth Headphon...",
     price: 29.99,
     offer: "HOT",
   },

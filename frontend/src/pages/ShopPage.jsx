@@ -1,12 +1,14 @@
 import React from "react";
-import { assets } from './../assets/assets';
+import { assets } from "./../assets/assets";
+import ItemCard from "../components/ItemCard";
+import shopItems from "../assets/ShopItem";
 
 const ShopPage = () => {
   return (
     <div>
-      <div className="flex flex-col md:flex-row px-5 lg:px-36 py-5">
+      <div className="flex flex-col gap-10 md:flex-row px-5 lg:px-36 py-5">
         {/*------------Left Div---------------*/}
-        <div className="hidden md:block w-full lg:w-1/4 bg-gray-100 p-5">
+        <div className="hidden md:block w-full lg:w-1/5 bg-gray-100 p-5">
           {/*-----------Left Div Category------ */}
           <div>
             <p className="font-medium my-2">CATEGORY</p>
@@ -227,12 +229,20 @@ const ShopPage = () => {
           </div>
         </div>
         {/*------------Right Div---------------*/}
-        <div className="w-full bg-gray-400 lg:w-3/4 p-5">
+        <div className="w-full lg:w-3/4 px-3 py-5 items-center justify-center">
           {/*-----------Right Div Top------ */}
-          <div className="w-full bg-yellow-400 mb-5 flex flex-col items-center justify-between md:flex-row gap-5">
+          <div className="w-full mb-5 flex flex-col items-center justify-between md:flex-row gap-5">
             <div className="flex relative w-full lg:w-1/2 group items-center">
-              <input className="border w-full px-5 py-1 rounded-md h-10 border-black" type="text" placeholder="Search for anything....."/>
-              <img className="h-5 absolute right-2 " src={assets.search} alt="searchIcon" />
+              <input
+                className="border w-full px-5 py-1 rounded-md h-10 border-black"
+                type="text"
+                placeholder="Search for anything....."
+              />
+              <img
+                className="h-5 absolute right-2 "
+                src={assets.search}
+                alt="searchIcon"
+              />
             </div>
             <div className="flex gap-2 items-center">
               <p className="text-xl font-light">Sort by:</p>
@@ -246,8 +256,19 @@ const ShopPage = () => {
             </div>
           </div>
           {/*---------------Right Div Bottom-------------- */}
-          <div className="bg-red-500">
-            df
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 gap-y-6">
+            {shopItems.slice(0, 24).map((item, index) => (
+              <ItemCard
+                key={index}
+                id={item.id}
+                image={item.image}
+                rating={item.rating}
+                sell={item.sell}
+                title={item.title}
+                price={item.price}
+                offer={item.offer}
+              />
+            ))}
           </div>
         </div>
       </div>
