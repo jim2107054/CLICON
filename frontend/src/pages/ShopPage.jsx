@@ -235,9 +235,9 @@ const ShopPage = () => {
             </div>
           </div>
           {/*-----------Left Div Last Part------ */}
-          <div className="my-5 border-2 border-orange-300 rounded">
+          <div className="my-5 border-2 items-center justify-center border-orange-300 rounded">
             <div className="flex flex-col gap-5 p-5">
-              <div>
+              <div className="flex flex-col items-center justify-center">
                 <img src={assets.shopPage} alt="" />
                 <div className="flex gap-2 mt-2 mb-1 items-center justify-center">
                   <img
