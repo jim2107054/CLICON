@@ -1,6 +1,18 @@
 import React, { useState } from "react";
 import { assets } from "./../assets/assets";
-import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
+import {
+  IoArrowBackOutline,
+  IoArrowForwardOutline,
+  IoCartOutline,
+} from "react-icons/io5";
+import { GoCopy, GoHeart } from "react-icons/go";
+import {
+  FaMinus,
+  FaPlus,
+  FaFacebook,
+  FaTwitter,
+  FaPinterestP,
+} from "react-icons/fa6";
 
 //For Now we are using the small images here, in real project we will upload or fetch form backend
 const smallImages = [
@@ -38,6 +50,7 @@ const ProductDetails = () => {
   const [productImage, setProductImage] = useState(assets.laptopDetails);
   const [clickedPage, setclickedPage] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [productQuantity, setproductQuantity] = useState(1);
 
   const smallImageLength = smallImages.length;
   const smallImagePages = Math.ceil(smallImageLength / 5);
@@ -107,7 +120,14 @@ const ProductDetails = () => {
           <div>
             {/*--------Product Details 1st part---------*/}
             <div>
-              <p className="text-base font-medium my-1">
+              <p className="text-base flex items-center gap-3 font-medium my-1">
+                <div className="flex">
+                  <img className="h-5" src={assets.ratingIcon} alt="" />
+                  <img className="h-5" src={assets.ratingIcon} alt="" />
+                  <img className="h-5" src={assets.ratingIcon} alt="" />
+                  <img className="h-5" src={assets.ratingIcon} alt="" />
+                  <img className="h-5" src={assets.ratingIcon} alt="" />
+                </div>
                 4.7 Star Rating{" "}
                 <span className="text-base text-gray-600">
                   (21,671 User feedback)
@@ -150,16 +170,80 @@ const ProductDetails = () => {
               </p>
             </div>
           </div>
-          <hr />
+          <hr className="my-3" />
           {/*--------Product Details middle part---------*/}
+          <div>
             <div>
-                <div>
-                    <p>Color</p>
-
-                </div>
-                <div></div>
-                <div></div>
+              <p>Color</p>
             </div>
+            <div></div>
+            <div></div>
+          </div>
+          <hr className="my-3" />
+          {/*--------Product Details last part---------*/}
+          <div>
+            {/*--------Product Details upper part---------*/}
+            <div className="flex gap-5 mb-5 items-center">
+              <div className="flex gap-6 items-center border-2 border-gray-300 rounded-md px-6 py-2 w-fit">
+                <button
+                  onClick={() =>
+                    productQuantity > 1
+                      ? setproductQuantity(productQuantity - 1)
+                      : setproductQuantity(1)
+                  }
+                  className="font-medium"
+                >
+                  <FaMinus />
+                </button>
+                <p className="text-xl">{productQuantity}</p>
+                <button onClick={() => setproductQuantity(productQuantity + 1)}>
+                  <FaPlus />
+                </button>
+              </div>
+              <div>
+                <button className="bg-btnColor h-11 flex items-center gap-2 justify-center text-white px-8 py-2 rounded hover:scale-105 transition-all duration-200">
+                  ADD TO CARD <IoCartOutline className="text-xl" />
+                </button>
+              </div>
+              <div>
+                <button className="border-2 h-11 border-btnColor text-btnColor font-medium px-5 py-2 rounded hover:scale-105 transition-all duration-200">
+                  BUY NOW
+                </button>
+              </div>
+            </div>
+            {/*--------Product Details lower part---------*/}
+            <div className="flex gap-6 mb-5 items-center justify-between">
+              <div className="flex gap-5 items-center">
+                <p className="flex group gap-2 items-center justify-center">
+                  <GoHeart className="text-lg cursor-pointer font-light" />
+                  <span className="text-sm">Add to Wishlist</span>
+                </p>
+                <p className="flex group gap-2 items-center justify-between">
+                  <img
+                    className="h-5 font-light cursor-pointer"
+                    src={assets.compare}
+                    alt="arrowIcon"
+                  />
+                  <span className="text-sm">Add to Compare</span>
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <p>Share:</p>
+                <div className="flex items-center gap-2">
+                  <GoCopy className="hover:text-btnColor cursor-pointer"/>
+                  <FaFacebook className="hover:text-btnColor cursor-pointer"/>
+                  <FaTwitter className="hover:text-btnColor cursor-pointer"/>
+                  <FaPinterestP className="hover:text-btnColor cursor-pointer"/>
+                </div>
+              </div>
+            </div>
+            <hr/>
+            {/*--------100% Guarantee Safe Checkout---------*/}
+            <div className="flex flex-col gap-3 my-7 border-2 px-5 py-3 rounded">
+              <p className="font-medium">100% Guarantee Safe Checkout</p>
+              <img className="h-5 w-2/3" src={assets.paymentMethod} alt="" />
+            </div>
+          </div>
         </div>
       </div>
     </div>

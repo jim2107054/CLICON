@@ -40,6 +40,8 @@ import laptopDetails from './MainImage.png'
 import laptopDetails1 from './laptopDetails1.jpeg'
 import laptopDetails2 from './laptopDetails2.jpeg'
 import laptopDetails3 from './laptopDetails3.jpeg'
+import ratingIcon from './Star.png'
+import paymentMethod from './PaymentMethod.png'
 
 
 // import core team member photo
@@ -123,6 +125,8 @@ export const assets = {
     laptopDetails1,
     laptopDetails2,
     laptopDetails3,
+    ratingIcon,
+    paymentMethod,
 }
 
 export const CoreTeamMembers = [
