@@ -12,7 +12,11 @@ import {
   FaFacebook,
   FaTwitter,
   FaPinterestP,
+  FaRegCreditCard,
 } from "react-icons/fa6";
+import { PiMedalLight, PiHandshake } from "react-icons/pi";
+import { FiTruck } from "react-icons/fi";
+import { LuHeadset } from "react-icons/lu";
 
 //For Now we are using the small images here, in real project we will upload or fetch form backend
 const smallImages = [
@@ -51,6 +55,11 @@ const ProductDetails = () => {
   const [clickedPage, setclickedPage] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [productQuantity, setproductQuantity] = useState(1);
+
+  const [description, setDescription] = useState(true);
+  const [additionalInfo, setAdditionalInfo] = useState(false);
+  const [specification, setSpecification] = useState(false);
+  const [review, setReview] = useState(false);
 
   const smallImageLength = smallImages.length;
   const smallImagePages = Math.ceil(smallImageLength / 5);
@@ -230,18 +239,90 @@ const ProductDetails = () => {
               <div className="flex gap-2">
                 <p>Share:</p>
                 <div className="flex items-center gap-2">
-                  <GoCopy className="hover:text-btnColor cursor-pointer"/>
-                  <FaFacebook className="hover:text-btnColor cursor-pointer"/>
-                  <FaTwitter className="hover:text-btnColor cursor-pointer"/>
-                  <FaPinterestP className="hover:text-btnColor cursor-pointer"/>
+                  <GoCopy className="hover:text-btnColor cursor-pointer" />
+                  <FaFacebook className="hover:text-btnColor cursor-pointer" />
+                  <FaTwitter className="hover:text-btnColor cursor-pointer" />
+                  <FaPinterestP className="hover:text-btnColor cursor-pointer" />
                 </div>
               </div>
             </div>
-            <hr/>
+            <hr />
             {/*--------100% Guarantee Safe Checkout---------*/}
             <div className="flex flex-col gap-3 my-7 border-2 px-5 py-3 rounded">
               <p className="font-medium">100% Guarantee Safe Checkout</p>
               <img className="h-5 w-2/3" src={assets.paymentMethod} alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+      {/*--------Product Description---------*/}
+      <div className="flex flex-col px-36 py-5 gap-10 lg:gap-12 mb-10">
+        <div className="border rounded-md border-gray-300 ">
+          <div className="flex flex-col border-b border-gray-300 py-3 gap-3 w-full lg:gap-12 lg:flex-row items-center justify-center">
+            <p className="text-xl hover:font-medium cursor-pointer text-gray-800">
+              Description
+            </p>
+            <p className="text-xl hover:font-medium cursor-pointer text-gray-800">
+              Additional information
+            </p>
+            <p className="text-xl hover:font-medium cursor-pointer text-gray-800">
+              Specification
+            </p>
+            <p className="text-xl hover:font-medium cursor-pointer text-gray-800">
+              Review
+            </p>
+          </div>
+          <div className="flex flex-col gap-5 px-5 py-8 lg:flex-row">
+            <div className="flex flex-col gap-2 w-full lg:w-2/5">
+              <p className="text-xl font-medium">Description</p>
+              <p className="text-gray-800 font-light">
+                The most powerful MacBook Pro ever is here. With the
+                blazing-fast M1 Pro or M1 Max chip — the first Apple silicon
+                designed for pros — you get groundbreaking performance and
+                amazing battery life. Add to that a stunning Liquid Retina XDR
+                display, the best camera and audio ever in a Mac notebook, and
+                all the ports you need. The first notebook of its kind, this
+                MacBook Pro is a beast. M1 Pro takes the exceptional performance
+                of the M1 architecture to a whole new level for pro users.
+              </p>
+              <p className="text-gray-800 font-light">
+                Even the most ambitious projects are easily handled with up to
+                10 CPU cores, up to 16 GPU cores, a 16‑core Neural Engine, and
+                dedicated encode and decode media engines that support H.264,
+                HEVC, and ProRes codecs.
+              </p>
+            </div>
+            <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
+            <div className="w-full gap-2 flex flex-col lg:w-1/4">
+              <p className="text-xl font-medium">Feature</p>
+              <p className="my-2 flex gap-2 text-base font-medium items-center">
+                <PiMedalLight className="text-2xl text-btnColor" />
+                Free 1 Year Warranty
+              </p>
+              <p className="my-2 flex gap-2 text-base font-medium items-center">
+                <FiTruck className="text-2xl text-btnColor" />
+                Free Shipping & Fasted Delivery
+              </p>
+              <p className="my-2 flex gap-2 text-base font-medium items-center">
+                <PiHandshake className="text-2xl text-btnColor" />
+                100% Money-back guarantee
+              </p>
+              <p className="my-2 flex gap-2 text-base font-medium items-center">
+                <LuHeadset className="text-2xl text-btnColor" />
+                24/7 Customer support
+              </p>
+              <p className="my-2 flex gap-2 text-base font-medium items-center">
+                <FaRegCreditCard className="text-2xl text-btnColor" />
+                Secure payment method
+              </p>
+            </div>
+            <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
+            <div className="w-full gap-2 flex flex-col lg:w-2/6">
+            <p className="text-xl font-medium">Shipping Information</p>
+            <p className="text-base font-medium my-0.5">Courier: <span className="text-gray-700">2 - 4 days, free shipping</span></p>
+            <p className="text-base font-medium my-0.5">Local Shipping: <span className="text-gray-700"> up to one week, $19.00</span></p>
+            <p className="text-base font-medium my-0.5">UPS Ground Shipping:<span className="text-gray-700"> 4 - 6 days, $29.00</span></p>
+            <p className="text-base font-medium my-0.5">Unishop Global Export:<span className="text-gray-700"> 3 - 4 days, $39.00</span></p>
             </div>
           </div>
         </div>
