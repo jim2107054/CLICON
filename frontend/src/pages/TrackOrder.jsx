@@ -14,11 +14,11 @@ const TrackOrder = () => {
                 <div className='flex flex-col lg:flex-row gap-5 mt-5'>
                     <div className='flex flex-col w-full lg:w-1/2'>
                         <label>Order ID:</label>
-                        <input className='h-10 border-2 px-5 py-2 rounded-md' type="text" placeholder='ID..'/>
+                        <input className='h-10 border border-blue-300 px-5 py-2 rounded' type="text" placeholder='ID..'/>
                     </div>
                     <div className='flex flex-col w-full lg:w-1/2'>
                         <label>Billing Email:</label>
-                        <input className='h-10 border-2 px-5 py-2 rounded-md' type="email" placeholder='Email Address'/>
+                        <input className='h-10 border border-blue-300 px-5 py-2 rounded' type="email" placeholder='Email Address'/>
                     </div>
                 </div>
                 <p className='my-3 flex gap-3 items-center text-gray-600 font-medium'><BsExclamationOctagon/><span>Order ID that we sended to your in your email address.</span></p>
