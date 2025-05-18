@@ -17,6 +17,8 @@ import ErrorPageNotFound from './pages/ErrorPageNotFound';
 import ShopPage from './pages/ShopPage';
 import ProductDetails from './pages/ProductDetails';
 import TrackOrder from './pages/TrackOrder';
+import TrackOrderDetails from './pages/TrackOrderDetails';
+import ShopingCard from './pages/ShopingCard';
 
 const App = () => {
   return (
@@ -38,6 +40,8 @@ const App = () => {
         <Route path='/blogs' element={<BlogList/>} />
         <Route path='/blog-details' element={<BlogDetails/>} />
         <Route path='/track-order' element={<TrackOrder/>} />
+        <Route path='/track-order-details' element={<TrackOrderDetails/>} />
+        <Route path='/shoping-card' element={<ShopingCard/>} />
         {/* Add more routes as needed */}
         <Route path='/shop' element={<ShopPage/>} />
         <Route path='/shop/:productId' element={<ProductDetails/>} />
