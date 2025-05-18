@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { assets } from "./../assets/assets";
+import {
+  assets,
+  bestSellers,
+  flashSaleToday,
+  newArrival,
+  topRated,
+} from "./../assets/assets";
 import {
   IoArrowBackOutline,
   IoArrowForwardOutline,
@@ -17,6 +23,7 @@ import {
 import { PiMedalLight, PiHandshake } from "react-icons/pi";
 import { FiTruck } from "react-icons/fi";
 import { LuHeadset } from "react-icons/lu";
+import AboutUsSales from "../components/AboutUsSales";
 
 //For Now we are using the small images here, in real project we will upload or fetch form backend
 const smallImages = [
@@ -67,7 +74,7 @@ const ProductDetails = () => {
     <div>
       <div className="flex flex-col lg:flex-row px-36 py-5 gap-10 lg:gap-12 mb-10">
         {/*--------Left Div-----------*/}
-        <div className="flex bg-gary-100 flex-col w-full lg:w-1/2">
+        <div className="flex bg-gary-500 flex-col w-full lg:w-1/2">
           {/*--------Product large image*/}
           <div className="flex w-[616px] h-[464px] p-5 justify-center">
             <img className="w-full rounded-md" src={productImage} alt="" />
@@ -124,7 +131,7 @@ const ProductDetails = () => {
           </div>
         </div>
         {/*--------Right Div-----------*/}
-        <div className="flex bg-gray-100 lg:px-5 flex-col w-full lg:w-1/2">
+        <div className="flex bg-gray-50 lg:px-5 flex-col w-full lg:w-1/2">
           {/*--------Product Details Upper part---------*/}
           <div>
             {/*--------Product Details 1st part---------*/}
@@ -318,11 +325,84 @@ const ProductDetails = () => {
             </div>
             <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
             <div className="w-full gap-2 flex flex-col lg:w-2/6">
-            <p className="text-xl font-medium">Shipping Information</p>
-            <p className="text-base font-medium my-0.5">Courier: <span className="text-gray-700">2 - 4 days, free shipping</span></p>
-            <p className="text-base font-medium my-0.5">Local Shipping: <span className="text-gray-700"> up to one week, $19.00</span></p>
-            <p className="text-base font-medium my-0.5">UPS Ground Shipping:<span className="text-gray-700"> 4 - 6 days, $29.00</span></p>
-            <p className="text-base font-medium my-0.5">Unishop Global Export:<span className="text-gray-700"> 3 - 4 days, $39.00</span></p>
+              <p className="text-xl font-medium">Shipping Information</p>
+              <p className="text-base font-medium my-0.5">
+                Courier:{" "}
+                <span className="text-gray-700">2 - 4 days, free shipping</span>
+              </p>
+              <p className="text-base font-medium my-0.5">
+                Local Shipping:{" "}
+                <span className="text-gray-700"> up to one week, $19.00</span>
+              </p>
+              <p className="text-base font-medium my-0.5">
+                UPS Ground Shipping:
+                <span className="text-gray-700"> 4 - 6 days, $29.00</span>
+              </p>
+              <p className="text-base font-medium my-0.5">
+                Unishop Global Export:
+                <span className="text-gray-700"> 3 - 4 days, $39.00</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/*--------Products---------*/}
+      <div>
+        <div className="flex flex-col lg:flex-row gap-10 px-36 py-10">
+          {/*--------FLASH SALE TODAY-----------*/}
+          <div className="">
+            <p className="font-medium text-xl">FLASH SALE TODAY</p>
+            <div>
+              {flashSaleToday.map((item, index) => (
+                <AboutUsSales
+                  key={index}
+                  image={item.image}
+                  price={item.price}
+                  description={item.description}
+                />
+              ))}
+            </div>
+          </div>
+          {/*--------BEST SELLERS-----------*/}
+          <div>
+            <p className="font-medium text-xl">BEST SELLERS</p>
+            <div>
+              {bestSellers.map((item, index) => (
+                <AboutUsSales
+                  key={index}
+                  image={item.image}
+                  price={item.price}
+                  description={item.description}
+                />
+              ))}
+            </div>
+          </div>
+          {/*--------TOP RATED-----------*/}
+          <div>
+            <p className="font-medium text-xl">TOP RATED</p>
+            <div>
+              {topRated.map((item, index) => (
+                <AboutUsSales
+                  key={index}
+                  image={item.image}
+                  price={item.price}
+                  description={item.description}
+                />
+              ))}
+            </div>
+          </div>
+          {/*--------NEW ARRIVAL-----------*/}
+          <div>
+            <p className="font-medium text-xl">NEW ARRIVAL</p>
+            <div>
+              {newArrival.map((item, index) => (
+                <AboutUsSales
+                  key={index}
+                  image={item.image}
+                  price={item.price}
+                  description={item.description}
+                />
+              ))}
             </div>
           </div>
         </div>
