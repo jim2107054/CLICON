@@ -16,6 +16,7 @@ import BlogDetails from './pages/BlogDetails';
 import ErrorPageNotFound from './pages/ErrorPageNotFound';
 import ShopPage from './pages/ShopPage';
 import ProductDetails from './pages/ProductDetails';
+import TrackOrder from './pages/TrackOrder';
 
 const App = () => {
   return (
@@ -36,6 +37,7 @@ const App = () => {
         <Route path='/customer-support' element={<CustomerSupport/>} />
         <Route path='/blogs' element={<BlogList/>} />
         <Route path='/blog-details' element={<BlogDetails/>} />
+        <Route path='/track-order' element={<TrackOrder/>} />
         {/* Add more routes as needed */}
         <Route path='/shop' element={<ShopPage/>} />
         <Route path='/shop/:productId' element={<ProductDetails/>} />
