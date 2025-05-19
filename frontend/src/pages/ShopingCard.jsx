@@ -93,7 +93,7 @@ const ShopingCard = () => {
                 $357.99 <span>USD</span>
               </p>
             </div>
-            <button className="flex items-center gap-3 px-5 border bg-btnColor h-12 justify-center mx-4 mb-5 text-white font-medium rounded hover:scale-105 duration-500 transition-all">
+            <button className="flex items-center md:gap-3 px-0 md:px-5 border bg-btnColor h-12 justify-center mx-4 mb-5 text-white font-medium rounded hover:scale-105 duration-500 transition-all">
               PROCEED TO CHECKOUT <FaArrowRight />{" "}
             </button>
           </div>
