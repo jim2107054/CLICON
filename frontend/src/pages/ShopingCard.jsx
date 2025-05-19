@@ -7,6 +7,7 @@ import shopItems from "../assets/ShopItem";
 const ShopingCard = () => {
   const [productQuantity, setproductQuantity] = useState(1);
   const [cancled, setCancled] = useState(true);
+  const value = 752;
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-10 lg:px-36 py-10">
@@ -36,7 +37,7 @@ const ShopingCard = () => {
               <p className="text-center line-through text-sm font-medium text-gray-600">
                 $752
               </p>
-              <p className="text-center text-base font-medium">$752</p>
+              <p className="text-center text-base font-medium">${value}</p>
             </div>
             <div className="bg-green-300 items-center my-auto px-1 py-1 md:w-[15%] lg:w-[15%]">
               <div className="flex gap-5 justify-center items-center border-2 border-gray-300 rounded px-2 py-1 w-full">
@@ -57,7 +58,7 @@ const ShopingCard = () => {
               </div>
             </div>
             <div className="bg-yellow-300 m-auto w-[10%]">
-              <p className="text-center text-base font-medium">$75266666</p>
+              <p className="text-center text-base font-medium">${value*productQuantity}</p>
             </div>
           </div>
             </>
