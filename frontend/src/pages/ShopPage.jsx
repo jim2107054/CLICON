@@ -15,7 +15,7 @@ const ShopPage = () => {
     <div>
       <div className="flex flex-col gap-10 md:flex-row px-5 lg:px-36 py-5">
         {/*------------Left Div---------------*/}
-        <div className="hidden md:block w-full lg:w-1/5 p-5">
+        <div className="hidden md:block w-full md:w-2/4 lg:w-1/5 p-5">
           {/*-----------Left Div Category------ */}
           <div>
             <p className="font-medium my-2">CATEGORY</p>
