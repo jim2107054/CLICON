@@ -73,6 +73,32 @@ import newArrival2 from './about-us/new-arrival/Image2.png'
 import newArrival3 from './about-us/new-arrival/Image3.png'
 
 
+// import shop page photo
+import shopImg1 from "./ShopItem/image1.png";
+import shopImg2 from "./ShopItem/image2.png";
+import shopImg3 from "./ShopItem/image3.png";
+import shopImg4 from "./ShopItem/Image4.png";
+import shopImg5 from "./ShopItem/Image5.png";
+import shopImg6 from "./ShopItem/Image6.png";
+import shopImg7 from "./ShopItem/Image7.png";
+import shopImg8 from "./ShopItem/Image8.png";
+import shopImg9 from "./ShopItem/Image9.png";
+import shopImg10 from "./ShopItem/Image10.png";
+import shopImg11 from "./ShopItem/Image11.png";
+import shopImg12 from "./ShopItem/Image12.png";
+import shopImg13 from "./ShopItem/Image13.png";
+import shopImg14 from "./ShopItem/Image14.png";
+import shopImg15 from "./ShopItem/Image15.png";
+import shopImg16 from "./ShopItem/Image16.png";
+import shopImg17 from "./ShopItem/Image17.png";
+import shopImg18 from "./ShopItem/Image18.png";
+import shopImg19 from "./ShopItem/Image19.png";
+import shopImg20 from "./ShopItem/Image20.png";
+import shopImg21 from "./ShopItem/Image21.png";
+import shopImg22 from "./ShopItem/Image22.png";
+import shopImg23 from "./ShopItem/Image23.png";
+import shopImg24 from "./ShopItem/Image24.png";
+
 export const assets = {
     fackbook,
     instagram,
@@ -127,6 +153,30 @@ export const assets = {
     laptopDetails3,
     ratingIcon,
     paymentMethod,
+    shopImg1,
+    shopImg2,
+    shopImg3,
+    shopImg4,
+    shopImg5,
+    shopImg6,
+    shopImg7,
+    shopImg8,
+    shopImg9,
+    shopImg10,
+    shopImg11,
+    shopImg12,
+    shopImg13,
+    shopImg14,
+    shopImg15,
+    shopImg16,
+    shopImg17,
+    shopImg18,
+    shopImg19,
+    shopImg20,
+    shopImg21,
+    shopImg22,
+    shopImg23,
+    shopImg24,
 }
 
 export const CoreTeamMembers = [

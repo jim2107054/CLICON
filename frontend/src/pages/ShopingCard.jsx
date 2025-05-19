@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa";
+import { MdOutlineCancel } from "react-icons/md";
+import { assets } from "../assets/assets";
+import shopItems from "../assets/ShopItem";
 
 const ShopingCard = () => {
   const [productQuantity, setproductQuantity] = useState(1);
+  const [cancled, setCancled] = useState(true);
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-10 lg:px-36 py-10">
@@ -15,14 +19,18 @@ const ShopingCard = () => {
             <p className="text-sm font-bold text-gray-700">QUANTITY</p>
             <p className="text-sm font-bold text-gray-700">SUB-TOTAL</p>
           </div>
-          <div className="flex bg-red-500 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
-            <div className="flex flex-col bg-blue-500 w-[55%] px-5  rounded line-clamp-2">
-              gfdsgsd
-              <div>agfdadgfda</div>
-              gfdsgsd
-              <div>agfdadgfda</div>
-              gfdsgsd
-              <div>agfdadgfda</div>
+          {
+            cancled && 
+            <>
+            <div className="flex bg-red-500 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
+            <div className="flex bg-blue-500 flex-row gap-5 w-[55%] px-2 rounded line-clamp-2">
+              <div className="flex items-center"><MdOutlineCancel onClick={()=>setCancled(false)} className="text-2xl text-red-600"/></div>
+              <div className="flex items-center">
+                <img className="object-cover" src={shopItems[1].image} alt="logo" />
+              </div>
+              <div className="flex justify-start">
+                <p className="leading-none my-1 text-xl text-gray-700">{shopItems[1].title}</p>
+              </div>
             </div>
             <div className="bg-yellow-300 my-auto w-[10%]">
               <p className="text-center line-through text-sm font-medium text-gray-600">
@@ -48,10 +56,12 @@ const ShopingCard = () => {
                 </button>
               </div>
             </div>
-            <div className="bg-yellow-300 my-auto w-[10%]">
+            <div className="bg-yellow-300 m-auto w-[10%]">
               <p className="text-center text-base font-medium">$75266666</p>
             </div>
           </div>
+            </>
+          }
         </div>
         {/*----------Card Totals----------*/}
         <div className="flex flex-col w-full lg:w-2/6">
