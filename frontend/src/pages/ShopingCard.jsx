@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa";
-import { MdOutlineCancel } from "react-icons/md";
-import { assets } from "../assets/assets";
+import React from "react";
+import { FaArrowRight} from "react-icons/fa";
 import shopItems from "../assets/ShopItem";
 import AddToCard from "../components/AddToCard";
 
@@ -19,24 +17,27 @@ const ShopingCard = () => {
             <p className="text-sm font-bold text-gray-700">SUB-TOTAL</p>
           </div>
           <AddToCard
-          image={shopItems[0].image}
-          title={shopItems[0].title}
-          price={shopItems[0].price}
+            image={shopItems[0].image}
+            title={shopItems[0].title}
+            DiscountPrice={shopItems[0].price}
           />
           <AddToCard
-          image={shopItems[1].image}
-          title={shopItems[1].title}
-          price={shopItems[1].price}
+            image={shopItems[1].image}
+            title={shopItems[1].title}
+            DiscountPrice={shopItems[1].price}
+            OriginalPrice={2500}
           />
           <AddToCard
-          image={shopItems[3].image}
-          title={shopItems[3].title}
-          price={shopItems[3].price}
+            image={shopItems[3].image}
+            title={shopItems[3].title}
+            DiscountPrice={shopItems[3].price}
+            OriginalPrice={110}
           />
           <AddToCard
-          image={shopItems[2].image}
-          title={shopItems[2].title}
-          price={shopItems[2].price}
+            image={shopItems[2].image}
+            title={shopItems[2].title}
+            DiscountPrice={shopItems[2].price}
+            OriginalPrice={400}
           />
         </div>
         {/*----------Card Totals----------*/}

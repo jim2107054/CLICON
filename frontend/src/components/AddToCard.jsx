@@ -8,61 +8,64 @@ const AddToCard = (props) => {
   const [total, setTotal] = useState(0);
 
   //distructure props
-  const {image,title,price}=props;
+  const { image, title, OriginalPrice, DiscountPrice } = props;
   return (
     <div>
-      {
-        cancled && 
+      {cancled && (
         <>
-        <div className="flex bg-red-500 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
-        <div className="flex bg-blue-500 flex-row gap-5 w-[55%] px-2 rounded line-clamp-2">
-          <div className="flex items-center">
-            <MdOutlineCancel
-              onClick={() => setCancled(false)}
-              className="text-2xl text-red-600"
-            />
+          <div className="flex border-b-2 my-1 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
+            <div className="flex flex-row gap-5 w-[55%] px-2 rounded line-clamp-2">
+              <div className="flex items-center">
+                <MdOutlineCancel
+                  onClick={() => setCancled(false)}
+                  className="text-2xl text-red-600"
+                />
+              </div>
+              <div className="flex items-center">
+                <img className="object-cover" src={image} alt="logo" />
+              </div>
+              <div className="flex justify-start">
+                <p className="leading-none my-1 text-xl text-gray-700">
+                  {title}
+                </p>
+              </div>
+            </div>
+            <div className="my-auto w-[10%]">
+              {OriginalPrice && (
+                <p className="text-center line-through text-sm font-medium text-gray-600">
+                  ${OriginalPrice}
+                </p>
+              )}
+              <p className="text-center text-base font-medium">
+                ${DiscountPrice}
+              </p>
+            </div>
+            <div className="items-center my-auto px-1 py-1 md:w-[15%] lg:w-[15%]">
+              <div className="flex gap-5 justify-center items-center border-2 border-gray-300 rounded px-2 py-1 w-full">
+                <button
+                  onClick={() =>
+                    productQuantity > 1
+                      ? setproductQuantity(productQuantity - 1)
+                      : setproductQuantity(1)
+                  }
+                  className="font-medium"
+                >
+                  <FaMinus />
+                </button>
+                <p className="text-xl">{productQuantity}</p>
+                <button onClick={() => setproductQuantity(productQuantity + 1)}>
+                  <FaPlus />
+                </button>
+              </div>
+            </div>
+            <div className="m-auto w-[10%]">
+              <p className="text-center text-base font-medium">
+                ${DiscountPrice * productQuantity}
+              </p>
+            </div>
           </div>
-          <div className="flex items-center">
-            <img className="object-cover" src={image} alt="logo" />
-          </div>
-          <div className="flex justify-start">
-            <p className="leading-none my-1 text-xl text-gray-700">
-              {title}
-            </p>
-          </div>
-        </div>
-        <div className="bg-yellow-300 my-auto w-[10%]">
-          <p className="text-center line-through text-sm font-medium text-gray-600">
-            $752
-          </p>
-          <p className="text-center text-base font-medium">${price}</p>
-        </div>
-        <div className="bg-green-300 items-center my-auto px-1 py-1 md:w-[15%] lg:w-[15%]">
-          <div className="flex gap-5 justify-center items-center border-2 border-gray-300 rounded px-2 py-1 w-full">
-            <button
-              onClick={() =>
-                productQuantity > 1
-                  ? setproductQuantity(productQuantity - 1)
-                  : setproductQuantity(1)
-              }
-              className="font-medium"
-            >
-              <FaMinus />
-            </button>
-            <p className="text-xl">{productQuantity}</p>
-            <button onClick={() => setproductQuantity(productQuantity + 1)}>
-              <FaPlus />
-            </button>
-          </div>
-        </div>
-        <div className="bg-yellow-300 m-auto w-[10%]">
-          <p className="text-center text-base font-medium">
-            ${price * productQuantity}
-          </p>
-        </div>
-      </div>
         </>
-      }
+      )}
     </div>
   );
 };
