@@ -1,10 +1,9 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import shopItems from "../assets/ShopItem";
+import OrderSummery from "../components/OrderSummery";
 
 const CheckOut = () => {
-  const quantity = 1;
-  const price = 320;
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-10 lg:px-36 py-10">
@@ -22,34 +21,26 @@ const CheckOut = () => {
               </p>
               {/*--------Items with price,quantity,image----------*/}
               <div>
-                <div className="flex items-center gap-5 px-5  border-b">
-                  {/*-------image-----------*/}
-                  <div className="w-24 h-24 flex">
-                    <img
-                      className="items-center justify-center self-center"
-                      src={shopItems[0].image}
-                      alt=""
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2 w-full">
-                    {/*-------Product Name-----------*/}
-                    <p className="line-clamp-2 leading-none">
-                      {shopItems[0].title}
-                    </p>
-                    {/*-------Product Price and quantity-----------*/}
-                    <p className="flex gap-1">
-                      <span className="text-gray-600 font-medium">
-                        {quantity}
-                      </span>{" "}
-                      x
-                      <span className="text-blue-400 font-medium">
-                        ${price}
-                      </span>
-                    </p>
-                  </div>
-                </div>
+                <OrderSummery
+                  image={shopItems[0].image}
+                  title={shopItems[0].title}
+                  quantity={1}
+                  price={shopItems[0].price}
+                />
+                <OrderSummery
+                  image={shopItems[1].image}
+                  title={shopItems[1].title}
+                  quantity={2}
+                  price={shopItems[1].price}
+                />
+                <OrderSummery
+                  image={shopItems[2].image}
+                  title={shopItems[2].title}
+                  quantity={4}
+                  price={shopItems[2].price}
+                />
               </div>
-              <div className="flex flex-col gap-2 px-5">
+              <div className="flex flex-col mt-5 gap-2 px-5">
                 <div className="flex justify-between">
                   <p className="justify-between gap-10">Sub-total</p>
                   <p className="justify-between gap-10">$320</p>
