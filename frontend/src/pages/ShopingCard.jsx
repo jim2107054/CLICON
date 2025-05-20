@@ -3,11 +3,9 @@ import { FaArrowRight, FaMinus, FaPlus } from "react-icons/fa";
 import { MdOutlineCancel } from "react-icons/md";
 import { assets } from "../assets/assets";
 import shopItems from "../assets/ShopItem";
+import AddToCard from "../components/AddToCard";
 
 const ShopingCard = () => {
-  const [productQuantity, setproductQuantity] = useState(1);
-  const [cancled, setCancled] = useState(true);
-  const value = 752;
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-10 lg:px-36 py-10">
@@ -20,49 +18,26 @@ const ShopingCard = () => {
             <p className="text-sm font-bold text-gray-700">QUANTITY</p>
             <p className="text-sm font-bold text-gray-700">SUB-TOTAL</p>
           </div>
-          {
-            cancled && 
-            <>
-            <div className="flex bg-red-500 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
-            <div className="flex bg-blue-500 flex-row gap-5 w-[55%] px-2 rounded line-clamp-2">
-              <div className="flex items-center"><MdOutlineCancel onClick={()=>setCancled(false)} className="text-2xl text-red-600"/></div>
-              <div className="flex items-center">
-                <img className="object-cover" src={shopItems[1].image} alt="logo" />
-              </div>
-              <div className="flex justify-start">
-                <p className="leading-none my-1 text-xl text-gray-700">{shopItems[1].title}</p>
-              </div>
-            </div>
-            <div className="bg-yellow-300 my-auto w-[10%]">
-              <p className="text-center line-through text-sm font-medium text-gray-600">
-                $752
-              </p>
-              <p className="text-center text-base font-medium">${value}</p>
-            </div>
-            <div className="bg-green-300 items-center my-auto px-1 py-1 md:w-[15%] lg:w-[15%]">
-              <div className="flex gap-5 justify-center items-center border-2 border-gray-300 rounded px-2 py-1 w-full">
-                <button
-                  onClick={() =>
-                    productQuantity > 1
-                      ? setproductQuantity(productQuantity - 1)
-                      : setproductQuantity(1)
-                  }
-                  className="font-medium"
-                >
-                  <FaMinus />
-                </button>
-                <p className="text-xl">{productQuantity}</p>
-                <button onClick={() => setproductQuantity(productQuantity + 1)}>
-                  <FaPlus />
-                </button>
-              </div>
-            </div>
-            <div className="bg-yellow-300 m-auto w-[10%]">
-              <p className="text-center text-base font-medium">${value*productQuantity}</p>
-            </div>
-          </div>
-            </>
-          }
+          <AddToCard
+          image={shopItems[0].image}
+          title={shopItems[0].title}
+          price={shopItems[0].price}
+          />
+          <AddToCard
+          image={shopItems[1].image}
+          title={shopItems[1].title}
+          price={shopItems[1].price}
+          />
+          <AddToCard
+          image={shopItems[3].image}
+          title={shopItems[3].title}
+          price={shopItems[3].price}
+          />
+          <AddToCard
+          image={shopItems[2].image}
+          title={shopItems[2].title}
+          price={shopItems[2].price}
+          />
         </div>
         {/*----------Card Totals----------*/}
         <div className="flex flex-col w-full lg:w-2/6">
