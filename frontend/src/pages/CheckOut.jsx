@@ -1,15 +1,320 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import shopItems from "../assets/ShopItem";
 import OrderSummery from "../components/OrderSummery";
+import { FiDollarSign } from "react-icons/fi";
+import { BiLogoVenmo } from "react-icons/bi";
+import { IoLogoPaypal } from "react-icons/io5";
+import { FaAmazon } from "react-icons/fa";
+import { FaRegCreditCard } from "react-icons/fa";
 
 const CheckOut = () => {
+  const [checkboxClicked, setCheckboxClicked] = useState(false);
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-10 lg:px-36 py-10">
         {/*------------Billing Information-------------*/}
-        <div className="bg-red-300 flex flex-col w-full lg:w-4/6">
-          aldfjaslfl
+        <div className="flex flex-col px-1 py-2 w-full lg:w-5/6">
+          {/*--------User Information----------*/}
+          <div>
+            <p className="text-xl font-medium text-gray-900 mb-5">
+              Billing Information
+            </p>
+            {/*--------User Information----------*/}
+            <div>
+              {/*--------First 3 info----------*/}
+              <div className="flex gap-3 items-center">
+                <div className="flex flex-col gap-1 w-1/4">
+                  <label className="text-sm mt-1 text-gray-800 font-medium">
+                    User Name
+                  </label>
+                  <input
+                    className="h-10 px-5 rounded border border-gray-700 w-full"
+                    type="text"
+                    placeholder="First Name"
+                  />
+                </div>
+                <div className="flex mt-7 flex-col w-1/4">
+                  <input
+                    className="h-10 px-5 rounded border border-gray-700 w-full"
+                    type="text"
+                    placeholder="Last Name"
+                  />
+                </div>
+                <div className="flex flex-col gap-1 w-1/2">
+                  <label className="text-sm mt-1 text-gray-800 font-medium">
+                    Company Name <span>(Optional)</span>
+                  </label>
+                  <input
+                    className="h-10 px-5 rounded border border-gray-700 w-full"
+                    type="text"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              {/*--------Address----------*/}
+              <div className="flex flex-col mt-2 w-full">
+                <label className="text-sm my-1 text-gray-800 font-medium">
+                  Address
+                </label>
+                <input
+                  className="h-10 px-5 rounded border border-gray-700 w-full"
+                  type="text"
+                />
+              </div>
+              {/*--------Address info----------*/}
+              <div className="grid grid-cols-4 gap-3 mt-2">
+                {/*--------country----------*/}
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="#">Country</label>
+                  <select className="h-10 px-5 rounded border border-gray-700 w-full">
+                    <option value="Bangladesh">Bangladesh</option>
+                    <option value="India">India</option>
+                    <option value="Pakistan">Pakistan</option>
+                  </select>
+                </div>
+                {/*--------Region/state----------*/}
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="#">Region/State</label>
+                  <select className="h-10 px-5 rounded border border-gray-700 w-full">
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Rangpur">Rangpur</option>
+                  </select>
+                </div>
+                {/*--------city----------*/}
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="#">City</label>
+                  <select className="h-10 px-5 rounded border border-gray-700 w-full">
+                    <option value="Dhaka">Dhaka</option>
+                    <option value="Chittagong">Chittagong</option>
+                    <option value="Khulna">Khulna</option>
+                    <option value="Rangpur">Rangpur</option>
+                  </select>
+                </div>
+                {/*--------zip code----------*/}
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="#">Zip Code</label>
+                  <input
+                    className="h-10 px-5 rounded border border-gray-700 w-full"
+                    type="text"
+                    placeholder="Zip Code"
+                  />
+                </div>
+              </div>
+              {/*--------Email and Phone Number----------*/}
+              <div className="grid grid-cols-2 gap-3 mt-2">
+                {/*--------Email----------*/}
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="#">Email</label>
+                  <input
+                    className="h-10 px-5 rounded border border-gray-700 w-full"
+                    type="email"
+                    placeholder="Email"
+                  />
+                </div>
+                {/*--------Phone Number----------*/}
+                <div className="flex flex-col gap-1">
+                  <label htmlFor="#">Phone Number</label>
+                  <input
+                    className="h-10 px-5 rounded border border-gray-700 w-full"
+                    type="text"
+                    placeholder="Phone Number"
+                  />
+                </div>
+              </div>
+              {/*--------Check box----------*/}
+              <div className="flex items-center mt-2">
+                <input
+                  onClick={() => setCheckboxClicked(!checkboxClicked)}
+                  type="checkbox"
+                  className="h-4 w-4 bg-btnColor text-btnColor border-gray-300 rounded focus:ring-blue-500"
+                />
+                <label className="ml-2 text-base text-gray-800 font-light">
+                  Ship into different address
+                </label>
+              </div>
+              {checkboxClicked && (
+                <>
+                  <div className="flex gap-3 items-center">
+                    <div className="flex flex-col gap-1 w-1/2">
+                      <label className="text-sm mt-1 text-gray-800 font-medium">
+                        Full Name
+                      </label>
+                      <input
+                        className="h-10 px-5 rounded border border-gray-700 w-full"
+                        type="text"
+                        placeholder="Full Name"
+                      />
+                    </div>
+                    {/*--------Address----------*/}
+                    <div className="flex flex-col w-1/2">
+                      <label className="text-sm my-1 text-gray-800 font-medium">
+                        Address
+                      </label>
+                      <input
+                        className="h-10 px-5 rounded border border-gray-700 w-full"
+                        type="text"
+                      />
+                    </div>
+                  </div>
+
+                  {/*--------Address info----------*/}
+                  <div className="grid grid-cols-4 gap-3 mt-2">
+                    {/*--------country----------*/}
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="#">Country</label>
+                      <select className="h-10 px-5 rounded border border-gray-700 w-full">
+                        <option value="Bangladesh">Bangladesh</option>
+                        <option value="India">India</option>
+                        <option value="Pakistan">Pakistan</option>
+                      </select>
+                    </div>
+                    {/*--------Region/state----------*/}
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="#">Region/State</label>
+                      <select className="h-10 px-5 rounded border border-gray-700 w-full">
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Rangpur">Rangpur</option>
+                      </select>
+                    </div>
+                    {/*--------city----------*/}
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="#">City</label>
+                      <select className="h-10 px-5 rounded border border-gray-700 w-full">
+                        <option value="Dhaka">Dhaka</option>
+                        <option value="Chittagong">Chittagong</option>
+                        <option value="Khulna">Khulna</option>
+                        <option value="Rangpur">Rangpur</option>
+                      </select>
+                    </div>
+                    {/*--------zip code----------*/}
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="#">Zip Code</label>
+                      <input
+                        className="h-10 px-5 rounded border border-gray-700 w-full"
+                        type="text"
+                        placeholder="Zip Code"
+                      />
+                    </div>
+                  </div>
+                  {/*--------Email and Phone Number----------*/}
+                  <div className="grid grid-cols-2 gap-3 mt-2">
+                    {/*--------Email----------*/}
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="#">Email</label>
+                      <input
+                        className="h-10 px-5 rounded border border-gray-700 w-full"
+                        type="email"
+                        placeholder="Email"
+                      />
+                    </div>
+                    {/*--------Phone Number----------*/}
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="#">Phone Number</label>
+                      <input
+                        className="h-10 px-5 rounded border border-gray-700 w-full"
+                        type="text"
+                        placeholder="Phone Number"
+                      />
+                    </div>
+                  </div>
+                </>
+              )}
+            </div>
+            {/*--------Payment Method----------*/}
+            <div className="flex flex-col border border-gray-700 rounded mt-5">
+              <p className="text-xl px-5 font-medium text-gray-800">
+                Payment Option
+              </p>
+              <div className="flex border border-gray-700 gap-3 mt-2">
+                <div className="flex flex-col w-1/5 items-center gap-2 py-5">
+                  <FiDollarSign className="text-2xl text-btnColor" />
+                  <p className="text-center font-medium">Cash on Delivery</p>
+                  <input className="h-4 w-4" type="checkbox" />
+                </div>
+                <div className="bg-gray-400 w-[1px] my-2"></div>
+                <div className="flex flex-col w-1/5 items-center gap-2 py-5">
+                  <BiLogoVenmo className="text-2xl text-blue-400" />
+                  <p className="text-center font-medium">Venmo</p>
+                  <input className="h-4 w-4" type="checkbox" />
+                </div>
+                <div className="bg-gray-400 w-[1px] my-2"></div>
+                <div className="flex flex-col w-1/5 items-center gap-2 py-5">
+                  <IoLogoPaypal className="text-2xl text-blue-500" />
+                  <p className="text-center font-medium">Paypal</p>
+                  <input className="h-4 w-4" type="checkbox" />
+                </div>
+                <div className="bg-gray-400 w-[1px] my-2"></div>
+                <div className="flex flex-col w-1/5 items-center gap-2 py-5">
+                  <FaAmazon className="text-2xl" />
+                  <p className="text-center font-medium">Amazon Pay</p>
+                  <input className="h-4 w-4" type="checkbox" />
+                </div>
+                <div className="bg-gray-400 w-[1px] my-2"></div>
+                <div className="flex flex-col w-1/5 items-center gap-2 py-5">
+                  <FaRegCreditCard className="text-2xl text-orange-500" />
+                  <p className="text-center font-medium">Debid/Credit Card</p>
+                  <input className="h-4 w-4" type="checkbox" />
+                </div>
+              </div>
+              <div className="flex flex-col px-5 my-5 w-full">
+                <div className="flex flex-col mt-2 w-full">
+                  <label className="text-sm my-1 text-gray-800 font-medium">
+                    Name on Card
+                  </label>
+                  <input
+                    className="h-10 px-5 rounded border border-gray-700 w-full"
+                    type="text"
+                  />
+                </div>
+                <div className="flex flex-col mt-2 w-full">
+                  <label className="text-sm my-1 text-gray-800 font-medium">
+                    Card Number
+                  </label>
+                  <input
+                    className="h-10 px-5 rounded border border-gray-700 w-full"
+                    type="text"
+                  />
+                </div>
+                <div className="grid grid-cols-2 gap-3 mt-2">
+                  {/*--------expire date----------*/}
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="#">Email</label>
+                    <input
+                      className="h-10 px-5 rounded border border-gray-700 w-full"
+                      type="date"
+                      placeholder="DD/YY"
+                    />
+                  </div>
+                  {/*--------CVC Number----------*/}
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="#">CVC Number</label>
+                    <input
+                      className="h-10 px-5 rounded border border-gray-700 w-full"
+                      type="text"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/*--------Additional Information----------*/}
+            <div className="flex flex-col gap-2 my-10">
+              <p className="text-xl font-medium">Additional Information</p>
+              <p className="text-base font-medium">
+                Order Notes{" "}
+                <span className="font-medium text-gray-500">(Optional)</span>
+              </p>
+              <textarea
+                className="h-24 px-5 rounded border border-gray-700 w-full"
+                placeholder="Notes about your order, e.g. special notes for delivery"
+              />
+            </div>
+          </div>
         </div>
         {/*------------Order Summery-------------*/}
         <div>
