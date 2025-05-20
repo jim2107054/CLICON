@@ -18,7 +18,7 @@ const AddToCard = (props) => {
               <div className="flex items-center">
                 <MdOutlineCancel
                   onClick={() => setCancled(false)}
-                  className="text-2xl text-red-600"
+                  className="text-2xl text-gray-600 cursor-pointer hover:text-red-600"
                 />
               </div>
               <div className="flex items-center">
