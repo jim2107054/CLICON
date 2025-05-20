@@ -20,6 +20,7 @@ import TrackOrder from './pages/TrackOrder';
 import TrackOrderDetails from './pages/TrackOrderDetails';
 import ShopingCard from './pages/ShopingCard';
 import WishList from './pages/WishList';
+import CheckOut from './pages/CheckOut';
 
 const App = () => {
   return (
@@ -44,6 +45,7 @@ const App = () => {
         <Route path='/track-order-details' element={<TrackOrderDetails/>} />
         <Route path='/shoping-card' element={<ShopingCard/>} />
         <Route path='/wish-list' element={<WishList/>} />
+        <Route path='/check-out' element={<CheckOut/>} />
         {/* Add more routes as needed */}
         <Route path='/shop' element={<ShopPage/>} />
         <Route path='/shop/:productId' element={<ProductDetails/>} />
