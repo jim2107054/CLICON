@@ -24,6 +24,7 @@ import { PiMedalLight, PiHandshake } from "react-icons/pi";
 import { FiTruck } from "react-icons/fi";
 import { LuHeadset } from "react-icons/lu";
 import AboutUsSales from "../components/AboutUsSales";
+import ShowRelatedProducts from "../components/ShowRelatedProducts";
 
 //For Now we are using the small images here, in real project we will upload or fetch form backend
 const smallImages = [
@@ -348,64 +349,7 @@ const ProductDetails = () => {
       </div>
       {/*--------Products---------*/}
       <div>
-        <div className="flex flex-col lg:flex-row gap-10 px-36 py-10">
-          {/*--------FLASH SALE TODAY-----------*/}
-          <div className="">
-            <p className="font-medium text-xl">FLASH SALE TODAY</p>
-            <div>
-              {flashSaleToday.map((item, index) => (
-                <AboutUsSales
-                  key={index}
-                  image={item.image}
-                  price={item.price}
-                  description={item.description}
-                />
-              ))}
-            </div>
-          </div>
-          {/*--------BEST SELLERS-----------*/}
-          <div>
-            <p className="font-medium text-xl">BEST SELLERS</p>
-            <div>
-              {bestSellers.map((item, index) => (
-                <AboutUsSales
-                  key={index}
-                  image={item.image}
-                  price={item.price}
-                  description={item.description}
-                />
-              ))}
-            </div>
-          </div>
-          {/*--------TOP RATED-----------*/}
-          <div>
-            <p className="font-medium text-xl">TOP RATED</p>
-            <div>
-              {topRated.map((item, index) => (
-                <AboutUsSales
-                  key={index}
-                  image={item.image}
-                  price={item.price}
-                  description={item.description}
-                />
-              ))}
-            </div>
-          </div>
-          {/*--------NEW ARRIVAL-----------*/}
-          <div>
-            <p className="font-medium text-xl">NEW ARRIVAL</p>
-            <div>
-              {newArrival.map((item, index) => (
-                <AboutUsSales
-                  key={index}
-                  image={item.image}
-                  price={item.price}
-                  description={item.description}
-                />
-              ))}
-            </div>
-          </div>
-        </div>
+        <ShowRelatedProducts/>
       </div>
     </div>
   );
