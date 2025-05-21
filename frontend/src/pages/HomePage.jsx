@@ -1,3 +1,4 @@
+import BestDeals from "../components/Home/BestDeals";
 import HeroSection from "../components/Home/HeroSection";
 import LatestNews from "../components/Home/LatestNews";
 import ShowRelatedProducts from "../components/ShowRelatedProducts";
@@ -10,6 +11,7 @@ const HomePage = () => {
         {/*-----------------Home page Hero section-------------*/}
         <HeroSection />
         {/*------------------Best Deals-------------------*/}
+        <BestDeals/>
         {/*----------------Shop with categorys-------------*/}
         {/*----------------Featured Products-------------*/}
         {/*----------------Shop Now two items-------------*/}

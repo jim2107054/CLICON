@@ -4,6 +4,16 @@ import earburds from './homeImages/earburds.png'
 import watch from './homeImages/watch.png'
 import microChip from './homeImages/microChip.png'
 import phoneInTable from './homeImages/phoneIntable.png'
+import BlackDrone from './homeImages/BlackDrone.png'
+import headPhone from './homeImages/heroPhone.png'
+import phoneImageOne from './homeImages/phoneImageOne.png'
+import phoneImageTwo from './homeImages/phoneImageTwo.png'
+import smallPlayStation from './homeImages/smallPlayStation.png'
+import wDrone from './homeImages/wDrone.png'
+import webCam from './homeImages/webCam.png'
+import wMonitor from './homeImages/wMonitor.png'
+import wPlayStation from './homeImages/WplayStation.png'
+
 
 export const assetsHome = {
     playStation,
@@ -11,7 +21,16 @@ export const assetsHome = {
     earburds,
     watch,
     microChip,
-    phoneInTable
+    phoneInTable,
+    BlackDrone,
+    headPhone,
+    phoneImageOne,
+    phoneImageTwo,
+    smallPlayStation,
+    wDrone,
+    webCam,
+    wMonitor,
+    wPlayStation
 }
 
 export const LatestNewsData = [
