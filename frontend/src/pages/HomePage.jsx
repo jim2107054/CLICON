@@ -1,4 +1,6 @@
 import HeroSection from "../components/Home/HeroSection";
+import ShowRelatedProducts from "../components/ShowRelatedProducts";
+import Subscribtion from "../components/Subscribtion";
 
 const HomePage = () => {
   return (
@@ -12,10 +14,13 @@ const HomePage = () => {
         {/*----------------Shop Now two items-------------*/}
         {/*----------------Computer Accessories-------------*/}
         {/*----------------Mackbook Pro-------------*/}
-        {/*----------------Flash sale, Best sellers and so on-------------*/}
         {/*----------------Latest News-------------*/}
-        {/*----------------Subscribe to our newsletter-------------*/}
       </div>
+      {/*----------------Flash sale, Best sellers and so on-------------*/}
+      <ShowRelatedProducts />
+
+      {/*----------------Subscribe to our newsletter-------------*/}
+      <Subscribtion />
     </div>
   );
 };
