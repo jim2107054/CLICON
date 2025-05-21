@@ -12,7 +12,10 @@ export default {
         btnColor: "#FA8232",
         blueButton:"#2DA5F3",
         greenButton:"#2DB224",
-      }
+      },
+      rotate: {
+        2.5: '2.5deg',
+      },
     },
   },
   plugins: [
