@@ -10,7 +10,7 @@ const Subscribtion = () => {
                   <h1 className="text-3xl text-white font-medium text-center">
                     Subscribe to our newsletter
                   </h1>
-                  <p className="text-base font-light text-center my-5">
+                  <p className="text-base text-white font-light text-center my-5">
                     Praesent fringilla erat a lacinia egestas. Donec vehicula tempor
                     libero et <br className="hidden lg:visible" /> cursus. Donec non
                     quam urna. Quisque vitae porta ipsum.
