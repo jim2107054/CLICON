@@ -31,3 +31,7 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none;             /* Chrome, Safari */
 }
+
+.shop-now{
+    @apply bg-btnColor w-fit text-white font-medium px-4 py-2 rounded hover:scale-105 transition-all duration-300
+}

@@ -22,6 +22,7 @@ import ShopingCard from "./pages/ShopingCard";
 import WishList from "./pages/WishList";
 import CheckOut from "./pages/CheckOut";
 import CheckOutSuccess from "./pages/CheckOutSuccess";
+import HomePage from "./pages/HomePage";
 
 const App = () => {
   return (
@@ -31,7 +32,7 @@ const App = () => {
       <SecondNavbar />
       <ThirdNavbar />
       <Routes>
-        <Route path="/" element={<SignIn />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/password" element={<ForgetPassword />} />
