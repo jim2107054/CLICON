@@ -132,7 +132,7 @@ const ProductDetails = () => {
           </div>
         </div>
         {/*--------Right Div-----------*/}
-        <div className="flex bg-gray-50 lg:px-5 flex-col w-full lg:w-1/2">
+        <div className="flex bg-gray-50 px-5 rounded-md flex-col w-full lg:w-1/2">
           {/*--------Product Details Upper part---------*/}
           <div>
             {/*--------Product Details 1st part---------*/}
@@ -303,7 +303,8 @@ const ProductDetails = () => {
             <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
             <div className="w-full gap-2 flex flex-col lg:w-1/4">
               <p className="text-xl font-medium">Feature</p>
-              <p className="my-2 flex gap-2 text-base font-medium items-center">
+              <div className="flex flex-col lg:px-0 px-5">
+                <p className="my-2 flex gap-2 text-base font-medium items-center">
                 <PiMedalLight className="text-2xl text-btnColor" />
                 Free 1 Year Warranty
               </p>
@@ -323,11 +324,13 @@ const ProductDetails = () => {
                 <FaRegCreditCard className="text-2xl text-btnColor" />
                 Secure payment method
               </p>
+              </div>
             </div>
             <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
             <div className="w-full gap-2 flex flex-col lg:w-2/6">
               <p className="text-xl font-medium">Shipping Information</p>
-              <p className="text-base font-medium my-0.5">
+              <div className="flex flex-col lg:px-0 px-5">
+                <p className="text-base font-medium my-0.5">
                 Courier:{" "}
                 <span className="text-gray-700">2 - 4 days, free shipping</span>
               </p>
@@ -343,6 +346,7 @@ const ProductDetails = () => {
                 Unishop Global Export:
                 <span className="text-gray-700"> 3 - 4 days, $39.00</span>
               </p>
+              </div>
             </div>
           </div>
         </div>
