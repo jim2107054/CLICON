@@ -1,4 +1,5 @@
 import BestDeals from "../components/Home/BestDeals";
+import FeaturedProducts from "../components/Home/FeaturedProducts";
 import HeroSection from "../components/Home/HeroSection";
 import LatestNews from "../components/Home/LatestNews";
 import ShowRelatedProducts from "../components/ShowRelatedProducts";
@@ -14,6 +15,7 @@ const HomePage = () => {
         <BestDeals/>
         {/*----------------Shop with categorys-------------*/}
         {/*----------------Featured Products-------------*/}
+        <FeaturedProducts/>
         {/*----------------Shop Now two items-------------*/}
         {/*----------------Computer Accessories-------------*/}
         {/*----------------Mackbook Pro-------------*/}

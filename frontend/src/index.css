@@ -43,3 +43,7 @@
 .top-categories{
     @apply text-base font-light my-1 cursor-pointer hover:text-yellow-400
 }
+
+.featured-products{
+    @apply text-base text-gray-500 font-medium cursor-pointer hover:text-btnColor
+}
