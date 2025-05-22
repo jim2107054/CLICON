@@ -1,6 +1,8 @@
 import React from 'react'
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useNavigate } from 'react-router-dom';
+import shopItems from '../../assets/ShopItem';
+import ItemCard from './../ItemCard';
 
 const BestDeals = () => {
     const navigate = useNavigate();
@@ -30,11 +32,33 @@ const BestDeals = () => {
             </div>
         </div>
         {/*------------------Product Section-------------------*/}
-        <div>
+        <div className='flex w-full flex-col md:flex-row gap-5 mt-5'>
             {/*------------------Product Section Left Div-------------------*/}
-            <div></div>
+            <div className='bg-yellow-300 w-full md:w-[25%]'> 
+                dfasdf
+            </div>
             {/*------------------Product Section Right Div-------------------*/}
-            <div></div>
+            <div className='w-full md:w-[75%]'>
+                <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5'>
+                    {
+                        shopItems.length > 0 && 
+                        shopItems.slice(0,8).map((item,index)=>(
+                            <>
+                            <ItemCard
+                                key={index}
+                                id={item.id}
+                                image={item.image}
+                                rating={item.rating}
+                                sell={item.sell}
+                                title={item.title}
+                                price={item.price}
+                                offer={item.offer}
+                            />
+                            </>
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     </div>
   )
