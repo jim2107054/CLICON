@@ -1,8 +1,10 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const navigate = useNavigate();
   return (
     <div className="bg-gray-900 px-10 py-8 lg:pb-4 lg:pt-10">
       <div className="flex gap-16 lg:gap-20 flex-col justify-center lg:flex-row ">
@@ -41,19 +43,22 @@ const Footer = () => {
         </div>
         {/*----------Third div-------*/}
         <div className="felx flex-col text-white">
-          <h1 className="text-xl font-medium mb-5">Quick links</h1>
-          <p className="text-base font-light my-1">Shop Product</p>
-          <p className="text-base font-light my-1">Shoping Cart</p>
-          <p className="text-base font-light my-1">Wishlist</p>
-          <p className="text-base font-light my-1">Compare</p>
-          <p className="text-base font-light my-1">Track Order</p>
-          <p className="text-base font-light my-1">Customer Help</p>
-          <p className="text-base font-light my-1">About Us</p>
+          <h1 className="text-xl font-medium mb-5 text-center lg:text-start">Quick links</h1>
+          <div className="flex flex-col justify-center items-center lg:items-start">
+          <p onClick={()=>navigate('/shop')}  className="quick-links">Shop Product</p>
+          <p onClick={()=>navigate('/shoping-card')}  className="quick-links">Shoping Cart</p>
+          <p onClick={()=>navigate('/wish-list')}  className="quick-links">Wishlist</p>
+          <p onClick={()=>navigate('/compare')}  className="quick-links">Compare</p>
+          <p onClick={()=>navigate('/track-order')}  className="quick-links">Track Order</p>
+          <p onClick={()=>navigate('/customer-support')}  className="quick-links">Customer Help</p>
+          <p onClick={()=>navigate('/about-us')} className="quick-links">About Us</p>
+          </div>
         </div>
         {/*----------Fourth div-------*/}
         <div className="felx flex-col text-white">
-          <h1 className="text-xl font-medium mb-5">DOWNLOAD APP</h1>
-          <div className="flex gap-3 my-3 items-center bg-gray-800 px-4 py-2 rounded font-light">
+          <h1 className="text-xl text-center font-medium mb-5">DOWNLOAD APP</h1>
+          <div className="flex flex-col items-center justify-center">
+            <div className="flex mx-auto w-2/3 md:w-1/5 lg:w-full gap-3 my-1 items-center justify-center bg-gray-800 px-4 py-2 rounded font-light">
             <div>
               <img src={assets.playStoreIcon} alt="" />
             </div>
@@ -63,7 +68,7 @@ const Footer = () => {
             </div>
           </div>
 
-          <div className="flex gap-3 items-center bg-gray-800 px-4 py-2 rounded font-light">
+          <div className="flex mx-auto w-2/3 md:w-1/5 lg:w-full gap-3 my-1 items-center justify-center bg-gray-800 px-4 py-2 rounded font-light">
             <div>
               <img src={assets.appleIcon} alt="" />
             </div>
@@ -72,11 +77,12 @@ const Footer = () => {
               <h1>App Store</h1>
             </div>
           </div>
+          </div>
         </div>
         {/*----------Fifth div-------*/}
-        <div className="flex flex-col px-2 w-full md:w-1/4 text-white">
-          <h1 className="text-xl font-medium mb-5">POPULAR TAG</h1>
-          <div className="flex gap-2 flex-wrap">
+        <div className="flex flex-col px-2 w-full lg:w-1/4 text-white">
+          <h1 className="text-xl font-medium lg:text-start text-center mb-5">POPULAR TAG</h1>
+          <div className="flex gap-2 px-5 lg:px-0 flex-wrap">
             <button className="popular-tag-footer">Game</button>
             <button className="popular-tag-footer">iPhone</button>
             <button className="popular-tag-footer">TV</button>
@@ -98,7 +104,7 @@ const Footer = () => {
       {/*-------div for copyright-------*/}
       <div>
         <p className="text-white text-sm justify-center text-center pt-3">
-          CLICON - eCommerce © 2025. Created by MD Jahid Hasan Jim
+          CLICON - eCommerce © 2025. Created by MD Jahid Hasan Jim (KUET-CSE)
         </p>
       </div>
     </div>
