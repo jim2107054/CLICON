@@ -8,8 +8,8 @@ const ItemCard = (props) => {
     <div>
       <div key={id} className="flex flex-col border border-b-2 cursor-pointer rounded-md overflow-hidden hover:shadow-lg transition-shadow hover:-translate-y-2 hover:duration-500 hover:scale-105">
         {/* Image Section */}
-        <div className="relative flex px-2 py-1 w-full h-[50%]">
-          <div className="h-[50%]"><img className="h-full w-full" src={image} alt="product" /></div>
+        <div className="relative justify-center items-center flex px-2 py-1 w-full h-[50%]">
+          <div className="object-cover"><img className="h-full w-full" src={image} alt="product" /></div>
           {offer && (
             <span
               className={`absolute top-1 left-1 px-2 py-0.5 text-sm font-light rounded text-white ${
@@ -19,7 +19,7 @@ const ItemCard = (props) => {
                   ? "bg-blue-500"
                   : offer === "SALE"
                   ? "bg-green-600"
-                  : offer === "25% OFF"
+                  : offer.includes("OFF")
                   ? "bg-yellow-600"
                   : ""
               }`}
