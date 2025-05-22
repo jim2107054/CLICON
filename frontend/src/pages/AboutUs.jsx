@@ -16,9 +16,9 @@ const AboutUs = () => {
     <div>
       <div className="flex flex-col gap-10 px-36 py-10">
         {/*------------First Div----------*/}
-        <div className="flex items-center flex-col-reverse md:flex-row gap-10">
+        <div className="flex items-center flex-col-reverse lg:flex-row gap-10">
           {/*------------Left Div----------*/}
-          <div className="w-1/2 justify-center flex flex-col gap-5">
+          <div className="lg:w-1/2 justify-center flex flex-col gap-5">
             <h1 className="border w-fit px-3 py-1 bg-blue-400 text-white rounded-md">
               WHO WE ARE
             </h1>
@@ -59,7 +59,7 @@ const AboutUs = () => {
             </p>
           </div>
           {/*------------Right Div----------*/}
-          <div className="w-1/2">
+          <div className="lg:w-1/2">
             <img
               className="rounded-md"
               src={assets.aboutOne}
@@ -72,7 +72,7 @@ const AboutUs = () => {
           <h1 className="text-3xl font-semibold text-center my-5">
             Our core team member
           </h1>
-          <div className="flex flex-col md:flex-row flex-wrap w-full gap-x-8 gap-y-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:flex lg:flex-wrap w-full gap-x-8 gap-y-5">
             {CoreTeamMembers.map((member, index) => (
               <CoreTeamMemberCard
                 key={index}
