@@ -9,32 +9,34 @@ const Footer = () => {
     <div className="bg-gray-900 px-10 py-8 lg:pb-4 lg:pt-10">
       <div className="flex gap-16 lg:gap-20 flex-col justify-center lg:flex-row ">
         {/*----------First div-------*/}
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col lg:items-start items-center gap-5">
           <div>
             <img src={assets.logo} alt="logo" />
           </div>
-          <div className="text-white flex flex-col gap-3">
-            <div>
+          <div className="text-white lg:items-start items-center flex flex-col gap-3">
+            <div >
               <p className="font-light">Customer Supports:</p>
               <p className="font-light">+880 123 456 789</p>
             </div>
 
-            <div>
+            <div className="flex flex-col lg:items-start items-center">
               <p className="font-light">4517 Washington Ave.</p>
               <p className="font-light">Manchester, Kentucky 39495</p>
             </div>
-            <p className="mb-10 font-light">info@kinbo.com</p>
+            <p className="mb-10 font-light">Email: info@kinbo.com</p>
           </div>
         </div>
         {/*----------Second div-------*/}
-        <div className="felx flex-col text-white">
+        <div className="felx flex-col lg:text-start text-center text-white">
           <h1 className="text-xl font-medium mb-5">TOP CATEGORY</h1>
-          <p className="text-base font-light my-1">Computer & Laptop</p>
-          <p className="text-base font-light my-1">SmartPhone</p>
-          <p className="text-base font-light my-1">Headphone</p>
-          <p className="text-base font-light my-1">Accessories</p>
-          <p className="text-base font-light my-1">TV & Homes</p>
-          <p className="flex text-base text-yellow-300 font-light my-1 gap-2 justify-center items-center">
+          <p className="top-categories">Computer & Laptop</p>
+          <p className="top-categories">SmartPhone</p>
+          <p className="top-categories">Headphone</p>
+          <p className="top-categories">Accessories</p>
+          <p className="top-categories">TV & Homes</p>
+          <p 
+          onClick={() => navigate("/shop")}
+          className="flex text-base text-yellow-300 font-light my-1 gap-2 cursor-pointer justify-center items-center">
             Browse All Product{" "}
             <span>
               <FaArrowRight className="text-xl text-[#f8f835]" />

@@ -39,3 +39,7 @@
 .quick-links{
     @apply text-base font-light my-1 hover:text-yellow-400 cursor-pointer;
 }
+
+.top-categories{
+    @apply text-base font-light my-1 cursor-pointer hover:text-yellow-400
+}
