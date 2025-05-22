@@ -9,7 +9,7 @@ const CustomerSupport = () => {
         {/*------------First Div----------*/}
         <div className="w-full flex flex-col-reverse lg:flex-row gap-10">
           {/*---------Left side--------------*/}
-          <div className="flex flex-col gap-5 w-1/2 justify-center px-10 py-5">
+          <div className="flex flex-col gap-5 lg:w-1/2 justify-center px-10 py-5">
             <p className="bg-yellow-300 w-fit px-2 py-1 rounded-sm font-medium">
               Help Center
             </p>
@@ -33,7 +33,7 @@ const CustomerSupport = () => {
             </div>
           </div>
           {/*---------Right side--------------*/}
-          <div className="bg-yellow-500 w-1/2">
+          <div className="bg-yellow-500 lg:w-1/2">
             <img
               className="w-full"
               src={assets.customerSupport}
@@ -46,37 +46,37 @@ const CustomerSupport = () => {
           <h1 className="text-2xl font-semibold text-center mt-5">
             What can we assist you with today?
           </h1>
-          <div className="flex flex-wrap gap-5 mt-5 justify-center">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mt-5">
             <div className="customer-assist">
-              <img className="w-7" src={assets.truck} alt="" />
+              <img className="" src={assets.truck} alt="" />
               <p>Track Order</p>
             </div>
             <div className="customer-assist">
-              <img className="w-7" src={assets.LockOpen} alt="" />
+              <img className="" src={assets.LockOpen} alt="" />
               <p>Reset Password</p>
             </div>
             <div className="customer-assist">
-              <img className="w-7" src={assets.creditCard} alt="" />
+              <img className="" src={assets.creditCard} alt="" />
               <p>Payment Option</p>
             </div>
             <div className="customer-assist">
-              <img className="w-7" src={assets.user} alt="" />
+              <img className="" src={assets.user} alt="" />
               <p>User & Account</p>
             </div>
             <div className="customer-assist">
-              <img className="w-7" src={assets.stack} alt="" />
+              <img className="" src={assets.stack} alt="" />
               <p>Wishlist & Compare</p>
             </div>
             <div className="customer-assist">
-              <img className="w-7" src={assets.vector} alt="" />
+              <img className="" src={assets.vector} alt="" />
               <p>Shipping & Billing</p>
             </div>
             <div className="customer-assist">
-              <img className="w-7" src={assets.creditCard} alt="" />
+              <img className="" src={assets.creditCard} alt="" />
               <p>Shoping Card & Wallet</p>
             </div>
             <div className="customer-assist">
-              <img className="w-7" src={assets.storefront} alt="" />
+              <img className="" src={assets.storefront} alt="" />
               <p>Sell on Clicon</p>
             </div>
           </div>
@@ -84,25 +84,31 @@ const CustomerSupport = () => {
         {/*------------Third Div----------*/}
         <hr />
         <div>
-          <p className="text-2xl font-medium text-center mt-5">Popular Topics</p>
-          <div className="flex flex-col items-center justify-center lg:flex-row lg:gap-20 gap-8 mt-5">
-            <ul className="gap-1 flex flex-col">
+          <p className="text-2xl font-medium lg:text-center mt-5">Popular Topics</p>
+          <div className="flex flex-col justify-center lg:flex-row lg:gap-20 gap-8 mt-5">
+            <div>
+              <ul className="gap-1 flex flex-col">
               <li>How do I return my item?</li>
               <li>What is Clicons Returns Policy?</li>
               <li>How long is the refund process?</li>
             </ul>
+            </div>
 
-            <ul className="gap-1 flex flex-col">
+            <div>
+              <ul className="gap-1 flex flex-col">
               <li>What are the 'Delivery Timelines'?</li>
               <li>What is 'Discover Your Daraz Campaign 2022'?</li>
               <li>What is the Voucher & Gift Offer in this Campaign?</li>
             </ul>
+            </div>
 
-            <ul className="gap-1 flex flex-col">
+            <div>
+              <ul className="gap-1 flex flex-col">
               <li>How to cancel Clicon Order.</li>
               <li>Ask the Digital and Device Community</li>
               <li>How to change my shop name?</li>
             </ul>
+            </div>
           </div>
         </div>
       </div>
