@@ -40,7 +40,7 @@ const shopItems = [
     sell:536,
     title: "Samsung Electronics Samsung Galexy S21 5G",
     price: 2300,
-    offer: "",
+    offer: "10% OFF",
   },
   {
     id: 3,
