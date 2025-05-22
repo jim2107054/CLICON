@@ -23,6 +23,7 @@ import WishList from "./pages/WishList";
 import CheckOut from "./pages/CheckOut";
 import CheckOutSuccess from "./pages/CheckOutSuccess";
 import HomePage from "./pages/HomePage";
+import ScrollToTop from "./components/ScrollComponents/ScrollToTop";
 
 const App = () => {
   return (
@@ -31,6 +32,7 @@ const App = () => {
       <hr className="border-0 border-t border-green-700 m-0" />
       <SecondNavbar />
       <ThirdNavbar />
+      <ScrollToTop/>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<SignIn />} />
