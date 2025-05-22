@@ -10,7 +10,7 @@ const Footer = () => {
       <div className="flex gap-16 lg:gap-20 flex-col justify-center lg:flex-row ">
         {/*----------First div-------*/}
         <div className="flex flex-col lg:items-start items-center gap-5">
-          <div>
+          <div onClick={()=>navigate('/')} className="cursor-pointer">
             <img src={assets.logo} alt="logo" />
           </div>
           <div className="text-white lg:items-start items-center flex flex-col gap-3">

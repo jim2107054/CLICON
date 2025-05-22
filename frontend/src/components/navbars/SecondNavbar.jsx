@@ -1,11 +1,15 @@
-import React from "react";
 import { assets } from "../../assets/assets";
+import { useNavigate } from "react-router-dom";
 const SecondNavbar = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="bg-secondary grid grid-cols-[1fr_3fr_1fr] gap-10 px-24 py-2 items-center">
         {/*----------logo-----------*/}
-        <div className="flex justify-center">
+        <div
+          onClick={() => navigate("/")}
+          className="flex justify-center cursor-pointer"
+        >
           <img className="h-10" src={assets.logo} alt="logo" />
         </div>
         {/*----------Search Bar-----------*/}
