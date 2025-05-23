@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="flex flex-col-reverse px-5 lg:px-0 md:flex-row gap-5 mt-8">
+      <div className="flex flex-col-reverse px-8 lg:px-0 md:flex-row gap-5 mt-8">
         {/*------------------Left Div-------------*/}
         <div className="border bg-yellowButton border-gray-200 rounded h-fit hover:scale-105 w-full md:w-[25%]">
           <div>
