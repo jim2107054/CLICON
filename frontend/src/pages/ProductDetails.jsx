@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import {
   assets,
-  bestSellers,
-  flashSaleToday,
-  newArrival,
-  topRated,
 } from "./../assets/assets";
 import {
   IoArrowBackOutline,

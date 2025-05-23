@@ -2,18 +2,20 @@ import BestDeals from "../components/Home/BestDeals";
 import FeaturedProducts from "../components/Home/FeaturedProducts";
 import HeroSection from "../components/Home/HeroSection";
 import LatestNews from "../components/Home/LatestNews";
+import ShopWithCategorys from "../components/Home/ShopWithCategorys";
 import ShowRelatedProducts from "../components/ShowRelatedProducts";
 import Subscribtion from "../components/Subscribtion";
 
 const HomePage = () => {
   return (
     <div>
-      <div className="flex flex-col gap-10 px-5 lg:px-36 py-10">
+      <div className="flex flex-col w-full gap-10 px-5 lg:px-36 py-10">
         {/*-----------------Home page Hero section-------------*/}
         <HeroSection />
         {/*------------------Best Deals-------------------*/}
         <BestDeals/>
         {/*----------------Shop with categorys-------------*/}
+        <ShopWithCategorys/>
         {/*----------------Featured Products-------------*/}
         <FeaturedProducts/>
         {/*----------------Shop Now two items-------------*/}
