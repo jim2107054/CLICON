@@ -5,7 +5,7 @@ import AboutUsSales from './AboutUsSales'
 const ShowRelatedProducts = () => {
   return (
     <div>
-        <div className="flex flex-col lg:flex-row gap-10 px-36 py-10">
+        <div className="flex flex-col lg:flex-row gap-10 px-5 md:px-36 py-10">
         {/*--------FLASH SALE TODAY-----------*/}
         <div className="">
           <p className="font-medium text-xl">FLASH SALE TODAY</p>
