@@ -2,6 +2,7 @@ import BestDeals from "../components/Home/BestDeals";
 import FeaturedProducts from "../components/Home/FeaturedProducts";
 import HeroSection from "../components/Home/HeroSection";
 import LatestNews from "../components/Home/LatestNews";
+import MackBookPro from "../components/Home/MackBookPro";
 import ShopTwoItems from "../components/Home/ShopTwoItems";
 import ShopWithCategorys from "../components/Home/ShopWithCategorys";
 import ShowRelatedProducts from "../components/ShowRelatedProducts";
@@ -23,6 +24,7 @@ const HomePage = () => {
         <ShopTwoItems/>
         {/*----------------Computer Accessories-------------*/}
         {/*----------------Mackbook Pro-------------*/}
+        <MackBookPro/>
       </div>
       {/*----------------Flash sale, Best sellers and so on-------------*/}
       <ShowRelatedProducts />
