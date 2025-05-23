@@ -1,4 +1,5 @@
 import BestDeals from "../components/Home/BestDeals";
+import ComputerAccessories from "../components/Home/ComputerAccessories";
 import FeaturedProducts from "../components/Home/FeaturedProducts";
 import HeroSection from "../components/Home/HeroSection";
 import LatestNews from "../components/Home/LatestNews";
@@ -23,6 +24,7 @@ const HomePage = () => {
         {/*----------------Shop Now two items-------------*/}
         <ShopTwoItems/>
         {/*----------------Computer Accessories-------------*/}
+        <ComputerAccessories/>
         {/*----------------Mackbook Pro-------------*/}
         <MackBookPro/>
       </div>

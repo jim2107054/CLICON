@@ -14,6 +14,7 @@ export default {
         greenButton:"#2DB224",
         yellowButton:"#F3DE6D",
         lightOrange:"#FFE7D6",
+        lightBlue:'#124261',
       },
       rotate: {
         2.5: '2.5deg',
