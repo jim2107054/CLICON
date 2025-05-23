@@ -8,7 +8,7 @@ const MackBookPro = () => {
       <div className="flex py-5 bg-lightOrange  rounded w-full">
         <div className="flex flex-col-reverse md:flex-row lg:gap-10 w-full">
           {/*-----------------Mackbook Pro Details-----------------*/}
-          <div className="flex flex-col px-64 justify-center lg:px-16 md:px-20 gap-2 lg:gap-3 w-full md:w-[50%]">
+          <div className="flex flex-col justify-center lg:px-16 md:px-20 gap-2 lg:gap-3 w-full md:w-[50%]">
             <p className="text-sm text-white bg-blueButton px-2 py-0.5 w-fit rounded">
               SAVE UP TO $200.00
             </p>
