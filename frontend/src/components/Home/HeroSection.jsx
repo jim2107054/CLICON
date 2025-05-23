@@ -27,8 +27,8 @@ const HeroSection = () => {
                 </div>
             </div>
             {/* Hero section Right Div */}
-            <div className="flex md:flex-col md:h-[50vh] lg:h-[55vh] gap-2 w-full md:w-2/5 lg:w-1/4 rounded">
-            <div className="flex bg-black h-1/2 rounded">
+            <div className="flex gap-5 md:flex-col md:h-[50vh] lg:h-[55vh] lg:gap-2 w-full md:w-2/5 lg:w-1/4 rounded">
+            <div className="flex w-1/2 lg:w-full bg-black h-1/2 rounded">
                 <div className="w-3/5 flex">
                 <div className="flex flex-col py-8 justify-center px-5 gap-2 w-full h-full ">
                     <p className="text-yellow-400 text-sm">SUMMER SALES</p>
@@ -41,7 +41,7 @@ const HeroSection = () => {
                     <img className="right-0 w-full h-2/3 bottom-0 absolute" src={assetsHome.heroPhone} alt="heroPhone" />
                 </div>
             </div>
-            <div className="flex flex-row-reverse  bg-gray-200 h-1/2 rounded">
+            <div className="flex flex-row-reverse w-1/2 lg:w-full bg-gray-200 lg:h-1/2 rounded">
                 <div className="w-3/5">
                 <div className="flex flex-col py-5 justify-center px-5 w-full h-full ">
                     <p className="text-black text-xl font-medium">Xiaomi<br/>FlipBuds Pro</p>
@@ -56,48 +56,48 @@ const HeroSection = () => {
             </div>
         </div>
         {/* Hero section Lower section */}
-        <div className="flex border justify-between items-center border-gray-200 rounded p-5">
+        <div className="flex border mt-5 lg:mt-0 justify-between items-center border-gray-200 gap-5 rounded px-5 py-3">
           {/*----Fasted Delivery*/}
           <div className="flex gap-5 items-center">
             <div>
               <BsBoxSeam className="text-3xl" />
             </div>
             <div className="flex flex-col">
-              <p className="text-lg">FASTED DELIVERY</p>
+              <p className="text-lg leading-tight">FASTED DELIVERY</p>
               <p className="text-sm">Delivery in 24/H</p>
             </div>
           </div>
           <div className=" w-[1px] h-16 bg-gray-300"></div>
-          {/*----Fasted Delivery*/}
+          {/*----24 Hours Return-----*/}
           <div className="flex gap-5 items-center">
             <div>
               <IoTrophyOutline className="text-3xl" />
             </div>
             <div className="flex flex-col">
-              <p className="text-lg uppercase">24 Hours Return</p>
-              <p className="text-sm">100% money-back guarantee</p>
+              <p className="text-lg uppercase leading-tight">24 Hours Return</p>
+              <p className="text-sm leading-tight">100% money-back guarantee</p>
             </div>
           </div>
           <div className=" w-[1px] h-16 bg-gray-300"></div>
-          {/*----Fasted Delivery*/}
+          {/*----Secure Payment-------*/}
           <div className="flex gap-5 items-center">
             <div>
               <CiCreditCard1 className="text-3xl" />
             </div>
             <div className="flex flex-col">
-              <p className="text-lg uppercase">Secure Payment</p>
-              <p className="text-sm">Your money is safe</p>
+              <p className="text-lg uppercase leading-tight">Secure Payment</p>
+              <p className="text-sm leading-tight">Your money is safe</p>
             </div>
           </div>
           <div className=" w-[1px] h-16 bg-gray-300"></div>
-          {/*----Fasted Delivery*/}
+          {/*----Support 24/7----*/}
           <div className="flex gap-5 items-center">
             <div>
               <TfiHeadphoneAlt className="text-3xl" />
             </div>
             <div className="flex flex-col">
-              <p className="text-lg uppercase">Support 24/7</p>
-              <p className="text-sm">Live contact/message</p>
+              <p className="text-lg uppercase leading-tight">Support 24/7</p>
+              <p className="text-sm leading-tight">Live contact/message</p>
             </div>
           </div>
         </div>
