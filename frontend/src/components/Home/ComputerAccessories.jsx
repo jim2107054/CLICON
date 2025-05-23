@@ -8,7 +8,7 @@ import { assetsHome } from "../../assets/assetsHome";
 const ComputerAccessories = () => {
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col-reverse gap-5 md:flex-row">
+    <div className="flex flex-col px-5 lg:px-0 gap-5 md:flex-row">
       {/*----------------Computer Accessories Left-------------*/}
       <div className="flex flex-col gap-10 w-full md:w-[80%]">
         {/*----------------Header-------------*/}
