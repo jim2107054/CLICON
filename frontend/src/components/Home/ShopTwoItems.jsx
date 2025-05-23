@@ -52,7 +52,7 @@ const ShopTwoItems = () => {
             </button>
           </div>
           <div className="flex h-full md:w-[45%] px-5 relative">
-            <p className="flex w-20 h-20 bg-blueButton rounded-full absolute right-0 top-2 items-center justify-center font-medium text-2xl text-white">
+            <p className="flex w-20 h-20 bg-blueButton rounded-full absolute right-[5%] top-[5%] items-center justify-center font-medium text-2xl text-white">
               $590
             </p>
             <img
