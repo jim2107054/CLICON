@@ -12,7 +12,7 @@ import { IoEyeOutline } from "react-icons/io5";
 const BestDeals = () => {
     const navigate = useNavigate();
   return (
-    <div>
+    <div className='px-5'>
         {/*------------------Header Section-------------------*/}
         <div className='flex justify-between items-center'>
             {/*------------------Header Section Left Div-------------------*/}
