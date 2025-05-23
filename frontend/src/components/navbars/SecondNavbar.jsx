@@ -4,7 +4,7 @@ const SecondNavbar = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="bg-secondary grid grid-cols-[1fr_3fr_1fr] gap-10 px-24 py-2 items-center">
+      <div className="bg-secondary hidden lg:grid grid-cols-[1fr_3fr_1fr] gap-10 px-24 py-2 items-center">
         {/*----------logo-----------*/}
         <div
           onClick={() => navigate("/")}

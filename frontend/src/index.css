@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+    @apply p-0 m-0
+}
 
 .popular-tag-footer{
     @apply bg-inherit px-2 py-0.5 rounded border border-gray-500

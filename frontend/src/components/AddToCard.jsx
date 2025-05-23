@@ -14,7 +14,7 @@ const AddToCard = (props) => {
       {cancled && (
         <>
           <div className="flex border-b-2 my-1 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
-            <div className="flex flex-row gap-5 w-[55%] px-2 rounded line-clamp-2">
+            <div className="flex flex-row md:gap-5 w-1/2 md:w-[55%] px-2 rounded line-clamp-2">
               <div className="flex items-center">
                 <MdOutlineCancel
                   onClick={() => setCancled(false)}
@@ -25,7 +25,7 @@ const AddToCard = (props) => {
                 <img className="object-cover" src={image} alt="logo" />
               </div>
               <div className="flex justify-start">
-                <p className="leading-none my-1 text-xl text-gray-700">
+                <p className="leading-none my-1 line-clamp-2 md:text-xl text-gray-700">
                   {title}
                 </p>
               </div>
@@ -40,19 +40,19 @@ const AddToCard = (props) => {
                 ${DiscountPrice}
               </p>
             </div>
-            <div className="items-center my-auto px-1 py-1 md:w-[15%] lg:w-[15%]">
-              <div className="flex gap-5 justify-center items-center border-2 border-gray-300 rounded px-2 py-1 w-full">
+            <div className="items-center m-auto px-1 py-1 w-1/5 md:w-[15%] lg:w-[15%]">
+              <div className="flex gap-2 md:gap-5 justify-center items-center border-2 border-gray-300 rounded px-2 py-1 w-full">
                 <button
                   onClick={() =>
                     productQuantity > 1
                       ? setproductQuantity(productQuantity - 1)
                       : setproductQuantity(1)
                   }
-                  className="font-medium"
+                  className="md:font-medium"
                 >
                   <FaMinus />
                 </button>
-                <p className="text-xl">{productQuantity}</p>
+                <p className="md:text-xl">{productQuantity}</p>
                 <button onClick={() => setproductQuantity(productQuantity + 1)}>
                   <FaPlus />
                 </button>
