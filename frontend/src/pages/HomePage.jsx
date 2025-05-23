@@ -2,6 +2,7 @@ import BestDeals from "../components/Home/BestDeals";
 import FeaturedProducts from "../components/Home/FeaturedProducts";
 import HeroSection from "../components/Home/HeroSection";
 import LatestNews from "../components/Home/LatestNews";
+import ShopTwoItems from "../components/Home/ShopTwoItems";
 import ShopWithCategorys from "../components/Home/ShopWithCategorys";
 import ShowRelatedProducts from "../components/ShowRelatedProducts";
 import Subscribtion from "../components/Subscribtion";
@@ -19,6 +20,7 @@ const HomePage = () => {
         {/*----------------Featured Products-------------*/}
         <FeaturedProducts/>
         {/*----------------Shop Now two items-------------*/}
+        <ShopTwoItems/>
         {/*----------------Computer Accessories-------------*/}
         {/*----------------Mackbook Pro-------------*/}
       </div>

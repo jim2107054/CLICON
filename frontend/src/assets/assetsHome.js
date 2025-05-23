@@ -14,6 +14,9 @@ import webCam from './homeImages/webCam.png'
 import wMonitor from './homeImages/wMonitor.png'
 import wPlayStation from './homeImages/WplayStation.png'
 import electionicsItems from './homeImages/electronicsItems.jpg'
+import appleHomepod from './homeImages/appleHomepod.png'
+import mackbookPro from './homeImages/mackbookPro.png'
+import Xiaomi11 from './homeImages/Xiaomi11.png'
 
 
 export const assetsHome = {
@@ -32,7 +35,10 @@ export const assetsHome = {
     webCam,
     wMonitor,
     wPlayStation,
-    electionicsItems
+    electionicsItems,
+    appleHomepod,
+    mackbookPro,
+    Xiaomi11
 }
 
 export const LatestNewsData = [
