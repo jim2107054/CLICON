@@ -12,6 +12,7 @@ export default {
         btnColor: "#FA8232",
         blueButton:"#2DA5F3",
         greenButton:"#2DB224",
+        yellowButton:"#F3DE6D",
       },
       rotate: {
         2.5: '2.5deg',

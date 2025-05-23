@@ -13,6 +13,7 @@ import wDrone from './homeImages/wDrone.png'
 import webCam from './homeImages/webCam.png'
 import wMonitor from './homeImages/wMonitor.png'
 import wPlayStation from './homeImages/WplayStation.png'
+import electionicsItems from './homeImages/electronicsItems.jpg'
 
 
 export const assetsHome = {
@@ -30,7 +31,8 @@ export const assetsHome = {
     wDrone,
     webCam,
     wMonitor,
-    wPlayStation
+    wPlayStation,
+    electionicsItems
 }
 
 export const LatestNewsData = [
