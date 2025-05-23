@@ -8,7 +8,7 @@ const TrackOrder = () => {
   return (
     <div>
       <div className="flex flex-col px-5 lg:px-36 py-10">
-        <div className="flex flex-col bg-yellow-300 w-full lg:w-3/4">
+        <div className="flex flex-col w-full lg:w-3/4">
           <div>
             <p className="text-2xl my-3 font-medium">Track Order</p>
             <p className="text-base leading-tight">
