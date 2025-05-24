@@ -13,7 +13,7 @@ const ShopWithCategorys = () => {
   const smallImagePages = Math.ceil(totalCategory / 5);
   return (
     <div>
-      <div className="flex flex-col gap-5 my-5 md:my-8">
+      <div className="flex flex-col gap-5 my-3 md:my-8">
         {/*----------------Shop with categorys-------------*/}
         <div>
           <p className="text-2xl font-medium text-center">
