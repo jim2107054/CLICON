@@ -4,17 +4,17 @@ import { assetsHome } from "../../assets/assetsHome";
 
 const MackBookPro = () => {
   return (
-    <div className="px-5 lg:px-0">
+    <div className="md:px-5 px-2 lg:px-0">
       <div className="flex py-5 bg-lightOrange  rounded w-full">
         <div className="flex flex-col-reverse md:flex-row lg:gap-10 w-full">
           {/*-----------------Mackbook Pro Details-----------------*/}
-          <div className="flex flex-col justify-center lg:px-16 md:px-20 gap-2 lg:gap-3 w-full md:w-[50%]">
+          <div className="flex flex-col px-10 justify-center lg:px-16 md:px-20 gap-2 lg:gap-3 w-full md:w-[50%]">
             <p className="text-sm text-white bg-blueButton px-2 py-0.5 w-fit rounded">
               SAVE UP TO $200.00
             </p>
             <p className="text-2xl lg:text-3xl font-medium leading-tight">Macbook Pro</p>
             <p className="text-base font-medium leading-tight line-clamp-2 text-gray-600">
-              Apple M1 Max Chip. 32GB Unified <br/> Memory, 1TB SSD Storage
+              Apple M1 Max Chip. 32GB <br/>Unified Memory, 1TB SSD Storage
             </p>
             <button className="flex items-center gap-2 shop-now">
               SHOP NOW{" "}

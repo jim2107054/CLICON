@@ -5,7 +5,7 @@ import { FaArrowRight } from "react-icons/fa";
 const ShopTwoItems = () => {
   return (
     <div>
-      <div className="flex flex-col px-5 lg:px-0 md:flex-row gap-5 lg:gap-10 my-10">
+      <div className="flex flex-col px-2 md:px-5 lg:px-0 md:flex-row gap-5 lg:gap-10 my-10">
         {/*----------------Left Div-------------*/}
         <div className="flex flex-col-reverse md:flex-row gap-5 md:gap-0 rounded items-center py-6 bg-gray-200 w-full md:w-1/2">
           <div className="flex flex-col gap-3 justify-center md:px-5 w-[55%]">

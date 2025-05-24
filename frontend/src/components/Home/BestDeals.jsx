@@ -12,15 +12,15 @@ import { IoEyeOutline } from "react-icons/io5";
 const BestDeals = () => {
     const navigate = useNavigate();
   return (
-    <div className='px-5 lg:px-0'>
+    <div className='md:px-5 px-2 lg:px-0'>
         {/*------------------Header Section-------------------*/}
-        <div className='flex justify-between items-center'>
+        <div className='flex flex-col gap-2 md:gap-0 md:flex-row justify-between md:items-center'>
             {/*------------------Header Section Left Div-------------------*/}
             <div className='flex flex-col md:flex-row gap-5'>
                 <p className='flex text-xl font-medium'>Best Deals</p>
-                <div className='flex gap-2'>
+                <div className='flex flex-col gap-1 md:flex-row md:gap-2'>
                     <p className='flex items-center text-sm font-medium'>Deals ends in</p>
-                    <div className='flex gap-2 bg-yellow-400 rounded p-1'>
+                    <div className='flex gap-2 w-fit bg-yellow-400 rounded p-1'>
                         <p>00d</p>
                         <p>:</p>
                         <p>00h</p>

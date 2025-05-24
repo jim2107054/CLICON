@@ -12,7 +12,7 @@ import Subscribtion from "../components/Subscribtion";
 const HomePage = () => {
   return (
     <div>
-      <div className="flex flex-col w-full gap-10 px-5 lg:px-36 py-10">
+      <div className="flex flex-col w-full gap-10 px-2 md:px-5 lg:px-36 py-10">
         {/*-----------------Home page Hero section-------------*/}
         <HeroSection />
         {/*------------------Best Deals-------------------*/}
@@ -32,7 +32,7 @@ const HomePage = () => {
       <ShowRelatedProducts />
       {/*----------------Latest News-------------*/}
       <div className="bg-gray-200">
-        <div className="flex flex-col gap-10 px-5 lg:px-36 py-10">
+        <div className="flex flex-col items-center md:items-start gap-10 md:px-5 lg:px-36 py-10">
           <LatestNews/>
         </div>
       </div>

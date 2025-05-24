@@ -9,7 +9,7 @@ const FeaturedProducts = () => {
   const navigate = useNavigate();
   return (
     <div>
-      <div className="flex flex-col-reverse px-5 lg:px-0 md:flex-row gap-5 mt-8">
+      <div className="flex flex-col-reverse px-2 md:px-5 lg:px-0 md:flex-row gap-5 mt-8">
         {/*------------------Left Div-------------*/}
         <div className="border bg-yellowButton border-gray-200 rounded h-fit hover:scale-105 w-full md:w-[25%]">
           <div>
@@ -45,7 +45,7 @@ const FeaturedProducts = () => {
             <div>
               <p className="text-xl font-medium">Featured Products</p>
             </div>
-            <div className="flex gap-5 justify-between">
+            <div className="md:flex hidden gap-5 justify-between">
               <p className="featured-products">All Product</p>
               <p className="featured-products">Smart Phone</p>
               <p className="featured-products">Laptops</p>
