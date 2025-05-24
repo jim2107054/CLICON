@@ -45,12 +45,14 @@ const FeaturedProducts = () => {
             <div>
               <p className="text-xl font-medium">Featured Products</p>
             </div>
-            <div className="md:flex hidden gap-5 justify-between">
-              <p className="featured-products">All Product</p>
+            <div className="flex gap-5 justify-between">
+              <div className="md:flex hidden gap-5 justify-between">
+                <p className="featured-products">All Product</p>
               <p className="featured-products">Smart Phone</p>
               <p className="featured-products">Laptops</p>
               <p className="featured-products">HeadPhone</p>
               <p className="featured-products">TV</p>
+              </div>
               <p
                 onClick={() => navigate("/shop")}
                 className="featured-products flex items-center gap-1"

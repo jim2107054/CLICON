@@ -18,14 +18,16 @@ const ComputerAccessories = () => {
               Computer Accessories
             </p>
           </div>
-          <div className="hidden md:flex gap-5">
-            <p className="cursor-pointer hover:text-blueButton">ALL Products</p>
+          <div className="flex gap-5">
+            <div className="hidden md:flex gap-5">
+              <p className="cursor-pointer hover:text-blueButton">ALL Products</p>
             <p className="cursor-pointer hover:text-blueButton">
               Keyboard & Mouse
             </p>
             <p className="cursor-pointer hover:text-blueButton">Headphone</p>
             <p className="cursor-pointer hover:text-blueButton">Webcam</p>
             <p className="cursor-pointer hover:text-blueButton">Printer</p>
+            </div>
             <p
               onClick={() => navigate("/shop")}
               className="flex cursor-pointer items-center gap-1 text-btnColor"

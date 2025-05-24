@@ -15,7 +15,7 @@ const HeroSection = () => {
         <div className="flex flex-col lg:flex-row gap-5">
             {/* Hero section Left Div */}
             <div className="flex flex-col-reverse md:flex-row md:h-[50vh] lg:h-[55vh] w-full lg:w-3/4 gap-5 mb-5 bg-gray-200 rounded px-5">
-                <div className="md:w-1/2 flex flex-col px-10 justify-center">
+                <div className="md:w-1/2 flex flex-col my-5 px-10 justify-center">
                 <p className="flex items-center gap-2 text-blueButton font-medium text-xs lg:text-sm w-full"><span><TfiLayoutLineSolid className="lg:text-xl"/></span> THE BEST PLACE TO PLAY</p>
                 <p className="lg:text-3xl text-2xl font-medium w-full">Xbox Consoles</p>
                 <p className="font-light text-sm w-full my-3">Save up to 50% on select Xbox games. Get 3 months of PC Game Pass for $2 USD.</p>
