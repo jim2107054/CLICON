@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { assets } from "../../assets/assets";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { HiOutlineBars4 } from "react-icons/hi2";
 import { AiOutlineClose } from "react-icons/ai";
 
 const ThirdNavbar = () => {
   const [showNavBar, setShowNavBar] = useState(false);
+  const navigate = useNavigate();
   return (
     <div>
       {/* Desktop Navbar */}
@@ -66,7 +67,7 @@ const ThirdNavbar = () => {
       <div className="lg:hidden flex items-center relative bg-lightBlue">
         <div className="flex justify-between w-full px-3 py-2">
           <div className="text-green-400">
-            <img src={assets.logo} alt="" />
+            <img onClick={() => navigate("/")} src={assets.logo} alt="" />
           </div>
           <div className="flex items-center gap-3">
             <HiOutlineBars4
@@ -79,7 +80,14 @@ const ThirdNavbar = () => {
           <div className="flex flex-col absolute bg-lightBlue w-full top-0 h-[100vh] z-50 items-center gap-3 py-2">
             <div className="flex justify-between w-full px-3 py-2">
               <div className="text-green-400">
-                <img src={assets.logo} alt="" />
+                <img
+                  onClick={() => {
+                    navigate("/");
+                    setShowNavBar(!showNavBar);
+                  }}
+                  src={assets.logo}
+                  alt=""
+                />
               </div>
               <div className="flex items-center gap-3">
                 <AiOutlineClose
@@ -102,6 +110,13 @@ const ThirdNavbar = () => {
                 <option value="accessories">Accessories</option>
                 <option value="Game">Game</option>
               </select>
+              <NavLink
+                to="/"
+                onClick={() => setShowNavBar(!showNavBar)}
+                className="text-xl text-white font-medium thirdNavbar"
+              >
+                Home
+              </NavLink>
               <NavLink
                 to="/shop"
                 onClick={() => setShowNavBar(!showNavBar)}
