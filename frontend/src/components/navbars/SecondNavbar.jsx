@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { assets } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 const SecondNavbar = () => {
   const navigate = useNavigate();
+  const [logOut, setLogOut] = useState(false)
   return (
     <div>
       <div className="bg-secondary hidden lg:grid grid-cols-[1fr_3fr_1fr] gap-10 px-24 py-2 items-center">
@@ -28,7 +30,7 @@ const SecondNavbar = () => {
           </div>
         </div>
         {/*----------Right side-----------*/}
-        <div className="flex justify-center items-center gap-5 right-0">
+        <div className={`flex justify-center items-center gap-5 right-0 ${logOut ? 'hidden' : 'flex'}`}>
           <div>
             <img onClick={()=>navigate('/shoping-card')} className="h-7 cursor-pointer" src={assets.cart} alt="cart" />
           </div>
@@ -42,9 +44,15 @@ const SecondNavbar = () => {
               <p onClick={()=>navigate('/shoping-card')} className='text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5'>Purchase </p>
               <p onClick={()=>navigate('/shop')} className='text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5'>Shop Now</p>
               <p className='text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5'>Settings</p>
-              <p onClick={()=>navigate('/')} className='text-base hover:scale-105 transition-all duration-300 border font-bold justify-center items-center py-0.5 text-center rounded bg-btnColor mx-5 my-2'>Logout</p>
+              <p onClick={()=>{navigate('/'); setLogOut(!logOut)}} className='text-base hover:scale-105 transition-all duration-300 border font-bold justify-center items-center py-0.5 text-center rounded bg-btnColor mx-5 my-2'>Logout</p>
             </div>
             
+          </div>
+        </div>
+        <div className={`flex justify-center items-center gap-5 right-0 ${logOut ? 'flex' : 'hidden'}`}>
+          <div className="flex gap-5">
+            <button onClick={()=>{navigate('/login');}} className="border-none hover:scale-105 duration-300 transition-all rounded-md bg-blueButton px-5 py-1.5 text-white font-medium">Login</button>
+            <button onClick={()=>navigate('/signup')} className="border-none hover:scale-105 duration-300 transition-all rounded-md bg-blueButton px-5 py-1.5 text-white font-medium">Sign Up</button>
           </div>
         </div>
       </div>
