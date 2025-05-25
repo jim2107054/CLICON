@@ -31,8 +31,8 @@ const ItemCard = (props) => {
         </div>
 
         {/* Info Section */}
-        <div className="flex flex-col px-2 py-1 flex-grow justify-between">
-          <div className="flex gap-5">
+        <div className="flex flex-col flex-grow justify-between">
+          <div className="flex px-2 md:px-3 lg:px-5 py-1 gap-5">
             <span className="flex items-center">
               <CiStar className="text-xl text-yellow-400" />
               {rating}
@@ -41,19 +41,19 @@ const ItemCard = (props) => {
           </div>
 
           {/* Title */}
-          <div className="h-10 justify-center">
+          <div className="h-10 px-2 md:px-3 lg:px-5 justify-center">
             <h3 className="text-sm font-medium text-start leading-none line-clamp-2 mt-1">
             {title}
           </h3>
           </div>
 
-          <div className="flex items-center md:gap-2 justify-between md:justify-evenly md:my-1 my-2">
+          <div className="flex px-2 items-center md:gap-2 justify-between lg:justify-around  my-2">
             {/* Price */}
           <p className="text-[18px] leading-none text-blue-400 font-medium">
             ${price}
           </p>
           {/* Add to Cart Button */}
-          <button className="flex items-center gap-2 md:gap-5 bg-blue-500 text-white px-3 py-1 w-fit rounded-md hover:bg-blue-600 transition-colors">
+          <button className="flex items-center gap-2 md:gap-0 bg-blueButton text-white px-3 py-1.5 w-fit rounded-md hover:bg-blue-600 transition-colors">
             <FaCartArrowDown className="text-xl block lg:hidden " /><p className="hidden lg:block">Add to cart</p>
           </button>
           </div>
