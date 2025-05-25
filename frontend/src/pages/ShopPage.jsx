@@ -13,7 +13,7 @@ const ShopPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   return (
     <div>
-      <div className="flex flex-col gap-10 md:flex-row px-5 lg:px-36 py-5">
+      <div className="flex flex-col gap-10 md:flex-row px-1 md:px-5 lg:px-36 py-5">
         {/*------------Left Div---------------*/}
         <div className="hidden md:block w-full md:w-2/4 lg:w-1/5 p-5">
           {/*-----------Left Div Category------ */}
@@ -304,7 +304,7 @@ const ShopPage = () => {
             </div>
           </div>
           {/*---------------Right Div Bottom-------------- */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 gap-y-8">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 gap-5 gap-y-8">
             {shopItems
               .slice((currentPage - 1)*perPageItems, perPageItems*(currentPage-1) + perPageItems)
               .map((item, index) => (
