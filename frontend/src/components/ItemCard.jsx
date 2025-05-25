@@ -1,5 +1,6 @@
 import React from "react";
 import { CiStar } from "react-icons/ci";
+import { FaCartArrowDown } from "react-icons/fa6";
 
 const ItemCard = (props) => {
   const { id, image, rating, sell, title, price, offer } = props;
@@ -46,10 +47,16 @@ const ItemCard = (props) => {
           </h3>
           </div>
 
-          {/* Price */}
+          <div className="flex items-center md:gap-2 justify-between md:justify-evenly md:my-1 my-2">
+            {/* Price */}
           <p className="text-[18px] leading-none text-blue-400 font-medium">
             ${price}
           </p>
+          {/* Add to Cart Button */}
+          <button className="flex items-center gap-2 md:gap-5 bg-blue-500 text-white px-3 py-1 w-fit rounded-md hover:bg-blue-600 transition-colors">
+            <FaCartArrowDown className="text-xl block lg:hidden " /><p className="hidden lg:block">Add to cart</p>
+          </button>
+          </div>
         </div>
       </div>
     </div>
