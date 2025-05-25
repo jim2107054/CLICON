@@ -28,10 +28,24 @@ const SecondNavbar = () => {
           </div>
         </div>
         {/*----------Right side-----------*/}
-        <div className="flex gap-5 right-0">
-          <img className="h-7" src={assets.cart} alt="cart" />
-          <img className="h-7" src={assets.hert} alt="hertIcon" />
-          <img className="h-7" src={assets.user} alt="userIcon" />
+        <div className="flex justify-center items-center gap-5 right-0">
+          <div>
+            <img onClick={()=>navigate('/shoping-card')} className="h-7 cursor-pointer" src={assets.cart} alt="cart" />
+          </div>
+         <div>
+           <img onClick={()=>navigate('/wish-list')} className="h-7 cursor-pointer" src={assets.hert} alt="hertIcon" />
+         </div>
+          <div className="cursor-pointer relative group rounded-full p-1 bg-gray-400">
+            <img className="h-7" src={assets.user} alt="userIcon" />
+            <div className="absolute flex-col w-40 z-50 bg-blue-100 top-0 mt-7 left-0 text-white rounded-sm pr-4 pl-2 py-1 hidden group-hover:block">
+              <p className='text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5'>My Account</p>
+              <p onClick={()=>navigate('/shoping-card')} className='text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5'>Purchase </p>
+              <p onClick={()=>navigate('/shop')} className='text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5'>Shop Now</p>
+              <p className='text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5'>Settings</p>
+              <p onClick={()=>navigate('/')} className='text-base hover:scale-105 transition-all duration-300 border font-bold justify-center items-center py-0.5 text-center rounded bg-btnColor mx-5 my-2'>Logout</p>
+            </div>
+            
+          </div>
         </div>
       </div>
     </div>
