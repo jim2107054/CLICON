@@ -39,7 +39,9 @@ const Login = () => {
             </div>
             <p className="text-base text-blue-500 text-center ">Forget Password</p>
           </form>
-          <button className="bg-[#FA8232] flex items-center justify-center gap-3 h-11 rounded-md text-white font-medium mt-5">
+          <button
+          onClick={()=>{navigate('/');}}
+          className="bg-[#FA8232] flex items-center justify-center gap-3 h-11 rounded-md text-white font-medium mt-5">
             SIGN IN <span className="items-center justify-center"> <FaArrowRight/> </span>
           </button>
           <p className="text-base font-light my-2 text-center">Create a new account <span onClick={()=>navigate('/signup')} className="text-base cursor-pointer text-blue-500 font-medium ml-2">Sign Up</span></p>
