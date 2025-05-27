@@ -9,18 +9,28 @@ const ShopingCard = (props) => {
   //distructuring props
   const { cart, Total, addToCart, removeFromCart, updateCartQuantity } = props;
   const subTotal = Total;
-  const NeedToPay = subTotal>0 ? subTotal + shippingCost + tax - discount:0;
+  const NeedToPay = subTotal > 0 ? subTotal + shippingCost + tax - discount : 0;
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-2 md:px-10 lg:px-36 py-10">
         {/*----------Shoping Card----------*/}
         <div className="flex flex-col h-fit pb-5 rounded border-2 border-gray-300 w-full  lg:w-3/5">
           <p className="text-xl px-5 font-medium my-2">Shoping Card</p>
-          <div className="flex gap-2 border-2 md:px-5 py-2 bg-gray-400 md:justify-between md:gap-5">
-            <p className="w-2/4 text-sm md:font-bold text-gray-700">PRODUCTS</p>
-            <p className="text-sm md:font-bold text-gray-700">PRICE</p>
-            <p className="text-sm md:font-bold text-gray-700">QUANTITY</p>
-            <p className="text-sm md:font-bold text-gray-700">SUB-TOTAL</p>
+          <div className="flex border-2 w-full py-1 bg-gray-400 md:justify-between md:gap-5">
+            <p className="md:w-1/2 w-2/5 text-sm md:font-bold text-gray-700">
+              PRODUCTS
+            </p>
+            <div className="flex w-3/5 justify-between px-2 lg:w-1/2 lg:gap-24 md:px-3 items-center">
+              <p className="text-sm md:font-bold text-gray-700 mx-auto">
+                PRICE
+              </p>
+              <p className="text-sm md:font-bold text-gray-700 mx-auto">
+                QUANTITY
+              </p>
+              <p className="text-sm md:font-bold text-gray-700 mx-auto">
+                TOTAL
+              </p>
+            </div>
           </div>
           {cart.length > 0 &&
             cart.map((product) => (
