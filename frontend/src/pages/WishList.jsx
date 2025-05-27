@@ -1,7 +1,9 @@
 import shopItems from "../assets/ShopItem";
 import AddToWishList from "../components/AddToWishList";
 
-const WishList = () => {
+const WishList = (props) => {
+  //distructuring props
+  const {cart,Total,addToCart,removeFromCart, updateCartQuantity} = props;
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-10 lg:px-36 py-10">
@@ -17,33 +19,20 @@ const WishList = () => {
               <p className="text-sm font-bold text-gray-700">ACTIONS</p>
             </div>
           </div>
-          <AddToWishList
-            image={shopItems[0].image}
-            title={shopItems[0].title}
-            DiscountPrice={shopItems[0].price}
-            status="In Stock"
-          />
-          <AddToWishList
-            image={shopItems[1].image}
-            title={shopItems[1].title}
-            DiscountPrice={shopItems[1].price}
-            OriginalPrice={2500}
-            status="Out of Stock"
-          />
-          <AddToWishList
-            image={shopItems[3].image}
-            title={shopItems[3].title}
-            DiscountPrice={shopItems[3].price}
-            OriginalPrice={110}
-            status="In Stock"
-          />
-          <AddToWishList
-            image={shopItems[2].image}
-            title={shopItems[2].title}
-            DiscountPrice={shopItems[2].price}
-            OriginalPrice={400}
-            status="In Stock"
-          />
+          {
+            shopItems.length > 0 ? (
+              shopItems.slice(0,3).map((product) => (
+                <AddToWishList
+                  key={product.id}
+                  product={product}
+                  status="In Stock"
+                  addToCart={addToCart}
+                />
+              ))
+            ) : (
+              <p className="text-center text-gray-500">Your wishlist is empty.</p>
+            )
+          }
         </div>
       </div>
     </div>
