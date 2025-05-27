@@ -116,7 +116,12 @@ const App = () => {
         <Route path="/blog-details" element={<BlogDetails />} />
         <Route path="/track-order" element={<TrackOrder />} />
         <Route path="/track-order-details" element={<TrackOrderDetails />} />
-        <Route path="/shoping-card" element={<ShopingCard />} />
+        <Route path="/shoping-card" element={<ShopingCard
+        cart={cart}
+        Total={Total}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        updateCartQuantity={updateCartQuantity} />} />
         <Route
           path="/wish-list"
           element={

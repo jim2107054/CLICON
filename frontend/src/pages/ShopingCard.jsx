@@ -1,9 +1,15 @@
-import React from "react";
-import { FaArrowRight} from "react-icons/fa";
-import shopItems from "../assets/ShopItem";
+import React, { useState } from "react";
+import { FaArrowRight } from "react-icons/fa";
 import AddToCard from "../components/AddToCard";
 
-const ShopingCard = () => {
+const ShopingCard = (props) => {
+  const [shippingCost, setShippingCost] = useState(0);
+  const discount = 32;
+  const tax = 320;
+  //distructuring props
+  const { cart, Total, addToCart, removeFromCart, updateCartQuantity } = props;
+  const subTotal = Total;
+  const NeedToPay = subTotal>0 ? subTotal + shippingCost + tax - discount:0;
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-2 md:px-10 lg:px-36 py-10">
@@ -16,29 +22,20 @@ const ShopingCard = () => {
             <p className="text-sm md:font-bold text-gray-700">QUANTITY</p>
             <p className="text-sm md:font-bold text-gray-700">SUB-TOTAL</p>
           </div>
-          <AddToCard
-            image={shopItems[0].image}
-            title={shopItems[0].title}
-            DiscountPrice={shopItems[0].price}
-          />
-          <AddToCard
-            image={shopItems[1].image}
-            title={shopItems[1].title}
-            DiscountPrice={shopItems[1].price}
-            OriginalPrice={2500}
-          />
-          <AddToCard
-            image={shopItems[3].image}
-            title={shopItems[3].title}
-            DiscountPrice={shopItems[3].price}
-            OriginalPrice={110}
-          />
-          <AddToCard
-            image={shopItems[2].image}
-            title={shopItems[2].title}
-            DiscountPrice={shopItems[2].price}
-            OriginalPrice={400}
-          />
+          {cart.length > 0 &&
+            cart.map((product) => (
+              <AddToCard
+                key={product.id}
+                product={product}
+                cart={cart}
+                addToCart={addToCart}
+                removeFromCart={removeFromCart}
+                updateCartQuantity={updateCartQuantity}
+                Total={Total}
+                OriginalPrice={product.price}
+                DiscountPrice={500}
+              />
+            ))}
         </div>
         {/*----------Card Totals----------*/}
         <div className="flex flex-col w-full lg:w-2/6">
@@ -48,26 +45,28 @@ const ShopingCard = () => {
             <div className="flex flex-col gap-2 px-5">
               <div className="flex justify-between">
                 <p className="justify-between gap-10">Sub-total</p>
-                <p className="justify-between gap-10">$320</p>
+                <p className="justify-between gap-10">${subTotal}</p>
               </div>
               <div className="flex justify-between">
                 <p className="justify-between gap-10">Shipping</p>
-                <p className="justify-between gap-10">Free</p>
+                <p className="justify-between gap-10">
+                  {shippingCost == "Free" ? "Free" : shippingCost}
+                </p>
               </div>
               <div className="flex justify-between">
                 <p className="justify-between gap-10">Discount</p>
-                <p className="justify-between gap-10">$32</p>
+                <p className="justify-between gap-10">${discount}</p>
               </div>
               <div className="flex justify-between">
                 <p className="justify-between gap-10">Tax</p>
-                <p className="justify-between gap-10">$320</p>
+                <p className="justify-between gap-10">${tax}</p>
               </div>
             </div>
             <hr className="my-2 text-gray-300 h-0.5 mx-2" />
             <div className="flex mb-5 px-5 justify-between">
               <p className="justify-between gap-10">Total</p>
               <p className="justify-between font-semibold gap-10">
-                $357.99 <span>USD</span>
+                ${NeedToPay} <span>USD</span>
               </p>
             </div>
             <button className="flex items-center md:gap-3 px-0 md:px-5 border bg-btnColor h-12 justify-center mx-4 mb-5 text-white font-medium rounded hover:scale-105 duration-500 transition-all">
