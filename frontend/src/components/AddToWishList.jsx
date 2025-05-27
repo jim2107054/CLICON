@@ -5,7 +5,13 @@ import { MdOutlineCancel } from "react-icons/md";
 const AddToWishList = (props) => {
   const [cancled, setCancled] = useState(true);
   //distructure props
-  const { image, title, status, OriginalPrice, DiscountPrice } = props;
+  const {
+    product,
+    addToCart,
+    status,
+  } = props;
+  const OriginalPrice = 54;
+  const DiscountPrice = 100;
   return (
     <div>
       {cancled && (
@@ -13,12 +19,10 @@ const AddToWishList = (props) => {
           <div className="flex border-b-2 mt-2 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
             <div className="flex flex-row gap-5 w-[40%] px-2 rounded line-clamp-2">
               <div className="flex items-center">
-                <img className="object-cover h-5/6" src={image} alt="logo" />
+                <img className="object-cover h-5/6" src={product.image} alt="logo" />
               </div>
               <div className="flex items-center justify-center">
-                <p className="leading-none text-xl text-gray-700">
-                  {title}
-                </p>
+                <p className="leading-none text-xl text-gray-700">{product.title}</p>
               </div>
             </div>
             <div className="flex mx-10 justify-between w-[60%]">
@@ -46,6 +50,7 @@ const AddToWishList = (props) => {
               <div className="justify-center flex w-[40%]">
                 <div className="flex items-center gap-2 lg:gap-5">
                   <button
+                    onClick={()=> addToCart(product)}
                     className={`border flex items-center text-sm font-medium bg-btnColor duration-300 transition-all text-white px-2 lg:px-5 py-3 rounded
                 ${
                   status === "In Stock"
