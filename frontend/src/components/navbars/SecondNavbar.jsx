@@ -3,9 +3,12 @@ import { assets } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
 import {FaShoppingCart} from 'react-icons/fa';
 
-const SecondNavbar = () => {
+const SecondNavbar = (props) => {
   const navigate = useNavigate();
   const [logOut, setLogOut] = useState(false)
+
+  //distructuring props
+  const {cart,Total,removeFromCart, updateCartQuantity} = props;
   return (
     <div>
       <div className="bg-secondary hidden lg:grid grid-cols-[1fr_3fr_1fr] gap-10 px-24 py-2 items-center">
@@ -33,8 +36,16 @@ const SecondNavbar = () => {
         </div>
         {/*----------Right side-----------*/}
         <div className={`flex justify-center items-center gap-5 right-0 ${logOut ? 'hidden' : 'flex'}`}>
-          <div>
-            <span onClick={()=>navigate('/shoping-card')} className="text-3xl text-white cursor-pointer"><FaShoppingCart/></span>
+          <div className="">
+            <button onClick={()=>navigate('/shoping-card')} className="text-3xl items-center justify-center relative text-white cursor-pointer"><FaShoppingCart className="text-3xl"/>
+            {
+              cart.length > 0 && (
+                <span className="absolute -top-1  -right-1 bg-btnColor text-white text-xs font-medium px-1 py-0.5 rounded-full">
+                  {cart.reduce((sum,item)=> sum+item.quantity,0)}
+                </span>
+              )
+            }
+            </button>
           </div>
          <div>
            <img onClick={()=>navigate('/wish-list')} className="h-7 cursor-pointer" src={assets.hert} alt="hertIcon" />
