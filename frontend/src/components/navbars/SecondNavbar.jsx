@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { assets } from "../../assets/assets";
 import { useNavigate } from "react-router-dom";
+import {FaShoppingCart} from 'react-icons/fa';
+
 const SecondNavbar = () => {
   const navigate = useNavigate();
   const [logOut, setLogOut] = useState(false)
@@ -32,7 +34,7 @@ const SecondNavbar = () => {
         {/*----------Right side-----------*/}
         <div className={`flex justify-center items-center gap-5 right-0 ${logOut ? 'hidden' : 'flex'}`}>
           <div>
-            <img onClick={()=>navigate('/shoping-card')} className="h-7 cursor-pointer" src={assets.cart} alt="cart" />
+            <span onClick={()=>navigate('/shoping-card')} className="text-3xl text-white cursor-pointer"><FaShoppingCart/></span>
           </div>
          <div>
            <img onClick={()=>navigate('/wish-list')} className="h-7 cursor-pointer" src={assets.hert} alt="hertIcon" />
