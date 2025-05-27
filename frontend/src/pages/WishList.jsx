@@ -1,9 +1,17 @@
-import shopItems from "../assets/ShopItem";
 import AddToWishList from "../components/AddToWishList";
 
 const WishList = (props) => {
   //distructuring props
-  const {cart,Total,addToCart,removeFromCart, updateCartQuantity} = props;
+  const {
+    cart,
+    Total,
+    addToCart,
+    removeFromCart,
+    updateCartQuantity,
+    addToWishList,
+    removeFromWishList,
+    wishList,
+  } = props;
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-1 md:px-10 lg:px-36 py-10">
@@ -14,24 +22,32 @@ const WishList = (props) => {
               <p className="text-sm font-bold text-gray-700">PRODUCTS</p>
             </div>
             <div className="flex w-[60%] md:gap-5">
-              <p className="text-sm font-bold w-1/3 mx-auto text-center text-gray-700">PRICE</p>
-              <p className="text-sm font-bold w-1/3 mx-auto text-center text-gray-700">STATUS</p>
-              <p className="text-sm font-bold w-1/3 mx-auto text-center text-gray-700">ACTIONS</p>
+              <p className="text-sm font-bold w-1/3 mx-auto text-center text-gray-700">
+                PRICE
+              </p>
+              <p className="text-sm font-bold w-1/3 mx-auto text-center text-gray-700">
+                STATUS
+              </p>
+              <p className="text-sm font-bold w-1/3 mx-auto text-center text-gray-700">
+                ACTIONS
+              </p>
             </div>
           </div>
-          {
-            shopItems.length > 0 ? (
-              shopItems.slice(0,5).map((product) => (
+          {wishList.length > 0 ? (
+            wishList
+              .slice(0, 5)
+              .map((product) => (
                 <AddToWishList
                   key={product.id}
                   product={product}
                   addToCart={addToCart}
+                  addToWishList={addToWishList}
+                  removeFromWishList={removeFromWishList}
                 />
               ))
-            ) : (
-              <p className="text-center text-gray-500">Your wishlist is empty.</p>
-            )
-          }
+          ) : (
+            <p className="text-center text-gray-500">Your wishlist is empty.</p>
+          )}
         </div>
       </div>
     </div>

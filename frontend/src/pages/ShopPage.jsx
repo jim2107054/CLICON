@@ -12,7 +12,7 @@ const ShopPage = (props) => {
   const totalNumberOfPages = Math.ceil(shopItems.length / perPageItems);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { cart, Total, addToCart} = props;
+  const { cart, Total, addToCart, addToWishList, wishList } = props;
   return (
     <div>
       <div className="flex flex-col gap-10 md:flex-row px-1 md:px-5 lg:px-36 py-5">
@@ -319,6 +319,8 @@ const ShopPage = (props) => {
                   Total={Total}
                   addToCart={addToCart}
                   product={item}
+                  addToWishList={addToWishList}
+                  wishList={wishList}
                 />
               ))}
           </div>

@@ -6,10 +6,8 @@ import { FaCartArrowDown } from "react-icons/fa";
 const AddToWishList = (props) => {
   const [cancled, setCancled] = useState(true);
   //distructure props
-  const {
-    product,
-    addToCart,
-  } = props;
+  const { product, addToCart, addToWishList, removeFromWishList, wishList } =
+    props;
   const OriginalPrice = 54;
   const DiscountPrice = 100;
   return (
@@ -19,10 +17,16 @@ const AddToWishList = (props) => {
           <div className="flex border-b-2 mt-2 h-20 md:h-24 md:gap-5 xl:gap-2 2xl:gap-4 w-full py-2">
             <div className="flex flex-row gap-1 md:gap-5 w-[40%] md:px-2 rounded line-clamp-2">
               <div className="flex h-full items-center justify-center w-1/2 md:w-1/4">
-                <img className="object-cover md:h-full h-12" src={product.image} alt="logo" />
+                <img
+                  className="object-cover md:h-full h-12"
+                  src={product.image}
+                  alt="logo"
+                />
               </div>
               <div className="flex items-center w-1/2 md:w-2/3">
-                <p className="leading-tight line-clamp-3 md:line-clamp-2 text-xs md:text-xl text-gray-700">{product.title}</p>
+                <p className="leading-tight line-clamp-3 md:line-clamp-2 text-xs md:text-xl text-gray-700">
+                  {product.title}
+                </p>
               </div>
             </div>
             <div className="flex justify-around w-[60%]">
@@ -40,7 +44,9 @@ const AddToWishList = (props) => {
                 <div className="flex gap-5 justify-center text-center px-2 py-1 w-full">
                   <p
                     className={`text-base leading-tight text-center font-medium ${
-                      product.status === "In Stock" ? "text-green-500" : "text-red-600"
+                      product.status === "In Stock"
+                        ? "text-green-500"
+                        : "text-red-600"
                     }`}
                   >
                     {product.status}
@@ -50,7 +56,7 @@ const AddToWishList = (props) => {
               <div className="justify-center flex w-1/3">
                 <div className="flex items-center gap-2 lg:gap-5">
                   <button
-                    onClick={()=> addToCart(product)}
+                    onClick={() => addToCart(product)}
                     className={`border flex items-center text-sm font-medium bg-blueButton hover:bg-blue-500 lg:gap-3 md:bg-btnColor duration-300 transition-all text-white px-2 py-1.5 lg:px-5 lg:py-3 rounded
                 ${
                   product.status === "In Stock"

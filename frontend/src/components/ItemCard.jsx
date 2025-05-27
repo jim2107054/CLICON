@@ -4,7 +4,7 @@ import { FaCartArrowDown } from "react-icons/fa6";
 import { GoHeartFill } from "react-icons/go";
 
 const ItemCard = (props) => {
-  const { product, Total, addToCart } = props;
+  const { product, Total, addToCart, addToWishList, wishList } = props;
 
   return (
     <div>
@@ -34,8 +34,10 @@ const ItemCard = (props) => {
               {product.offer}
             </span>
           )}
-          <span 
-          className="absolute right-1.5 top-2">
+          <span
+            onClick={() => addToWishList(product)}
+            className="absolute right-1.5 top-2"
+          >
             <GoHeartFill className="text-2xl md:text-3xl text-blue-300 hover:text-red-500" />
           </span>
         </div>

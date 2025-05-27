@@ -112,6 +112,9 @@ const App = () => {
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               updateCartQuantity={updateCartQuantity}
+              addToWishList={addToWishList}
+              removeFromWishList={removeFromWishList}
+              wishList={wishList}
             />
           }
         />
@@ -136,6 +139,9 @@ const App = () => {
               addToCart={addToCart}
               removeFromCart={removeFromCart}
               updateCartQuantity={updateCartQuantity}
+              addToWishList={addToWishList}
+              removeFromWishList={removeFromWishList}
+              wishList={wishList}
             />
           }
         />
@@ -148,6 +154,9 @@ const App = () => {
               removeFromCart={removeFromCart}
               updateCartQuantity={updateCartQuantity}
               Total={Total}
+              addToWishList={addToWishList}
+              removeFromWishList={removeFromWishList}
+              wishList={wishList}
             />
           }
         />
@@ -163,6 +172,9 @@ const App = () => {
               removeFromCart={removeFromCart}
               updateCartQuantity={updateCartQuantity}
               Total={Total}
+              addToWishList={addToWishList}
+              removeFromWishList={removeFromWishList}
+              wishList={wishList}
             />
           }
         />

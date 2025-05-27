@@ -1,4 +1,3 @@
-import React from "react";
 import { assetsHome } from "../../assets/assetsHome";
 import { FaArrowRight } from "react-icons/fa6";
 import shopItems from "../../assets/ShopItem";
@@ -7,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const FeaturedProducts = (props) => {
   const navigate = useNavigate();
-  const { cart, Total, addToCart } = props;
+  const { cart, Total, addToCart, addToWishList, wishList } = props;
   return (
     <div>
       <div className="flex flex-col-reverse px-2 md:px-5 lg:px-0 md:flex-row gap-5 mt-8">
@@ -81,6 +80,8 @@ const FeaturedProducts = (props) => {
                       Total={Total}
                       addToCart={addToCart}
                       product={item}
+                      addToWishList={addToWishList}
+                      wishList={wishList}
                     />
                   </>
                 ))}

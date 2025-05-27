@@ -11,7 +11,7 @@ import { IoEyeOutline } from "react-icons/io5";
 
 const BestDeals = (props) => {
   const navigate = useNavigate();
-  const { cart, Total, addToCart } = props;
+  const { cart, Total, addToCart, addToWishList, wishList } = props;
   return (
     <div className="md:px-5 px-2 lg:px-0">
       {/*------------------Header Section-------------------*/}
@@ -114,6 +114,8 @@ const BestDeals = (props) => {
                     Total={Total}
                     addToCart={addToCart}
                     product={item}
+                    addToWishList={addToWishList}
+                    wishList={wishList}
                   />
                 </>
               ))}

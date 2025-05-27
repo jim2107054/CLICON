@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { assetsHome } from "../../assets/assetsHome";
 
 const ComputerAccessories = (props) => {
-  const { cart, Total, addToCart} = props;
+  const { cart, Total, addToCart, addToWishList, wishList } = props;
   const navigate = useNavigate();
   return (
     <div className="flex flex-col px-5 lg:px-0 gap-5 lg:flex-row">
@@ -51,6 +51,8 @@ const ComputerAccessories = (props) => {
               Total={Total}
               addToCart={addToCart}
               product={item}
+              addToWishList={addToWishList}
+              wishList={wishList}
             />
           ))}
         </div>
