@@ -11,27 +11,29 @@ const AddToCard = (props) => {
     product,
     removeFromCart,
     updateCartQuantity,
-    Total
+    Total,
   } = props;
   return (
     <div>
       {cart.length > 0 && (
         <>
-          <div className="flex border-b-2 my-1 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
-            <div className="flex flex-row md:gap-5 w-1/2 md:w-[55%] px-2 rounded line-clamp-2">
-              <div className="flex items-center">
+          <div className="flex border-b-2 my-1 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
+            <div className="flex flex-row md:gap-2 w-1/2 md:w-[55%] rounded">
+              <div className="flex w-1/12 justify-center items-center">
                 <MdOutlineCancel
                   onClick={() => removeFromCart(product.id)}
-                  className="text-2xl text-gray-600 cursor-pointer hover:text-red-600"
+                  className="text-2xl w-fit text-gray-600 cursor-pointer hover:text-red-600"
                 />
               </div>
-              <div className="flex items-center">
-                <img className="object-cover" src={product.image} alt="logo" />
-              </div>
-              <div className="flex justify-start">
-                <p className="leading-none my-1 line-clamp-2 md:text-xl text-gray-700">
-                  {product.title}
-                </p>
+              <div className="flex w-11/12 md:w-[90%] gap-2 items-center">
+                <div className="flex w-1/3 items-center">
+                  <img className="" src={product.image} alt="logo" />
+                </div>
+                <div className="flex w-2/3 h-full justify-start">
+                  <p className="leading-tight justify-center items-center translate-y-5 line-clamp-2 md:line-clamp-4 md:text-lg text-gray-700">
+                    {product.title}
+                  </p>
+                </div>
               </div>
             </div>
             <div className="my-auto w-[10%]">
