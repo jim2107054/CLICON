@@ -5,7 +5,8 @@ import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assetsHome } from "../../assets/assetsHome";
 
-const ComputerAccessories = () => {
+const ComputerAccessories = (props) => {
+  const { cart, Total, addToCart, removeFromCart, updateCartQuantity } = props;
   const navigate = useNavigate();
   return (
     <div className="flex flex-col px-5 lg:px-0 gap-5 lg:flex-row">
@@ -20,13 +21,15 @@ const ComputerAccessories = () => {
           </div>
           <div className="flex gap-5">
             <div className="hidden md:flex gap-5">
-              <p className="cursor-pointer hover:text-blueButton">ALL Products</p>
-            <p className="cursor-pointer hover:text-blueButton">
-              Keyboard & Mouse
-            </p>
-            <p className="cursor-pointer hover:text-blueButton">Headphone</p>
-            <p className="cursor-pointer hover:text-blueButton">Webcam</p>
-            <p className="cursor-pointer hover:text-blueButton">Printer</p>
+              <p className="cursor-pointer hover:text-blueButton">
+                ALL Products
+              </p>
+              <p className="cursor-pointer hover:text-blueButton">
+                Keyboard & Mouse
+              </p>
+              <p className="cursor-pointer hover:text-blueButton">Headphone</p>
+              <p className="cursor-pointer hover:text-blueButton">Webcam</p>
+              <p className="cursor-pointer hover:text-blueButton">Printer</p>
             </div>
             <p
               onClick={() => navigate("/shop")}
@@ -44,13 +47,10 @@ const ComputerAccessories = () => {
           {shopItems.slice(16, 24).map((item, index) => (
             <ItemCard
               key={index}
-              id={item.id}
-              title={item.title}
-              price={item.price}
-              image={item.image}
-              rating={item.rating}
-              sell={item.sell}
-              offer={item.offer}
+              cart={cart}
+              Total={Total}
+              addToCart={addToCart}
+              product={item}
             />
           ))}
         </div>

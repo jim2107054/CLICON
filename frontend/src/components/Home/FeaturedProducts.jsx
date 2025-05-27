@@ -5,8 +5,9 @@ import shopItems from "../../assets/ShopItem";
 import ItemCard from "../ItemCard";
 import { useNavigate } from "react-router-dom";
 
-const FeaturedProducts = () => {
+const FeaturedProducts = (props) => {
   const navigate = useNavigate();
+  const { cart, Total, addToCart, removeFromCart, updateCartQuantity } = props;
   return (
     <div>
       <div className="flex flex-col-reverse px-2 md:px-5 lg:px-0 md:flex-row gap-5 mt-8">
@@ -18,15 +19,19 @@ const FeaturedProducts = () => {
                 COMPUTER & ACCESSORIES
               </p>
               <p className="text-2xl font-medium">32% Discount</p>
-              <p className="text-sm text-gray-800">For all ellectronics products</p>
+              <p className="text-sm text-gray-800">
+                For all ellectronics products
+              </p>
               <div className="flex gap-5 justify-between items-center text-sm my-2">
                 <p>Offers ends in:</p>
-                <p className="text-xs border bg-white border-gray-300 px-2 py-0.5">ENDS OF EID</p>
+                <p className="text-xs border bg-white border-gray-300 px-2 py-0.5">
+                  ENDS OF EID
+                </p>
               </div>
             </div>
             <div className="flex gap-2 justify-center items-center px-5 my-5">
               <button className="shop-now flex items-center gap-2">
-               SHOP NOW <FaArrowRight className="text-xl" />
+                SHOP NOW <FaArrowRight className="text-xl" />
               </button>
             </div>
           </div>
@@ -48,10 +53,10 @@ const FeaturedProducts = () => {
             <div className="flex gap-5 justify-between">
               <div className="md:flex hidden gap-5 justify-between">
                 <p className="featured-products">All Product</p>
-              <p className="featured-products">Smart Phone</p>
-              <p className="featured-products">Laptops</p>
-              <p className="featured-products">HeadPhone</p>
-              <p className="featured-products">TV</p>
+                <p className="featured-products">Smart Phone</p>
+                <p className="featured-products">Laptops</p>
+                <p className="featured-products">HeadPhone</p>
+                <p className="featured-products">TV</p>
               </div>
               <p
                 onClick={() => navigate("/shop")}
@@ -72,13 +77,10 @@ const FeaturedProducts = () => {
                   <>
                     <ItemCard
                       key={index}
-                      id={item.id}
-                      image={item.image}
-                      rating={item.rating}
-                      sell={item.sell}
-                      title={item.title}
-                      price={item.price}
-                      offer={item.offer}
+                      cart={cart}
+                      Total={Total}
+                      addToCart={addToCart}
+                      product={item}
                     />
                   </>
                 ))}

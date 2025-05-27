@@ -103,7 +103,13 @@ const App = () => {
       />
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage
+        cart={cart}
+        Total={Total}
+        addToCart={addToCart}
+        removeFromCart={removeFromCart}
+        updateCartQuantity={updateCartQuantity}
+         />} />
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/password" element={<ForgetPassword />} />

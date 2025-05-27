@@ -3,29 +3,34 @@ import { CiStar } from "react-icons/ci";
 import { FaCartArrowDown } from "react-icons/fa6";
 
 const ItemCard = (props) => {
-  const { id, image, rating, sell, title, price, offer } = props;
+  const { product, Total, addToCart } = props;
 
   return (
     <div>
-      <div key={id} className="flex flex-col border border-b-2 cursor-pointer rounded-md overflow-hidden hover:shadow-lg transition-shadow hover:-translate-y-2 hover:duration-500 hover:scale-105">
+      <div
+        key={product.id}
+        className="flex flex-col border border-b-2 cursor-pointer rounded-md overflow-hidden hover:shadow-lg transition-shadow hover:-translate-y-2 hover:duration-500 hover:scale-105"
+      >
         {/* Image Section */}
         <div className="relative justify-center items-center flex px-2 py-1 w-full h-[50%]">
-          <div className="object-cover"><img className="h-full w-full" src={image} alt="product" /></div>
-          {offer && (
+          <div className="object-cover">
+            <img className="h-full w-full" src={product.image} alt="product" />
+          </div>
+          {product.offer && (
             <span
               className={`absolute top-1 left-1 px-2 py-0.5 text-sm font-light rounded text-white ${
-                offer === "HOT"
+                product.offer === "HOT"
                   ? "bg-red-600"
-                  : offer === "BEST DEALS"
+                  : product.offer === "BEST DEALS"
                   ? "bg-blue-500"
-                  : offer === "SALE"
+                  : product.offer === "SALE"
                   ? "bg-green-600"
-                  : offer.includes("OFF")
+                  : product.offer.includes("OFF")
                   ? "bg-yellow-600"
                   : ""
               }`}
             >
-              {offer}
+              {product.offer}
             </span>
           )}
         </div>
@@ -35,27 +40,31 @@ const ItemCard = (props) => {
           <div className="flex px-2 md:px-3 lg:px-5 py-1 gap-5">
             <span className="flex items-center">
               <CiStar className="text-xl text-yellow-400" />
-              {rating}
+              {product.rating}
             </span>
-            <span className="text-gray-800">({sell})</span>
+            <span className="text-gray-800">({product.sell})</span>
           </div>
 
           {/* Title */}
           <div className="h-10 px-2 md:px-3 lg:px-5 justify-center">
             <h3 className="text-sm font-medium text-start leading-none line-clamp-2 mt-1">
-            {title}
-          </h3>
+              {product.title}
+            </h3>
           </div>
 
           <div className="flex px-2 items-center md:gap-2 justify-between lg:justify-around  my-2">
             {/* Price */}
-          <p className="text-[18px] leading-none text-blue-400 font-medium">
-            ${price}
-          </p>
-          {/* Add to Cart Button */}
-          <button className="flex items-center gap-2 md:gap-0 bg-blueButton text-white px-3 py-1.5 w-fit rounded-md hover:bg-blue-600 transition-colors">
-            <FaCartArrowDown className="text-xl block lg:hidden " /><p className="hidden lg:block">Add to cart</p>
-          </button>
+            <p className="text-[18px] leading-none text-blue-400 font-medium">
+              ${product.price.toFixed(2)}
+            </p>
+            {/* Add to Cart Button */}
+            <button
+              onClick={() => addToCart(product)}
+              className="flex items-center gap-2 md:gap-0 bg-blueButton text-white px-3 py-1.5 w-fit rounded-md hover:bg-blue-600 transition-colors"
+            >
+              <FaCartArrowDown className="text-xl block lg:hidden " />
+              <p className="hidden lg:block">Add to cart</p>
+            </button>
           </div>
         </div>
       </div>
