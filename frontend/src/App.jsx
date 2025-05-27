@@ -94,7 +94,7 @@ const App = () => {
 
   return (
     <div className="">
-      <Header className='z-50 top-0 left-0 right-0'
+      <Header
         cart={cart}
         Total={Total}
         addToCart={addToCart}
@@ -103,13 +103,18 @@ const App = () => {
       />
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<HomePage
-        cart={cart}
-        Total={Total}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-        updateCartQuantity={updateCartQuantity}
-         />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              cart={cart}
+              Total={Total}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              updateCartQuantity={updateCartQuantity}
+            />
+          }
+        />
         <Route path="/login" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/password" element={<ForgetPassword />} />
@@ -122,12 +127,18 @@ const App = () => {
         <Route path="/blog-details" element={<BlogDetails />} />
         <Route path="/track-order" element={<TrackOrder />} />
         <Route path="/track-order-details" element={<TrackOrderDetails />} />
-        <Route path="/shoping-card" element={<ShopingCard
-        cart={cart}
-        Total={Total}
-        addToCart={addToCart}
-        removeFromCart={removeFromCart}
-        updateCartQuantity={updateCartQuantity} />} />
+        <Route
+          path="/shoping-card"
+          element={
+            <ShopingCard
+              cart={cart}
+              Total={Total}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              updateCartQuantity={updateCartQuantity}
+            />
+          }
+        />
         <Route
           path="/wish-list"
           element={
@@ -143,7 +154,18 @@ const App = () => {
         <Route path="/check-out" element={<CheckOut />} />
         <Route path="/check-out-success" element={<CheckOutSuccess />} />
         {/* Add more routes as needed */}
-        <Route path="/shop" element={<ShopPage />} />
+        <Route
+          path="/shop"
+          element={
+            <ShopPage
+              cart={cart}
+              addToCart={addToCart}
+              removeFromCart={removeFromCart}
+              updateCartQuantity={updateCartQuantity}
+              Total={Total}
+            />
+          }
+        />
         <Route path="/shop/:productId" element={<ProductDetails />} />
         {/* Catch-all route for unmatched paths */}
         <Route path="*" element={<ErrorPageNotFound />} />
