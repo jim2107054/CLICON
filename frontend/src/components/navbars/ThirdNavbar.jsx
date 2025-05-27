@@ -125,7 +125,7 @@ const ThirdNavbar = () => {
                 Shop Now
               </NavLink>
               <NavLink
-                to="/shoping-cart"
+                to="/shoping-card"
                 onClick={() => setShowNavBar(!showNavBar)}
                 className="text-xl text-white font-medium thirdNavbar"
               >
