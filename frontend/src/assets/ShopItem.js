@@ -32,6 +32,7 @@ const shopItems = [
     title: "TOZO T6 Wireless Earbuds Bluetooth Headphon...",
     price: 29.99,
     offer: "HOT",
+    status:"In Stock",
   },
   {
     id: 2,
@@ -41,6 +42,7 @@ const shopItems = [
     title: "Samsung Electronics Samsung Galexy S21 5G",
     price: 2300,
     offer: "10% OFF",
+    status:"In Stock",
   },
   {
     id: 3,
@@ -50,6 +52,7 @@ const shopItems = [
     title: "Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
     price: 360,
     offer: "BEST DEALS" ,
+    status:"Out of Stock",
   },
   {
     id: 4,
@@ -59,6 +62,7 @@ const shopItems = [
     title: "Portable Wshing Machine, 11lbs capacity Model 18NMF...",
     price: 80,
     offer: "HOT",
+    status:"In Stock",
   },
   {
     id: 5,
@@ -68,6 +72,7 @@ const shopItems = [
     title: "Wired Over-Ear Gaming Headphones with USB",
     price: 279.99,
     offer: "",
+    status:"Out of Stock",
   },
   {
     id: 6,
@@ -77,6 +82,7 @@ const shopItems = [
     title: "Polaroid 57-Inch Photo/Video Tripod with Deluxe Tripod Ca...",
     price: 129.99,
     offer: "25% OFF",
+    status:"In Stock",
   },
   {
     id: 7,
@@ -86,6 +92,7 @@ const shopItems = [
     title: "Beats Studio Buds",
     price: 149.99,
     offer: "HOT",
+    status:"Out of Stock",
   },
   {
     id: 8,
@@ -95,6 +102,7 @@ const shopItems = [
     title: "4K UHD LED Smart TV with Chromecast Built-in",
     price: 299.99,
     offer: "SALE",
+    status:"In Stock",
   },
   {
     id: 9,
@@ -104,6 +112,7 @@ const shopItems = [
     title: "Bose QuietComfort Earbuds",
     price: 279.99,
     offer: "BEST DEALS",
+    status:"In Stock",
   },
   {
     id: 10,
@@ -113,6 +122,7 @@ const shopItems = [
     title: "Jabra Elite 85t",
     price: 229.99,
     offer: "",
+    status:"Out of Stock",
   },
   {
     id: 11,
@@ -122,6 +132,7 @@ const shopItems = [
     title: "Apple AirPods",
     price: 159.99,
     offer: "HOT",
+    status:"In Stock",
   },
   {
     id: 12,
@@ -131,6 +142,7 @@ const shopItems = [
     title: "Sony WH-1000XM4",
     price: 349.99,
     offer: "",
+    status:"In Stock",
   },
   {
     id: 13,
@@ -140,6 +152,7 @@ const shopItems = [
     title: "Samsung Galaxy Buds Pro",
     price: 199.99,
     offer: "",
+    status:"Out of Stock",
   },
   {
     id: 14,
@@ -149,6 +162,7 @@ const shopItems = [
     title: "Anker Soundcore Liberty Air 2 Pro",
     price: 129.99,
     offer: "SALE",
+    status:"In Stock",
   },
   {
     id: 15,
@@ -158,6 +172,7 @@ const shopItems = [
     title: "JBL Tune 125TWS",
     price: 99.99,
     offer: "",
+    status:"In Stock",
   },
   {
     id: 16,
@@ -167,6 +182,7 @@ const shopItems = [
     title: "Sennheiser Momentum True Wireless 2",
     price: 249.99,
     offer: "25% OFF",
+    status:"Out of Stock",
   },
   {
     id: 17,
@@ -176,6 +192,7 @@ const shopItems = [
     title: "Beats Flex Wireless Earbuds",
     price: 69.99,
     offer:"HOT",
+    status:"In Stock",
   },
     {
         id: 18,
@@ -185,6 +202,7 @@ const shopItems = [
         title: "OnePlus Buds Z2",
         price: 99.99,
         offer: "",
+        status:"In Stock",
     },
     {
         id: 19,
@@ -194,6 +212,7 @@ const shopItems = [
         title: "Google Pixel Buds A-Series",
         price: 99.99,
         offer: "BEST DEALS",
+        status:"Out of Stock",
     },
     {
         id: 20,
@@ -203,6 +222,7 @@ const shopItems = [
         title: "Razer Hammerhead True Wireless Pro",
         price: 199.99,
         offer: "",
+        status:"In Stock",
     },
     {
         id: 21,
@@ -212,6 +232,7 @@ const shopItems = [
         title: "TaoTronics SoundLiberty 92",
         price: 49.99,
         offer: "SALE",
+        status:"In Stock",
     },
     {
         id: 22,
@@ -221,6 +242,7 @@ const shopItems = [
         title: "Soundcore Life P2",
         price: 59.99,
         offer: "",
+        status:"Out of Stock",
     },
     {
         id: 23,
@@ -230,6 +252,7 @@ const shopItems = [
         title: "Mpow X3",
         price: 69.99,
         offer: "25% OFF",
+        status:"In Stock",
     },
     {
         id: 24,
@@ -239,6 +262,7 @@ const shopItems = [
         title: "Tribit FlyBuds C1",
         price: 49.99,
         offer:"HOT",
+        status:"In Stock",
     },
     {
       id:25,
@@ -248,6 +272,7 @@ const shopItems = [
       title:"TOZO T6 Wireless Earbuds Bluetooth Headphon...",
       price:29.99,
       offer:"HOT",
+      status:"In Stock",
     },
     {
       id:26,
@@ -257,6 +282,7 @@ const shopItems = [
       title:"Samsung Electronics Samsung Galexy S21 5G",
       price:2300,
       offer:"",
+      status:"In Stock",
     },
     {
       id:27,
@@ -265,7 +291,8 @@ const shopItems = [
       sell:423,
       title:"Amazon Basics High-Speed HDMI Cable (18 Gbps, 4K/6...",
       price:360,
-      offer:"BEST DEALS" ,
+      offer:"BEST DEALS",
+      status:"Out of Stock",
     },
 ];
 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { MdOutlineCancel } from "react-icons/md";
+import { FaCartArrowDown } from "react-icons/fa";
 
 const AddToWishList = (props) => {
   const [cancled, setCancled] = useState(true);
@@ -8,7 +9,6 @@ const AddToWishList = (props) => {
   const {
     product,
     addToCart,
-    status,
   } = props;
   const OriginalPrice = 54;
   const DiscountPrice = 100;
@@ -16,17 +16,17 @@ const AddToWishList = (props) => {
     <div>
       {cancled && (
         <>
-          <div className="flex border-b-2 mt-2 h-24 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
-            <div className="flex flex-row gap-5 w-[40%] px-2 rounded line-clamp-2">
-              <div className="flex items-center">
-                <img className="object-cover h-5/6" src={product.image} alt="logo" />
+          <div className="flex border-b-2 mt-2 h-20 md:h-24 md:gap-5 xl:gap-2 2xl:gap-4 w-full py-2">
+            <div className="flex flex-row gap-1 md:gap-5 w-[40%] md:px-2 rounded line-clamp-2">
+              <div className="flex h-full items-center justify-center w-1/2 md:w-1/4">
+                <img className="object-cover md:h-full h-12" src={product.image} alt="logo" />
               </div>
-              <div className="flex items-center justify-center">
-                <p className="leading-none text-xl text-gray-700">{product.title}</p>
+              <div className="flex items-center w-1/2 md:w-2/3">
+                <p className="leading-tight line-clamp-3 md:line-clamp-2 text-xs md:text-xl text-gray-700">{product.title}</p>
               </div>
             </div>
-            <div className="flex mx-10 justify-between w-[60%]">
-              <div className="my-auto gap-2 w-[20%]">
+            <div className="flex justify-around w-[60%]">
+              <div className="my-auto gap-2 w-1/3">
                 {OriginalPrice && (
                   <p className="text-center line-through text-sm font-medium text-gray-600">
                     ${OriginalPrice}
@@ -36,36 +36,36 @@ const AddToWishList = (props) => {
                   ${DiscountPrice}
                 </p>
               </div>
-              <div className="items-center my-auto px-1 py-1 w-[25%]">
-                <div className="flex gap-5 justify-center items-center px-2 py-1 w-full">
+              <div className="items-center my-auto px-1 py-1 w-1/3">
+                <div className="flex gap-5 justify-center text-center px-2 py-1 w-full">
                   <p
-                    className={`text-base font-medium ${
-                      status === "In Stock" ? "text-green-500" : "text-red-600"
+                    className={`text-base leading-tight text-center font-medium ${
+                      product.status === "In Stock" ? "text-green-500" : "text-red-600"
                     }`}
                   >
-                    {status}
+                    {product.status}
                   </p>
                 </div>
               </div>
-              <div className="justify-center flex w-[40%]">
+              <div className="justify-center flex w-1/3">
                 <div className="flex items-center gap-2 lg:gap-5">
                   <button
                     onClick={()=> addToCart(product)}
-                    className={`border flex items-center text-sm font-medium bg-btnColor duration-300 transition-all text-white px-2 lg:px-5 py-3 rounded
+                    className={`border flex items-center text-sm font-medium bg-blueButton hover:bg-blue-500 lg:gap-3 md:bg-btnColor duration-300 transition-all text-white px-2 py-1.5 lg:px-5 lg:py-3 rounded
                 ${
-                  status === "In Stock"
+                  product.status === "In Stock"
                     ? "hover:scale-105"
                     : "bg-gray-500 cursor-not-allowed"
                 }
                 `}
                   >
-                    ADD TO CARD
-                    <IoCartOutline className="text-xl ml-2" />
+                    <span className="hidden lg:block">ADD TO CARD</span>
+                    <FaCartArrowDown className="md:text-xl text-lg " />
                   </button>
                   <div className="flex items-center">
                     <MdOutlineCancel
                       onClick={() => setCancled(false)}
-                      className="text-2xl text-gray-600 cursor-pointer hover:text-red-600"
+                      className="lg:text-2xl text-lg text-gray-600 cursor-pointer hover:text-red-600"
                     />
                   </div>
                 </div>
