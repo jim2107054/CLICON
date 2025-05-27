@@ -11,7 +11,7 @@ import { IoEyeOutline } from "react-icons/io5";
 
 const BestDeals = (props) => {
   const navigate = useNavigate();
-  const { cart, Total, addToCart, removeFromCart, updateCartQuantity } = props;
+  const { cart, Total, addToCart } = props;
   return (
     <div className="md:px-5 px-2 lg:px-0">
       {/*------------------Header Section-------------------*/}

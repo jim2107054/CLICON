@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const FeaturedProducts = (props) => {
   const navigate = useNavigate();
-  const { cart, Total, addToCart, removeFromCart, updateCartQuantity } = props;
+  const { cart, Total, addToCart } = props;
   return (
     <div>
       <div className="flex flex-col-reverse px-2 md:px-5 lg:px-0 md:flex-row gap-5 mt-8">

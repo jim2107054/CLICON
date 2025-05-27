@@ -2,15 +2,17 @@ import React, { useState } from "react";
 import { assets } from "./../assets/assets";
 import ItemCard from "../components/ItemCard";
 import shopItems from "../assets/ShopItem";
-import {FaArrowRight } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { GrCart } from "react-icons/gr";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { BsArrowRightSquare } from "react-icons/bs";
 
-const ShopPage = () => {
+const ShopPage = (props) => {
   const perPageItems = 12;
   const totalNumberOfPages = Math.ceil(shopItems.length / perPageItems);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const { cart, Total, addToCart} = props;
   return (
     <div>
       <div className="flex flex-col gap-10 md:flex-row px-1 md:px-5 lg:px-36 py-5">
@@ -306,17 +308,17 @@ const ShopPage = () => {
           {/*---------------Right Div Bottom-------------- */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-4 gap-5 gap-y-8">
             {shopItems
-              .slice((currentPage - 1)*perPageItems, perPageItems*(currentPage-1) + perPageItems)
+              .slice(
+                (currentPage - 1) * perPageItems,
+                perPageItems * (currentPage - 1) + perPageItems
+              )
               .map((item, index) => (
                 <ItemCard
                   key={index}
-                  id={item.id}
-                  image={item.image}
-                  rating={item.rating}
-                  sell={item.sell}
-                  title={item.title}
-                  price={item.price}
-                  offer={item.offer}
+                  cart={cart}
+                  Total={Total}
+                  addToCart={addToCart}
+                  product={item}
                 />
               ))}
           </div>
