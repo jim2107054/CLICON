@@ -8,10 +8,11 @@ import { CiStar } from "react-icons/ci";
 import { IoCartOutline } from "react-icons/io5";
 import { GoHeart } from "react-icons/go";
 import { IoEyeOutline } from "react-icons/io5";
+import { useAppContext } from "../../context/AppContext";
 
-const BestDeals = (props) => {
+const BestDeals = () => {
   const navigate = useNavigate();
-  const { cart, Total, addToCart, addToWishList, wishList } = props;
+  const { cart, Total, addToCart, addToWishList, wishList } = useAppContext();
   return (
     <div className="md:px-5 px-2 lg:px-0">
       {/*------------------Header Section-------------------*/}

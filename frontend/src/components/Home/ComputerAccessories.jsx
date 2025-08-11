@@ -4,9 +4,10 @@ import ItemCard from "../ItemCard";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { assetsHome } from "../../assets/assetsHome";
+import { useAppContext } from "../../context/AppContext";
 
-const ComputerAccessories = (props) => {
-  const { cart, Total, addToCart, addToWishList, wishList } = props;
+const ComputerAccessories = () => {
+  const { cart, Total, addToCart, addToWishList, wishList } = useAppContext();
   const navigate = useNavigate();
   return (
     <div className="flex flex-col px-5 lg:px-0 gap-5 lg:flex-row">

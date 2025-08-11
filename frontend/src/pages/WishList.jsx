@@ -1,7 +1,7 @@
 import AddToWishList from "../components/AddToWishList";
+import { useAppContext } from "../context/AppContext";
 
-const WishList = (props) => {
-  //distructuring props
+const WishList = () => {
   const {
     cart,
     Total,
@@ -11,7 +11,7 @@ const WishList = (props) => {
     addToWishList,
     removeFromWishList,
     wishList,
-  } = props;
+  } = useAppContext();
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-1 md:px-10 lg:px-36 py-10">

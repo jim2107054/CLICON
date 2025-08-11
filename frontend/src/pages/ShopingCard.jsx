@@ -1,52 +1,62 @@
 import React, { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import AddToCard from "../components/AddToCard";
+import { useAppContext } from "../context/AppContext";
 
-const ShopingCard = (props) => {
+const ShopingCard = () => {
   const [shippingCost, setShippingCost] = useState(0);
   const discount = 32;
-  const tax = 320;
-  //distructuring props
-  const { cart, Total, addToCart, removeFromCart, updateCartQuantity } = props;
+  const tax = 32;
+
+  const { cart, Total, addToCart, removeFromCart, updateCartQuantity } =
+    useAppContext();
   const subTotal = Total;
   const NeedToPay = subTotal > 0 ? subTotal + shippingCost + tax - discount : 0;
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-2 md:px-10 lg:px-36 py-10">
         {/*----------Shoping Card----------*/}
-        <div className="flex flex-col h-fit pb-5 rounded border-2 border-gray-300 w-full  lg:w-3/5">
-          <p className="text-xl px-5 font-medium my-2">Shoping Card</p>
-          <div className="flex border-2 w-full py-1 bg-gray-400 md:justify-between md:gap-5">
-            <p className="md:w-1/2 w-2/5 text-sm md:font-bold text-gray-700">
-              PRODUCTS
-            </p>
-            <div className="flex w-3/5 justify-between px-2 lg:w-1/2 lg:gap-24 md:px-3 items-center">
-              <p className="text-sm md:font-bold text-gray-700 mx-auto">
-                PRICE
+        {cart.length > 0 ? (
+          <div className="flex flex-col h-fit pb-5 rounded border-2 border-gray-300 w-full  lg:w-3/5">
+            <p className="text-xl px-5 font-medium my-2">Shoping Card</p>
+            <div className="flex border-2 w-full py-1 bg-gray-400 md:justify-between md:gap-5">
+              <p className="md:w-1/2 w-2/5 text-sm md:font-bold text-gray-700">
+                PRODUCTS
               </p>
-              <p className="text-sm md:font-bold text-gray-700 mx-auto">
-                QUANTITY
-              </p>
-              <p className="text-sm md:font-bold text-gray-700 mx-auto">
-                TOTAL
-              </p>
+              <div className="flex w-3/5 justify-between px-2 lg:w-1/2 lg:gap-24 md:px-3 items-center">
+                <p className="text-sm md:font-bold text-gray-700 mx-auto">
+                  PRICE
+                </p>
+                <p className="text-sm md:font-bold text-gray-700 mx-auto">
+                  QUANTITY
+                </p>
+                <p className="text-sm md:font-bold text-gray-700 mx-auto">
+                  TOTAL
+                </p>
+              </div>
             </div>
+            {cart.length > 0 &&
+              cart.map((product) => (
+                <AddToCard
+                  key={product.id}
+                  product={product}
+                  cart={cart}
+                  addToCart={addToCart}
+                  removeFromCart={removeFromCart}
+                  updateCartQuantity={updateCartQuantity}
+                  Total={Total}
+                  OriginalPrice={product.price}
+                  DiscountPrice={500}
+                />
+              ))}
           </div>
-          {cart.length > 0 &&
-            cart.map((product) => (
-              <AddToCard
-                key={product.id}
-                product={product}
-                cart={cart}
-                addToCart={addToCart}
-                removeFromCart={removeFromCart}
-                updateCartQuantity={updateCartQuantity}
-                Total={Total}
-                OriginalPrice={product.price}
-                DiscountPrice={500}
-              />
-            ))}
-        </div>
+        ) : (
+          <div className="flex items-center justify-center w-full h-96">
+            <p className="text-gray-500 text-lg">
+              Your shopping cart is empty.
+            </p>
+          </div>
+        )}
         {/*----------Card Totals----------*/}
         <div className="flex flex-col w-full lg:w-2/6">
           {/*--------First Div----------*/}

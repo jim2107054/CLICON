@@ -6,13 +6,14 @@ import { FaArrowRight } from "react-icons/fa";
 import { GrCart } from "react-icons/gr";
 import { BsArrowLeftSquare } from "react-icons/bs";
 import { BsArrowRightSquare } from "react-icons/bs";
+import { useAppContext } from "../context/AppContext";
 
-const ShopPage = (props) => {
+const ShopPage = () => {
   const perPageItems = 12;
   const totalNumberOfPages = Math.ceil(shopItems.length / perPageItems);
   const [currentPage, setCurrentPage] = useState(1);
 
-  const { cart, Total, addToCart, addToWishList, wishList } = props;
+  const { cart, Total, addToCart, addToWishList, wishList } = useAppContext();
   return (
     <div>
       <div className="flex flex-col gap-10 md:flex-row px-1 md:px-5 lg:px-36 py-5">

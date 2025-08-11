@@ -56,11 +56,15 @@ const AddToWishList = (props) => {
               <div className="justify-center flex w-1/3">
                 <div className="flex items-center gap-2 lg:gap-5">
                   <button
-                    onClick={() => addToCart(product)}
-                    className={`border flex items-center text-sm font-medium bg-blueButton hover:bg-blue-500 lg:gap-3 md:bg-btnColor duration-300 transition-all text-white px-2 py-1.5 lg:px-5 lg:py-3 rounded
+                    onClick={
+                      product.status === "In Stock"
+                        ? () => addToCart(product)
+                        : null
+                    }
+                    className={`border flex items-center text-sm font-medium lg:gap-3 duration-300 transition-all text-white px-2 py-1.5 lg:px-5 lg:py-3 rounded
                 ${
                   product.status === "In Stock"
-                    ? "hover:scale-105"
+                    ? "hover:scale-105 bg-blueButton hover:bg-blue-500 md:bg-btnColor"
                     : "bg-gray-500 cursor-not-allowed"
                 }
                 `}
