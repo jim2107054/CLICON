@@ -291,7 +291,7 @@ const ProductDetails = () => {
               </p>
               <p className="text-gray-800 font-light">
                 Even the most ambitious projects are easily handled with up to
-                10 CPU cores, up to 16 GPU cores, a 16‑core Neural Engine, and
+                10 CPU cores, up to 16 GPU cores, a 16core Neural Engine, and
                 dedicated encode and decode media engines that support H.264,
                 HEVC, and ProRes codecs.
               </p>
@@ -347,7 +347,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      {/*--------Products---------*/}
+      {/*--------Related Products---------*/}
       <div>
         <ShowRelatedProducts/>
       </div>
