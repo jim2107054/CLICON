@@ -7,9 +7,12 @@ import { GrCart } from "react-icons/gr";
 import { BsArrowLeftSquare, BsArrowRightSquare } from "react-icons/bs";
 import { useAppContext } from "../context/AppContext";
 import { CATEGORIES, BRANDS, SORT_OPTIONS } from "../constants/categories";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const ShopPage = () => {
   const { cart, addToCart, addToWishList, wishList, addToCompare, searchQuery } = useAppContext();
+  const location = useLocation();
+  const navigate = useNavigate();
   
   // Calculate min and max prices from products
   const minProductPrice = Math.floor(Math.min(...shopItems.map(item => item.price)));
@@ -25,6 +28,17 @@ const ShopPage = () => {
   // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const perPageItems = 12;
+
+  // Handle URL query parameters on component mount
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const categoryParam = params.get('category');
+    
+    if (categoryParam) {
+      setSelectedCategories([categoryParam]);
+      setCurrentPage(1);
+    }
+  }, [location.search]);
 
   // Apply search query from context
   useEffect(() => {
