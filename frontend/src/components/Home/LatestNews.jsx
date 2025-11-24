@@ -14,7 +14,17 @@ const LatestNews = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 sm:grid-cols-1 px-3 md:px-5 lg:px-0 gap-5">
             {
               LatestNewsData.length>0 && LatestNewsData.map((item,index)=>(
-                <NewsCard key={index} image={item.image} author={item.author} date={item.date} comment={item.comment} title={item.title} description={item.description}/>
+                <NewsCard 
+                  key={index} 
+                  id={item.id}
+                  blogId={item.id}
+                  image={item.image} 
+                  author={item.author} 
+                  date={item.date} 
+                  comment={item.comment} 
+                  title={item.title} 
+                  description={item.description}
+                />
               ))
             }
         </div>

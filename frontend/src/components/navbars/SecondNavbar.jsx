@@ -7,8 +7,21 @@ import { useAppContext } from "../../context/AppContext";
 const SecondNavbar = () => {
   const navigate = useNavigate();
   const [logOut, setLogOut] = useState(false);
+  const [localSearch, setLocalSearch] = useState("");
 
-  const { cart, Total, removeFromCart, updateCartQuantity } = useAppContext();
+  const { cart, user, logout, setSearchQuery } = useAppContext();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setSearchQuery(localSearch);
+    navigate("/shop");
+  };
+
+  const handleLogout = () => {
+    logout();
+    setLogOut(true);
+    navigate("/");
+  };
   return (
     <div>
       <div className="bg-secondary hidden lg:grid grid-cols-[1fr_3fr_1fr] gap-10 px-24 py-2 items-center">
@@ -21,18 +34,25 @@ const SecondNavbar = () => {
         </div>
         {/*----------Search Bar-----------*/}
         <div>
-          <div className="flex justify-center relative w-full">
+          <form onSubmit={handleSearch} className="flex justify-center relative w-full">
             <input
               className="h-9 w-2/3 px-5 pr-10 text-base rounded-sm"
               type="text"
               placeholder="Search for anything..."
+              value={localSearch}
+              onChange={(e) => setLocalSearch(e.target.value)}
             />
-            <img
-              className="w-5 h-5 absolute right-[17%] top-1/2 transform -translate-y-1/2"
-              src={assets.search}
-              alt="search"
-            />
-          </div>
+            <button
+              type="submit"
+              className="absolute right-[17%] top-1/2 transform -translate-y-1/2 cursor-pointer"
+            >
+              <img
+                className="w-5 h-5"
+                src={assets.search}
+                alt="search"
+              />
+            </button>
+          </form>
         </div>
         {/*----------Right side-----------*/}
         <div

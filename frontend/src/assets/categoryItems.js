@@ -13,41 +13,37 @@ export const categoryItems = [
     {
         id:1,
         image: computer,
-        name: "Computer & Laptop",
+        name: "Accessories",
+        category: "accessories"
     },
     {
         id:2,
         image: phone,
-        name: "Mobile",
+        name: "Smartphone",
+        category: "smartphone"
     },
     {
         id:3,
         image: headphone,
         name: "Headphones",
+        category: "headphone"
     },
     {
         id:4,
-        image: keyboard,
-        name: "Keyboard",
+        image: camera,
+        name: "Camera",
+        category: "camera"
     },
     {
         id:5,
-        image: camera,
-        name: "Camera & Photo",
+        image: tv,
+        name: "TV",
+        category: "tv"
     },
     {
         id:6,
-        image: tv,
-        name: "TV & Homes",
-    },
-    {
-        id:7,
-        image: phone,
-        name: "Mobile",
-    },
-    {
-        id:8,
-        image: camera,
-        name: "Camera & Photo",
+        image: drone,
+        name: "Gaming",
+        category: "gaming"
     },
 ]

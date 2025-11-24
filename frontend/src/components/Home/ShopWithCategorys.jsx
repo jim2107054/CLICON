@@ -44,7 +44,7 @@ const ShopWithCategorys = () => {
               categoryItems
                 .slice(currentIndex, totalCategory + 1)
                 .map((item, index) => (
-                  <Categories key={index} image={item.image} name={item.name} />
+                  <Categories key={index} image={item.image} name={item.name} category={item.category} />
                 ))}
           </div>
           <button

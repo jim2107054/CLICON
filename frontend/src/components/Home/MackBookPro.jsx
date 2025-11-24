@@ -1,8 +1,10 @@
 import React from "react";
 import { FaArrowRight } from "react-icons/fa6";
 import { assetsHome } from "../../assets/assetsHome";
+import { useNavigate } from "react-router-dom";
 
 const MackBookPro = () => {
+  const navigate = useNavigate();
   return (
     <div className="md:px-5 px-2 lg:px-0">
       <div className="flex py-5 bg-lightOrange  rounded w-full">
@@ -16,7 +18,7 @@ const MackBookPro = () => {
             <p className="text-base font-medium leading-tight line-clamp-2 text-gray-600">
               Apple M1 Max Chip. 32GB <br/>Unified Memory, 1TB SSD Storage
             </p>
-            <button className="flex items-center gap-2 shop-now">
+            <button onClick={() => navigate('/shop')} className="flex items-center gap-2 shop-now">
               SHOP NOW{" "}
               <span className="text-xl">
                 <FaArrowRight />

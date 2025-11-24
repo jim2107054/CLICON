@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { FaArrowRight } from "react-icons/fa";
-import shopItems from "../assets/ShopItem";
+import { useAppContext } from "../context/AppContext";
 import OrderSummery from "../components/OrderSummery";
 import { FiDollarSign } from "react-icons/fi";
 import { BiLogoVenmo } from "react-icons/bi";
@@ -9,7 +10,90 @@ import { FaAmazon } from "react-icons/fa";
 import { FaRegCreditCard } from "react-icons/fa";
 
 const CheckOut = () => {
+  const navigate = useNavigate();
+  const { cart, placeOrder, Total } = useAppContext();
   const [checkboxClicked, setCheckboxClicked] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState("creditCard");
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    companyName: "",
+    address: "",
+    country: "Bangladesh",
+    state: "Dhaka",
+    city: "Dhaka",
+    zipCode: "",
+    email: "",
+    phone: ""
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    });
+    if (errors[e.target.name]) {
+      setErrors({
+        ...errors,
+        [e.target.name]: ""
+      });
+    }
+  };
+
+  const validateForm = () => {
+    const newErrors = {};
+    if (!formData.firstName) newErrors.firstName = "First name is required";
+    if (!formData.lastName) newErrors.lastName = "Last name is required";
+    if (!formData.address) newErrors.address = "Address is required";
+    if (!formData.zipCode) newErrors.zipCode = "Zip code is required";
+    if (!formData.email) {
+      newErrors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      newErrors.email = "Email is invalid";
+    }
+    if (!formData.phone) {
+      newErrors.phone = "Phone is required";
+    } else if (!/^\d{10,}$/.test(formData.phone.replace(/[^0-9]/g, ""))) {
+      newErrors.phone = "Phone must be at least 10 digits";
+    }
+    return newErrors;
+  };
+
+  const handlePlaceOrder = () => {
+    const newErrors = validateForm();
+    
+    if (Object.keys(newErrors).length === 0) {
+      const orderData = {
+        ...formData,
+        paymentMethod,
+        shippingAddress: `${formData.address}, ${formData.city}, ${formData.state}, ${formData.country} - ${formData.zipCode}`
+      };
+      
+      const order = placeOrder(orderData);
+      navigate("/check-out-success", { state: { orderId: order.id } });
+    } else {
+      setErrors(newErrors);
+      alert("Please fill in all required fields correctly");
+    }
+  };
+
+  if (cart.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 py-20">
+        <h2 className="text-3xl font-bold mb-4">Your cart is empty</h2>
+        <p className="text-gray-600 mb-8">Add items to your cart to proceed with checkout</p>
+        <button
+          onClick={() => navigate("/shop")}
+          className="bg-btnColor text-white px-8 py-3 rounded-md hover:scale-105 transition-all duration-300"
+        >
+          Continue Shopping
+        </button>
+      </div>
+    );
+  }
+
+  const [checkboxClicked2, setCheckboxClicked2] = useState(false);
   return (
     <div>
       <div className="flex flex-col lg:flex-row gap-5 px-10 lg:px-36 py-10">
@@ -31,15 +115,27 @@ const CheckOut = () => {
                   <input
                     className="h-10 px-5 rounded border border-gray-700 w-full"
                     type="text"
+                    name="firstName"
+                    value={formData.firstName}
+                    onChange={handleChange}
                     placeholder="First Name"
                   />
+                  {errors.firstName && (
+                    <span className="text-red-500 text-xs">{errors.firstName}</span>
+                  )}
                 </div>
                 <div className="flex mt-7 flex-col w-1/4">
                   <input
                     className="h-10 px-5 rounded border border-gray-700 w-full"
                     type="text"
+                    name="lastName"
+                    value={formData.lastName}
+                    onChange={handleChange}
                     placeholder="Last Name"
                   />
+                  {errors.lastName && (
+                    <span className="text-red-500 text-xs">{errors.lastName}</span>
+                  )}
                 </div>
                 <div className="flex flex-col gap-1 w-1/2">
                   <label className="text-sm mt-1 text-gray-800 font-medium">
@@ -48,6 +144,9 @@ const CheckOut = () => {
                   <input
                     className="h-10 px-5 rounded border border-gray-700 w-full"
                     type="text"
+                    name="companyName"
+                    value={formData.companyName}
+                    onChange={handleChange}
                     placeholder=""
                   />
                 </div>

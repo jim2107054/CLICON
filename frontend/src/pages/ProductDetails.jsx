@@ -1,4 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import shopItems from "../assets/ShopItem";
+import { useAppContext } from "../context/AppContext";
 import {
   assets,
 } from "./../assets/assets";
@@ -55,7 +58,13 @@ const smallImages = [
 ];
 
 const ProductDetails = () => {
-  const [productImage, setProductImage] = useState(assets.laptopDetails);
+  const { productId } = useParams();
+  const navigate = useNavigate();
+  const { addToCart, addToWishList, addToCompare } = useAppContext();
+  
+  const product = shopItems.find((item) => item.id === parseInt(productId));
+
+  const [productImage, setProductImage] = useState(product?.image || assets.laptopDetails);
   const [clickedPage, setclickedPage] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [productQuantity, setproductQuantity] = useState(1);
@@ -64,6 +73,28 @@ const ProductDetails = () => {
   const [additionalInfo, setAdditionalInfo] = useState(false);
   const [specification, setSpecification] = useState(false);
   const [review, setReview] = useState(false);
+
+  useEffect(() => {
+    if (!product) {
+      navigate("/shop");
+    }
+  }, [product, navigate]);
+
+  if (!product) {
+    return <div>Loading...</div>;
+  }
+
+  const handleAddToCart = () => {
+    for (let i = 0; i < productQuantity; i++) {
+      addToCart(product);
+    }
+    alert("Added to cart successfully!");
+  };
+
+  const handleBuyNow = () => {
+    handleAddToCart();
+    navigate("/shoping-card");
+  };
 
   const smallImageLength = smallImages.length;
   const smallImagePages = Math.ceil(smallImageLength / 5);
@@ -147,15 +178,14 @@ const ProductDetails = () => {
                 </span>
               </p>
               <p className="text-xl font-medium leading-none my-2">
-                2020 Apple MacBook Pro with Apple M1 Chip (13-inch, 8GB RAM,
-                256GB SSD Storage) - Space Gray
+                {product.title}
               </p>
             </div>
             {/*--------Product Details 2nd part---------*/}
             <div className="flex justify-between my-5">
               <div>
                 <p className="text-sm text-gray-700">
-                  Sku: <span className="font-medium">A264671</span>
+                  Sku: <span className="font-medium">{product.id}</span>
                 </p>
                 <p className="text-sm text-gray-700">
                   Brand: <span className="font-medium">Apple</span>
@@ -164,7 +194,7 @@ const ProductDetails = () => {
               <div>
                 <p className="text-sm text-gray-700">
                   Availability:{" "}
-                  <span className="text-greenButton">In Stock</span>
+                  <span className="text-greenButton">{product.status}</span>
                 </p>
                 <p className="text-sm text-gray-700">
                   Category:{" "}
@@ -174,12 +204,12 @@ const ProductDetails = () => {
             </div>
             {/*--------Product Details 3rd part---------*/}
             <div className="flex  gap-3 mb-2">
-              <p className="text-xl font-medium text-blue-400">$1699</p>
+              <p className="text-xl font-medium text-blue-400">${product.price}</p>
               <p className="text-base text-gray-500 line-through font-medium">
-                $1999.00
+                ${(product.price * 1.2).toFixed(2)}
               </p>
               <p className="border bg-yellow-400 px-1 py-0.5 rounded-md">
-                21% OFF
+                {product.offer || "21% OFF"}
               </p>
             </div>
           </div>
@@ -214,12 +244,16 @@ const ProductDetails = () => {
                 </button>
               </div>
               <div>
-                <button className="bg-btnColor h-11 flex items-center gap-2 justify-center text-white px-8 py-2 rounded hover:scale-105 transition-all duration-200">
+                <button 
+                  onClick={handleAddToCart}
+                  className="bg-btnColor h-11 flex items-center gap-2 justify-center text-white px-8 py-2 rounded hover:scale-105 transition-all duration-200">
                   ADD TO CARD <IoCartOutline className="text-xl" />
                 </button>
               </div>
               <div>
-                <button className="border-2 h-11 border-btnColor text-btnColor font-medium px-5 py-2 rounded hover:scale-105 transition-all duration-200">
+                <button 
+                  onClick={handleBuyNow}
+                  className="border-2 h-11 border-btnColor text-btnColor font-medium px-5 py-2 rounded hover:scale-105 transition-all duration-200">
                   BUY NOW
                 </button>
               </div>
@@ -227,11 +261,15 @@ const ProductDetails = () => {
             {/*--------Product Details lower part---------*/}
             <div className="flex gap-6 mb-5 items-center justify-between">
               <div className="flex gap-5 items-center">
-                <p className="flex group gap-2 items-center justify-center">
+                <p 
+                  onClick={() => addToWishList(product)}
+                  className="flex group gap-2 items-center justify-center cursor-pointer hover:text-btnColor">
                   <GoHeart className="text-lg cursor-pointer font-light" />
                   <span className="text-sm">Add to Wishlist</span>
                 </p>
-                <p className="flex group gap-2 items-center justify-between">
+                <p 
+                  onClick={() => addToCompare(product)}
+                  className="flex group gap-2 items-center justify-between cursor-pointer hover:text-btnColor">
                   <img
                     className="h-5 font-light cursor-pointer"
                     src={assets.compare}

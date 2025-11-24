@@ -1,12 +1,62 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 
 export const AppContext = createContext();
 
 export const AppContextProvider = ({ children }) => {
-  const [cart, setCart] = useState([]);
-  const [wishList, setWishList] = useState([]);
+  // Initialize state from localStorage
+  const [cart, setCart] = useState(() => {
+    const savedCart = localStorage.getItem("cart");
+    return savedCart ? JSON.parse(savedCart) : [];
+  });
 
-  const currency = import.meta.env.CURRENCY;
+  const [wishList, setWishList] = useState(() => {
+    const savedWishList = localStorage.getItem("wishList");
+    return savedWishList ? JSON.parse(savedWishList) : [];
+  });
+
+  const [compareList, setCompareList] = useState(() => {
+    const savedCompareList = localStorage.getItem("compareList");
+    return savedCompareList ? JSON.parse(savedCompareList) : [];
+  });
+
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
+  const [orders, setOrders] = useState(() => {
+    const savedOrders = localStorage.getItem("orders");
+    return savedOrders ? JSON.parse(savedOrders) : [];
+  });
+
+  const [searchQuery, setSearchQuery] = useState("");
+
+  const currency = "$";
+
+  // Save to localStorage whenever state changes
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
+
+  useEffect(() => {
+    localStorage.setItem("wishList", JSON.stringify(wishList));
+  }, [wishList]);
+
+  useEffect(() => {
+    localStorage.setItem("compareList", JSON.stringify(compareList));
+  }, [compareList]);
+
+  useEffect(() => {
+    localStorage.setItem("orders", JSON.stringify(orders));
+  }, [orders]);
+
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user));
+    } else {
+      localStorage.removeItem("user");
+    }
+  }, [user]);
 
   // Function to add item to cart
   const addToCart = (product) => {
@@ -72,16 +122,78 @@ export const AppContextProvider = ({ children }) => {
   //Total price calculation for cart
   const Total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
+  // Function to add item to compare list
+  const addToCompare = (product) => {
+    const existingProduct = compareList.find((item) => item.id === product.id);
+    if (!existingProduct && compareList.length < 4) {
+      setCompareList([...compareList, product]);
+    } else if (compareList.length >= 4) {
+      alert("You can only compare up to 4 products at a time");
+    }
+  };
+
+  // Function to remove item from compare list
+  const removeFromCompare = (productId) => {
+    const updatedCompareList = compareList.filter((item) => item.id !== productId);
+    setCompareList(updatedCompareList);
+  };
+
+  // Authentication functions
+  const login = (userData) => {
+    setUser(userData);
+  };
+
+  const logout = () => {
+    setUser(null);
+    localStorage.removeItem("user");
+  };
+
+  const register = (userData) => {
+    setUser(userData);
+  };
+
+  // Order functions
+  const placeOrder = (orderData) => {
+    const newOrder = {
+      id: `ORD-${Date.now()}`,
+      date: new Date().toISOString(),
+      items: cart,
+      total: Total,
+      status: "Processing",
+      ...orderData,
+    };
+    setOrders([...orders, newOrder]);
+    setCart([]);
+    return newOrder;
+  };
+
+  const getOrderById = (orderId) => {
+    return orders.find((order) => order.id === orderId);
+  };
+
   const value = {
     cart,
     setCart,
     wishList,
     setWishList,
+    compareList,
+    setCompareList,
+    user,
+    orders,
+    searchQuery,
+    setSearchQuery,
     addToCart,
     removeFromCart,
     updateCartQuantity,
     addToWishList,
     removeFromWishList,
+    addToCompare,
+    removeFromCompare,
+    login,
+    logout,
+    register,
+    placeOrder,
+    getOrderById,
     Total,
     currency,
   };

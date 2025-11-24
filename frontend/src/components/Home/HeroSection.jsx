@@ -6,8 +6,10 @@ import { TfiHeadphoneAlt } from "react-icons/tfi";
 import { assetsHome } from "../../assets/assetsHome";
 import { TfiLayoutLineSolid } from "react-icons/tfi";
 import { HiOutlineArrowRight } from "react-icons/hi";
+import { useNavigate } from "react-router-dom";
 
 const HeroSection = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="">
@@ -19,7 +21,7 @@ const HeroSection = () => {
                 <p className="flex items-center gap-2 text-blueButton font-medium text-xs lg:text-sm w-full"><span><TfiLayoutLineSolid className="lg:text-xl"/></span> THE BEST PLACE TO PLAY</p>
                 <p className="lg:text-3xl text-2xl font-medium w-full">Xbox Consoles</p>
                 <p className="font-light text-sm w-full my-3">Save up to 50% on select Xbox games. Get 3 months of PC Game Pass for $2 USD.</p>
-                <button className="shop-now flex gap-2 items-center">SHOP NOW <span><HiOutlineArrowRight className="text-xl"/></span></button>
+                <button onClick={() => navigate('/shop')} className="shop-now flex gap-2 items-center">SHOP NOW <span><HiOutlineArrowRight className="text-xl"/></span></button>
                 </div>
                 <div className="md:w-1/2 flex relative">
                     <p className="w-20 h-20 rounded-full flex right-8 top-3 items-center justify-center text-2xl text-white font-medium absolute bg-blueButton">$299</p>
@@ -33,7 +35,7 @@ const HeroSection = () => {
                 <div className="flex flex-col py-8 justify-center px-5 gap-2 w-full h-full ">
                     <p className="text-yellow-400 text-sm">SUMMER SALES</p>
                     <p className="text-white text-xl font-medium">New Google<br/> Pixel 6 Pro</p>
-                    <button className="w-fit bg-btnColor px-2 py-1.5 text-white font-medium rounded hover:scale-105 duration-300 transition-all flex gap-2 text-sm items-center">SHOP NOW <span><HiOutlineArrowRight className="text-lg"/></span></button>
+                    <button onClick={() => navigate('/shop')} className="w-fit bg-btnColor px-2 py-1.5 text-white font-medium rounded hover:scale-105 duration-300 transition-all flex gap-2 text-sm items-center">SHOP NOW <span><HiOutlineArrowRight className="text-lg"/></span></button>
                 </div>
                 </div>
                 <div className="w-2/5 h-full flex relative">
@@ -46,7 +48,7 @@ const HeroSection = () => {
                 <div className="flex flex-col py-5 justify-center px-5 w-full h-full ">
                     <p className="text-black text-xl font-medium">Xiaomi<br/>FlipBuds Pro</p>
                     <p className="text-blueButton font-medium mt-1 mb-3">$299USD</p>
-                    <button className="w-fit bg-btnColor px-2 py-1.5 text-white font-medium rounded hover:scale-105 duration-300 transition-all flex gap-2 text-sm items-center">SHOP NOW <span><HiOutlineArrowRight className="text-lg"/></span></button>
+                    <button onClick={() => navigate('/shop')} className="w-fit bg-btnColor px-2 py-1.5 text-white font-medium rounded hover:scale-105 duration-300 transition-all flex gap-2 text-sm items-center">SHOP NOW <span><HiOutlineArrowRight className="text-lg"/></span></button>
                 </div>
                 </div>
                 <div className="w-2/5 flex items-center justify-center">

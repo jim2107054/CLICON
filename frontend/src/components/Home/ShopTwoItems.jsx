@@ -1,8 +1,10 @@
 import React from "react";
 import { assetsHome } from "../../assets/assetsHome";
 import { FaArrowRight } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const ShopTwoItems = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <div className="flex flex-col px-2 md:px-5 lg:px-0 md:flex-row gap-5 lg:gap-10 my-10">
@@ -19,7 +21,7 @@ const ShopTwoItems = () => {
             <p className="text-base font-light leading-tight text-gray-800">
               Jam-packed with innovation, HomePod mini delivers unexpectedly.
             </p>
-            <button className="flex items-center gap-2 shop-now">
+            <button onClick={() => navigate('/shop')} className="flex items-center gap-2 shop-now">
               SHOP NOW{" "}
               <span className="text-xl">
                 <FaArrowRight />
@@ -44,7 +46,7 @@ const ShopTwoItems = () => {
             <p className="text-base font-light leading-tight text-white">
               *Data provided by internal laboratories. Industry measurment.
             </p>
-            <button className="flex items-center gap-2 shop-now">
+            <button onClick={() => navigate('/shop')} className="flex items-center gap-2 shop-now">
               SHOP NOW{" "}
               <span className="text-xl">
                 <FaArrowRight />

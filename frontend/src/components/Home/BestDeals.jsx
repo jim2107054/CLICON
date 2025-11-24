@@ -94,7 +94,7 @@ const BestDeals = () => {
               <button className="bg-orange-200 hidden lg:block rounded p-2">
                 <GoHeart className="text-2xl" />
               </button>
-              <button className="shop-now flex items-center gap-2">
+              <button onClick={() => navigate('/shop')} className="shop-now flex items-center gap-2">
                 <IoCartOutline className="text-xl" /> ADD TO CARD
               </button>
               <button className="bg-orange-200 hidden lg:block rounded p-2">

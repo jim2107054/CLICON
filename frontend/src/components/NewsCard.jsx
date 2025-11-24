@@ -2,12 +2,26 @@ import { BsPersonCircle } from "react-icons/bs";
 import { CiCalendar } from "react-icons/ci";
 import { AiOutlineMessage } from "react-icons/ai";
 import { FaArrowRight } from "react-icons/fa6";
+import { useNavigate } from "react-router-dom";
 
 const NewsCard = (props) => {
-    const {id,image,author,date,comment,title,description} = props
+    const {id, blogId, image, author, date, comment, title, description} = props;
+    const navigate = useNavigate();
+    
+    const handleClick = () => {
+        if (blogId) {
+            navigate(`/blog-details/${blogId}`);
+        } else {
+            navigate('/blogs');
+        }
+    };
   return (
     <div>
-        <div key={id} className='flex flex-col w-fit gap-3 p-5 border-2 shadow-lg border-gray-300 rounded-md cursor-pointer hover:-translate-y-2 transition-all duration-300'>
+        <div 
+            key={id} 
+            onClick={handleClick}
+            className='flex flex-col w-fit gap-3 p-5 border-2 shadow-lg border-gray-300 rounded-md cursor-pointer hover:-translate-y-2 hover:shadow-2xl transition-all duration-300'
+        >
             <div>
                 <img className='w-full' src={image} alt="" />
             </div>
@@ -22,7 +36,15 @@ const NewsCard = (props) => {
                     <p className='font-light line-clamp-2 leading-tight mb-5'>{description}</p>
                 </div>
                 <div>
-                    <button className='shop-now flex items-center gap-2'>READ MORE <span><FaArrowRight/></span></button>
+                    <button 
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleClick();
+                        }}
+                        className='shop-now flex items-center gap-2'
+                    >
+                        READ MORE <span><FaArrowRight/></span>
+                    </button>
                 </div>
             </div>
         </div>
