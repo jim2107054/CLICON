@@ -233,18 +233,21 @@ export const CoreTeamMembers = [
 export const flashSaleToday = [
     {
         id: 1,
+        productId: 1,
         image: flash1,
         price: 1500,
         description:"Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear..."
     },
     {
         id: 2,
+        productId: 2,
         image: flash2,
         price:1500,
         description:"Simple Mobile 4G LTE Prepaid Smartphone"
     },
     {
         id: 3,
+        productId: 8,
         image: flash3,
         price: 1500,
         description:"4K UHD LED Smart TV with Chromecast Built-in"
@@ -254,18 +257,21 @@ export const flashSaleToday = [
 export const bestSellers = [
     {
         id: 1,
+        productId: 2,
         image: bestSeller1,
         price: 1500,
         description:"Samsung Electronics Samsung Galexy S21 5G"
     },
     {
         id: 2,
+        productId: 2,
         image: bestSeller2,
         price:1500,
         description:"Simple Mobile 5G LTE Galexy 12 Mini 512GB Gaming Phone"
     },
     {
         id: 3,
+        productId: 6,
         image: bestSeller3,
         price: 1500,
         description:"Sony DSCHX8 High Zoom Point & Shoot Camera"
@@ -275,18 +281,21 @@ export const bestSellers = [
 export const topRated = [
     {
         id: 1,
+        productId: 3,
         image: topRated1,
         price: 1500,
         description:"Portable Wshing Machine, 11lbs capacity Model 18NMF..."
     },
     {
         id: 2,
+        productId: 6,
         image: topRated2,
         price:1500,
         description:"Sony DSCHX8 High Zoom Point & Shoot Camera"
     },
     {
         id: 3,
+        productId: 4,
         image: topRated3,
         price: 1500,
         description:"Dell Optiplex 7000x7480 All-in-One Computer Monitor"
@@ -296,18 +305,21 @@ export const topRated = [
 export const newArrival = [
     {
         id: 1,
+        productId: 1,
         image: newArrival1,
         price: 1500,
         description:"TOZO T6 True Wireless Earbuds Bluetooth Headpho..."
     },
     {
         id: 2,
+        productId: 5,
         image: newArrival2,
         price:1500,
         description:"JBL FLIP 4 - Waterproof Portable Bluetooth Speaker..."
     },
     {
         id: 3,
+        productId: 6,
         image: newArrival3,
         price: 1500,
         description:"Wyze Cam Pan v2 1080p Pan/Tilt/Zoom Wi-Fi Indoor Smar..."

@@ -8,11 +8,12 @@ const ShowRelatedProducts = () => {
         <div className="flex flex-col lg:flex-row gap-10 px-5 md:px-36 py-10">
         {/*--------FLASH SALE TODAY-----------*/}
         <div className="">
-          <p className="font-medium text-xl">FLASH SALE TODAY</p>
+          <p className="font-semibold text-xl mb-4 text-gray-800 uppercase tracking-wide">Flash Sale Today</p>
           <div>
-            {flashSaleToday.map((item, index) => (
+            {flashSaleToday.map((item) => (
               <AboutUsSales
-                key={index}
+                key={item.id}
+                productId={item.productId}
                 image={item.image}
                 price={item.price}
                 description={item.description}
@@ -22,11 +23,12 @@ const ShowRelatedProducts = () => {
         </div>
         {/*--------BEST SELLERS-----------*/}
         <div>
-          <p className="font-medium text-xl">BEST SELLERS</p>
+          <p className="font-semibold text-xl mb-4 text-gray-800 uppercase tracking-wide">Best Sellers</p>
           <div>
-            {bestSellers.map((item, index) => (
+            {bestSellers.map((item) => (
               <AboutUsSales
-                key={index}
+                key={item.id}
+                productId={item.productId}
                 image={item.image}
                 price={item.price}
                 description={item.description}
@@ -36,11 +38,12 @@ const ShowRelatedProducts = () => {
         </div>
         {/*--------TOP RATED-----------*/}
         <div>
-          <p className="font-medium text-xl">TOP RATED</p>
+          <p className="font-semibold text-xl mb-4 text-gray-800 uppercase tracking-wide">Top Rated</p>
           <div>
-            {topRated.map((item, index) => (
+            {topRated.map((item) => (
               <AboutUsSales
-                key={index}
+                key={item.id}
+                productId={item.productId}
                 image={item.image}
                 price={item.price}
                 description={item.description}
@@ -50,11 +53,12 @@ const ShowRelatedProducts = () => {
         </div>
         {/*--------NEW ARRIVAL-----------*/}
         <div>
-          <p className="font-medium text-xl">NEW ARRIVAL</p>
+          <p className="font-semibold text-xl mb-4 text-gray-800 uppercase tracking-wide">New Arrival</p>
           <div>
-            {newArrival.map((item, index) => (
+            {newArrival.map((item) => (
               <AboutUsSales
-                key={index}
+                key={item.id}
+                productId={item.productId}
                 image={item.image}
                 price={item.price}
                 description={item.description}
