@@ -9,6 +9,7 @@ import {
   IoArrowBackOutline,
   IoArrowForwardOutline,
   IoCartOutline,
+  IoCheckmarkCircle,
 } from "react-icons/io5";
 import { GoCopy, GoHeart } from "react-icons/go";
 import {
@@ -18,12 +19,17 @@ import {
   FaTwitter,
   FaPinterestP,
   FaRegCreditCard,
+  FaCheck,
 } from "react-icons/fa6";
 import { PiMedalLight, PiHandshake } from "react-icons/pi";
 import { FiTruck } from "react-icons/fi";
 import { LuHeadset } from "react-icons/lu";
 import AboutUsSales from "../components/AboutUsSales";
 import ShowRelatedProducts from "../components/ShowRelatedProducts";
+import ProductDescription from "../components/ProductDescription";
+import ProductAdditionalInfo from "../components/ProductAdditionalInfo";
+import ProductSpecification from "../components/ProductSpecification";
+import ProductReview from "../components/ProductReview";
 
 //For Now we are using the small images here, in real project we will upload or fetch form backend
 const smallImages = [
@@ -69,10 +75,9 @@ const ProductDetails = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [productQuantity, setproductQuantity] = useState(1);
 
-  const [description, setDescription] = useState(true);
-  const [additionalInfo, setAdditionalInfo] = useState(false);
-  const [specification, setSpecification] = useState(false);
-  const [review, setReview] = useState(false);
+  const [activeTab, setActiveTab] = useState("description");
+  const [notification, setNotification] = useState("");
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     if (!product) {
@@ -84,22 +89,70 @@ const ProductDetails = () => {
     return <div>Loading...</div>;
   }
 
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => setNotification(""), 3000);
+  };
+
   const handleAddToCart = () => {
     for (let i = 0; i < productQuantity; i++) {
       addToCart(product);
     }
-    alert("Added to cart successfully!");
+    showNotification(`${productQuantity} item(s) added to cart!`);
   };
 
   const handleBuyNow = () => {
     handleAddToCart();
-    navigate("/shoping-card");
+    setTimeout(() => navigate("/shoping-card"), 500);
+  };
+
+  const handleAddToWishlist = () => {
+    addToWishList(product);
+    showNotification("Added to wishlist!");
+  };
+
+  const handleAddToCompare = () => {
+    addToCompare(product);
+    showNotification("Added to compare!");
+  };
+
+  const handleCopyLink = () => {
+    const url = window.location.href;
+    navigator.clipboard.writeText(url).then(() => {
+      setCopied(true);
+      showNotification("Link copied to clipboard!");
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  const handleShare = (platform) => {
+    const url = window.location.href;
+    const text = `Check out ${product.title}`;
+    
+    const shareUrls = {
+      facebook: `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`,
+      twitter: `https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(text)}`,
+      pinterest: `https://pinterest.com/pin/create/button/?url=${encodeURIComponent(url)}&description=${encodeURIComponent(text)}`
+    };
+
+    if (shareUrls[platform]) {
+      window.open(shareUrls[platform], '_blank', 'width=600,height=400');
+      showNotification(`Sharing on ${platform}!`);
+    }
   };
 
   const smallImageLength = smallImages.length;
   const smallImagePages = Math.ceil(smallImageLength / 5);
+  
   return (
     <div>
+      {/* Notification Toast */}
+      {notification && (
+        <div className="fixed top-24 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in-down flex items-center gap-2">
+          <IoCheckmarkCircle className="text-2xl" />
+          <span className="font-medium">{notification}</span>
+        </div>
+      )}
       <div className="flex flex-col lg:flex-row px-36 py-5 gap-10 lg:gap-12 mb-10">
         {/*--------Left Div-----------*/}
         <div className="flex bg-gary-500 flex-col w-full lg:w-1/2">
@@ -246,14 +299,24 @@ const ProductDetails = () => {
               <div>
                 <button 
                   onClick={handleAddToCart}
-                  className="bg-btnColor h-11 flex items-center gap-2 justify-center text-white px-8 py-2 rounded hover:scale-105 transition-all duration-200">
-                  ADD TO CARD <IoCartOutline className="text-xl" />
+                  disabled={product.status === "Out of Stock"}
+                  className={`h-11 flex items-center gap-2 justify-center text-white px-8 py-2 rounded transition-all duration-200 font-semibold ${
+                    product.status === "Out of Stock" 
+                      ? "bg-gray-400 cursor-not-allowed" 
+                      : "bg-btnColor hover:scale-105 hover:shadow-lg"
+                  }`}>
+                  ADD TO CART <IoCartOutline className="text-xl" />
                 </button>
               </div>
               <div>
                 <button 
                   onClick={handleBuyNow}
-                  className="border-2 h-11 border-btnColor text-btnColor font-medium px-5 py-2 rounded hover:scale-105 transition-all duration-200">
+                  disabled={product.status === "Out of Stock"}
+                  className={`border-2 h-11 font-medium px-5 py-2 rounded transition-all duration-200 ${
+                    product.status === "Out of Stock"
+                      ? "border-gray-400 text-gray-400 cursor-not-allowed"
+                      : "border-btnColor text-btnColor hover:scale-105 hover:bg-btnColor hover:text-white hover:shadow-lg"
+                  }`}>
                   BUY NOW
                 </button>
               </div>
@@ -261,30 +324,50 @@ const ProductDetails = () => {
             {/*--------Product Details lower part---------*/}
             <div className="flex gap-6 mb-5 items-center justify-between">
               <div className="flex gap-5 items-center">
-                <p 
-                  onClick={() => addToWishList(product)}
-                  className="flex group gap-2 items-center justify-center cursor-pointer hover:text-btnColor">
-                  <GoHeart className="text-lg cursor-pointer font-light" />
-                  <span className="text-sm">Add to Wishlist</span>
-                </p>
-                <p 
-                  onClick={() => addToCompare(product)}
-                  className="flex group gap-2 items-center justify-between cursor-pointer hover:text-btnColor">
+                <button 
+                  onClick={handleAddToWishlist}
+                  className="flex group gap-2 items-center justify-center cursor-pointer hover:text-red-500 transition-colors duration-200 px-3 py-1 rounded hover:bg-red-50">
+                  <GoHeart className="text-lg font-light" />
+                  <span className="text-sm font-medium">Add to Wishlist</span>
+                </button>
+                <button 
+                  onClick={handleAddToCompare}
+                  className="flex group gap-2 items-center justify-between cursor-pointer hover:text-blueButton transition-colors duration-200 px-3 py-1 rounded hover:bg-blue-50">
                   <img
-                    className="h-5 font-light cursor-pointer"
+                    className="h-5 font-light"
                     src={assets.compare}
-                    alt="arrowIcon"
+                    alt="compare"
                   />
-                  <span className="text-sm">Add to Compare</span>
-                </p>
+                  <span className="text-sm font-medium">Add to Compare</span>
+                </button>
               </div>
-              <div className="flex gap-2">
-                <p>Share:</p>
-                <div className="flex items-center gap-2">
-                  <GoCopy className="hover:text-btnColor cursor-pointer" />
-                  <FaFacebook className="hover:text-btnColor cursor-pointer" />
-                  <FaTwitter className="hover:text-btnColor cursor-pointer" />
-                  <FaPinterestP className="hover:text-btnColor cursor-pointer" />
+              <div className="flex gap-2 items-center">
+                <p className="font-medium">Share:</p>
+                <div className="flex items-center gap-3">
+                  <button 
+                    onClick={handleCopyLink}
+                    className="hover:text-btnColor cursor-pointer transition-all duration-200 hover:scale-110 relative"
+                    title="Copy link">
+                    {copied ? <FaCheck className="text-green-500" /> : <GoCopy />}
+                  </button>
+                  <button 
+                    onClick={() => handleShare('facebook')}
+                    className="hover:text-blue-600 cursor-pointer transition-all duration-200 hover:scale-110"
+                    title="Share on Facebook">
+                    <FaFacebook />
+                  </button>
+                  <button 
+                    onClick={() => handleShare('twitter')}
+                    className="hover:text-blue-400 cursor-pointer transition-all duration-200 hover:scale-110"
+                    title="Share on Twitter">
+                    <FaTwitter />
+                  </button>
+                  <button 
+                    onClick={() => handleShare('pinterest')}
+                    className="hover:text-red-600 cursor-pointer transition-all duration-200 hover:scale-110"
+                    title="Share on Pinterest">
+                    <FaPinterestP />
+                  </button>
                 </div>
               </div>
             </div>
@@ -299,89 +382,136 @@ const ProductDetails = () => {
       </div>
       {/*--------Product Description---------*/}
       <div className="flex flex-col px-36 py-5 gap-10 lg:gap-12 mb-10">
-        <div className="border rounded-md border-gray-300 ">
-          <div className="flex flex-col border-b border-gray-300 py-3 gap-3 w-full lg:gap-12 lg:flex-row items-center justify-center">
-            <p className="text-xl hover:font-medium cursor-pointer text-gray-800">
+        <div className="border rounded-md border-gray-300 shadow-lg">
+          <div className="flex flex-col border-b border-gray-300 py-3 gap-3 w-full lg:gap-12 lg:flex-row items-center justify-center bg-gray-50">
+            <button 
+              onClick={() => setActiveTab("description")}
+              className={`text-xl cursor-pointer transition-all duration-200 px-4 py-2 rounded ${
+                activeTab === "description" 
+                  ? "font-bold text-btnColor border-b-2 border-btnColor" 
+                  : "text-gray-800 hover:text-btnColor hover:font-medium"
+              }`}>
               Description
-            </p>
-            <p className="text-xl hover:font-medium cursor-pointer text-gray-800">
+            </button>
+            <button 
+              onClick={() => setActiveTab("additionalInfo")}
+              className={`text-xl cursor-pointer transition-all duration-200 px-4 py-2 rounded ${
+                activeTab === "additionalInfo" 
+                  ? "font-bold text-btnColor border-b-2 border-btnColor" 
+                  : "text-gray-800 hover:text-btnColor hover:font-medium"
+              }`}>
               Additional information
-            </p>
-            <p className="text-xl hover:font-medium cursor-pointer text-gray-800">
+            </button>
+            <button 
+              onClick={() => setActiveTab("specification")}
+              className={`text-xl cursor-pointer transition-all duration-200 px-4 py-2 rounded ${
+                activeTab === "specification" 
+                  ? "font-bold text-btnColor border-b-2 border-btnColor" 
+                  : "text-gray-800 hover:text-btnColor hover:font-medium"
+              }`}>
               Specification
-            </p>
-            <p className="text-xl hover:font-medium cursor-pointer text-gray-800">
+            </button>
+            <button 
+              onClick={() => setActiveTab("review")}
+              className={`text-xl cursor-pointer transition-all duration-200 px-4 py-2 rounded ${
+                activeTab === "review" 
+                  ? "font-bold text-btnColor border-b-2 border-btnColor" 
+                  : "text-gray-800 hover:text-btnColor hover:font-medium"
+              }`}>
               Review
-            </p>
+            </button>
           </div>
-          <div className="flex flex-col gap-5 px-5 py-8 lg:flex-row">
-            <div className="flex flex-col gap-2 w-full lg:w-2/5">
-              <p className="text-xl font-medium">Description</p>
-              <p className="text-gray-800 font-light">
-                The most powerful MacBook Pro ever is here. With the
-                blazing-fast M1 Pro or M1 Max chip — the first Apple silicon
-                designed for pros — you get groundbreaking performance and
-                amazing battery life. Add to that a stunning Liquid Retina XDR
-                display, the best camera and audio ever in a Mac notebook, and
-                all the ports you need. The first notebook of its kind, this
-                MacBook Pro is a beast. M1 Pro takes the exceptional performance
-                of the M1 architecture to a whole new level for pro users.
-              </p>
-              <p className="text-gray-800 font-light">
-                Even the most ambitious projects are easily handled with up to
-                10 CPU cores, up to 16 GPU cores, a 16core Neural Engine, and
-                dedicated encode and decode media engines that support H.264,
-                HEVC, and ProRes codecs.
-              </p>
-            </div>
-            <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
-            <div className="w-full gap-2 flex flex-col lg:w-1/4">
-              <p className="text-xl font-medium">Feature</p>
-              <div className="flex flex-col lg:px-0 px-5">
-                <p className="my-2 flex gap-2 text-base font-medium items-center">
-                <PiMedalLight className="text-2xl text-btnColor" />
-                Free 1 Year Warranty
-              </p>
-              <p className="my-2 flex gap-2 text-base font-medium items-center">
-                <FiTruck className="text-2xl text-btnColor" />
-                Free Shipping & Fasted Delivery
-              </p>
-              <p className="my-2 flex gap-2 text-base font-medium items-center">
-                <PiHandshake className="text-2xl text-btnColor" />
-                100% Money-back guarantee
-              </p>
-              <p className="my-2 flex gap-2 text-base font-medium items-center">
-                <LuHeadset className="text-2xl text-btnColor" />
-                24/7 Customer support
-              </p>
-              <p className="my-2 flex gap-2 text-base font-medium items-center">
-                <FaRegCreditCard className="text-2xl text-btnColor" />
-                Secure payment method
-              </p>
+          {/* Tab Content */}
+          <div className="px-5 py-8">
+            {activeTab === "description" && (
+              <div className="flex flex-col gap-5 lg:flex-row animate-fade-in">
+                <div className="flex flex-col gap-2 w-full lg:w-2/5">
+                  <p className="text-xl font-medium">Description</p>
+                  <p className="text-gray-800 font-light">
+                    The most powerful MacBook Pro ever is here. With the
+                    blazing-fast M1 Pro or M1 Max chip — the first Apple silicon
+                    designed for pros — you get groundbreaking performance and
+                    amazing battery life. Add to that a stunning Liquid Retina XDR
+                    display, the best camera and audio ever in a Mac notebook, and
+                    all the ports you need. The first notebook of its kind, this
+                    MacBook Pro is a beast. M1 Pro takes the exceptional performance
+                    of the M1 architecture to a whole new level for pro users.
+                  </p>
+                  <p className="text-gray-800 font-light">
+                    Even the most ambitious projects are easily handled with up to
+                    10 CPU cores, up to 16 GPU cores, a 16core Neural Engine, and
+                    dedicated encode and decode media engines that support H.264,
+                    HEVC, and ProRes codecs.
+                  </p>
+                </div>
+                <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
+                <div className="w-full gap-2 flex flex-col lg:w-1/4">
+                  <p className="text-xl font-medium">Feature</p>
+                  <div className="flex flex-col lg:px-0 px-5">
+                    <p className="my-2 flex gap-2 text-base font-medium items-center">
+                      <PiMedalLight className="text-2xl text-btnColor" />
+                      Free 1 Year Warranty
+                    </p>
+                    <p className="my-2 flex gap-2 text-base font-medium items-center">
+                      <FiTruck className="text-2xl text-btnColor" />
+                      Free Shipping & Fasted Delivery
+                    </p>
+                    <p className="my-2 flex gap-2 text-base font-medium items-center">
+                      <PiHandshake className="text-2xl text-btnColor" />
+                      100% Money-back guarantee
+                    </p>
+                    <p className="my-2 flex gap-2 text-base font-medium items-center">
+                      <LuHeadset className="text-2xl text-btnColor" />
+                      24/7 Customer support
+                    </p>
+                    <p className="my-2 flex gap-2 text-base font-medium items-center">
+                      <FaRegCreditCard className="text-2xl text-btnColor" />
+                      Secure payment method
+                    </p>
+                  </div>
+                </div>
+                <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
+                <div className="w-full gap-2 flex flex-col lg:w-2/6">
+                  <p className="text-xl font-medium">Shipping Information</p>
+                  <div className="flex flex-col lg:px-0 px-5">
+                    <p className="text-base font-medium my-0.5">
+                      Courier:{" "}
+                      <span className="text-gray-700">2 - 4 days, free shipping</span>
+                    </p>
+                    <p className="text-base font-medium my-0.5">
+                      Local Shipping:{" "}
+                      <span className="text-gray-700"> up to one week, $19.00</span>
+                    </p>
+                    <p className="text-base font-medium my-0.5">
+                      UPS Ground Shipping:
+                      <span className="text-gray-700"> 4 - 6 days, $29.00</span>
+                    </p>
+                    <p className="text-base font-medium my-0.5">
+                      Unishop Global Export:
+                      <span className="text-gray-700"> 3 - 4 days, $39.00</span>
+                    </p>
+                  </div>
+                </div>
               </div>
-            </div>
-            <div className="hidden lg:block w-px bg-gray-300 mx-1"></div>
-            <div className="w-full gap-2 flex flex-col lg:w-2/6">
-              <p className="text-xl font-medium">Shipping Information</p>
-              <div className="flex flex-col lg:px-0 px-5">
-                <p className="text-base font-medium my-0.5">
-                Courier:{" "}
-                <span className="text-gray-700">2 - 4 days, free shipping</span>
-              </p>
-              <p className="text-base font-medium my-0.5">
-                Local Shipping:{" "}
-                <span className="text-gray-700"> up to one week, $19.00</span>
-              </p>
-              <p className="text-base font-medium my-0.5">
-                UPS Ground Shipping:
-                <span className="text-gray-700"> 4 - 6 days, $29.00</span>
-              </p>
-              <p className="text-base font-medium my-0.5">
-                Unishop Global Export:
-                <span className="text-gray-700"> 3 - 4 days, $39.00</span>
-              </p>
+            )}
+
+            {activeTab === "additionalInfo" && (
+              <div className="animate-fade-in">
+                <ProductAdditionalInfo product={product} />
               </div>
-            </div>
+            )}
+
+            {activeTab === "specification" && (
+              <div className="animate-fade-in">
+                <ProductSpecification product={product} />
+              </div>
+            )}
+
+            {activeTab === "review" && (
+              <div className="animate-fade-in">
+                <ProductReview product={product} />
+              </div>
+            )}
           </div>
         </div>
       </div>
