@@ -1,9 +1,7 @@
 import React, { useState } from "react";
-import { FaMinus, FaPlus } from "react-icons/fa";
-import { MdOutlineCancel } from "react-icons/md";
+import { FaMinus, FaPlus, FaTimes } from "react-icons/fa";
 
 const AddToCard = (props) => {
-  //distructure props
   const {
     OriginalPrice,
     DiscountPrice,
@@ -11,94 +9,116 @@ const AddToCard = (props) => {
     product,
     removeFromCart,
     updateCartQuantity,
-    Total,
   } = props;
+
+  const [isRemoving, setIsRemoving] = useState(false);
+
+  const handleRemove = () => {
+    setIsRemoving(true);
+    setTimeout(() => {
+      removeFromCart(product.id);
+    }, 300);
+  };
+
+  const foundItem = cart.find((item) => item.id === product.id);
+  const quantity = foundItem ? foundItem.quantity : 1;
+  const itemTotal = DiscountPrice * quantity;
+
   return (
-    <div>
-      {cart.length > 0 && (
-        <>
-          <div className="flex border-b-2 my-1 md:gap-2 xl:gap-2 2xl:gap-4 w-full py-2">
-            <div className="flex flex-row md:gap-2 w-2/5 md:w-[55%] rounded">
-              <div className="flex w-1/12 justify-center items-center">
-                <MdOutlineCancel
-                  onClick={() => removeFromCart(product.id)}
-                  className="text-2xl w-fit text-gray-600 cursor-pointer hover:text-red-600"
-                />
+    <div
+      className={`transition-all duration-300 ${
+        isRemoving ? "opacity-0 scale-95" : "opacity-100 scale-100"
+      }`}
+    >
+      <div className="flex flex-col md:flex-row items-center gap-4 p-4 hover:bg-gray-50 transition-colors duration-200">
+        {/* Product Image and Details */}
+        <div className="flex items-center gap-4 w-full md:w-1/2">
+          {/* Remove Button */}
+          <button
+            onClick={handleRemove}
+            className="flex-shrink-0 text-gray-400 hover:text-red-500 transition-colors duration-200 p-2 hover:bg-red-50 rounded-lg group"
+            aria-label="Remove item"
+          >
+            <FaTimes className="text-xl group-hover:rotate-90 transition-transform duration-300" />
+          </button>
+
+          {/* Product Image */}
+          <div className="flex-shrink-0 w-20 h-20 md:w-24 md:h-24 bg-gray-100 rounded-lg overflow-hidden">
+            <img
+              className="w-full h-full object-contain p-2"
+              src={product.image}
+              alt={product.title}
+            />
+          </div>
+
+          {/* Product Title */}
+          <div className="flex-1 min-w-0">
+            <h3 className="text-sm md:text-base font-medium text-gray-800 line-clamp-2 leading-snug">
+              {product.title}
+            </h3>
+            {product.category && (
+              <p className="text-xs text-gray-500 mt-1">{product.category}</p>
+            )}
+          </div>
+        </div>
+
+        {/* Price, Quantity, and Total */}
+        <div className="flex items-center justify-between md:justify-around w-full md:w-1/2 gap-2">
+          {/* Price */}
+          <div className="flex flex-col items-center min-w-[80px]">
+            {OriginalPrice && OriginalPrice > DiscountPrice && (
+              <p className="text-xs text-gray-400 line-through">
+                ${OriginalPrice.toFixed(2)}
+              </p>
+            )}
+            <p className="text-base md:text-lg font-semibold text-gray-800">
+              ${DiscountPrice.toFixed(2)}
+            </p>
+          </div>
+
+          {/* Quantity Controls */}
+          <div className="flex items-center gap-2 md:gap-3">
+            <div className="flex items-center border-2 border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
+              <button
+                onClick={() => {
+                  if (quantity > 1) {
+                    updateCartQuantity(product.id, quantity - 1);
+                  }
+                }}
+                disabled={quantity <= 1}
+                className={`px-3 py-2 hover:bg-gray-100 transition-colors duration-200 ${
+                  quantity <= 1 ? "text-gray-300 cursor-not-allowed" : "text-gray-700"
+                }`}
+                aria-label="Decrease quantity"
+              >
+                <FaMinus className="text-sm" />
+              </button>
+              
+              <div className="px-4 py-2 min-w-[50px] text-center">
+                <span className="text-base md:text-lg font-semibold text-gray-800">
+                  {quantity}
+                </span>
               </div>
-              <div className="flex w-11/12 md:w-[90%] gap-2 items-center">
-                <div className="flex w-1/3 items-center">
-                  <img className="" src={product.image} alt="logo" />
-                </div>
-                <div className="flex w-2/3 h-full items-center justify-start">
-                  <p className="leading-tight justify-center items-center line-clamp-2 text-xs md:text-lg text-gray-700">
-                    {product.title}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="flex w-3/5 items-center justify-around md:gap-2 xl:gap-2 2xl:gap-4">
-              <div className="mx-auto">
-                {OriginalPrice && (
-                  <p className="text-center line-through text-xs md:text-sm font-medium text-gray-600">
-                    ${OriginalPrice}
-                  </p>
-                )}
-                <p className="text-center text-sm md:text-base font-medium">
-                  ${DiscountPrice}
-                </p>
-              </div>
-              <div className="items-center m-auto px-1 py-1">
-                <div className="flex gap-2 md:gap-5 justify-center items-center border-2 border-gray-300 rounded px-2 md:py-1 w-full">
-                  <button
-                    onClick={() => {
-                      const foundItem =
-                        cart.length > 0 &&
-                        cart.find((item) => item.id === product.id);
-                      if (foundItem.quantity > 1) {
-                        updateCartQuantity(product.id, foundItem.quantity - 1);
-                      }
-                    }}
-                    className="md:font-medium"
-                  >
-                    <FaMinus />
-                  </button>
-                  <p className="md:text-xl">
-                    {(() => {
-                      const foundItem =
-                        cart.length > 0 &&
-                        cart.find((item) => item.id === product.id);
-                      return foundItem ? foundItem.quantity : 1;
-                    })()}
-                  </p>
-                  <button
-                    onClick={() => {
-                      const foundItem =
-                        cart.length > 0 &&
-                        cart.find((item) => item.id === product.id);
-                      updateCartQuantity(product.id, foundItem.quantity + 1);
-                    }}
-                  >
-                    <FaPlus />
-                  </button>
-                </div>
-              </div>
-              <div className="m-auto">
-                <p className="text-center text-base font-medium">
-                  {/* Calculate total price for this product */}$
-                  {(() => {
-                    const foundItem =
-                      cart.length > 0 &&
-                      cart.find((item) => item.id === product.id);
-                    return foundItem
-                      ? DiscountPrice * foundItem.quantity
-                      : DiscountPrice;
-                  })()}
-                </p>
-              </div>
+              
+              <button
+                onClick={() => updateCartQuantity(product.id, quantity + 1)}
+                className="px-3 py-2 hover:bg-gray-100 text-gray-700 transition-colors duration-200"
+                aria-label="Increase quantity"
+              >
+                <FaPlus className="text-sm" />
+              </button>
             </div>
           </div>
-        </>
-      )}
+
+          {/* Item Total */}
+          <div className="flex flex-col items-center min-w-[80px]">
+            <p className="text-base md:text-lg font-bold text-btnColor">
+              ${itemTotal.toFixed(2)}
+            </p>
+            <p className="text-xs text-gray-500">Total</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
