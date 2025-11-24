@@ -233,7 +233,7 @@ export const CoreTeamMembers = [
 export const flashSaleToday = [
     {
         id: 1,
-        productId: 1,
+        productId: 7,
         image: flash1,
         price: 1500,
         description:"Bose Sport Earbuds - Wireless Earphones - Bluetooth In Ear..."
@@ -247,7 +247,7 @@ export const flashSaleToday = [
     },
     {
         id: 3,
-        productId: 8,
+        productId: 4,
         image: flash3,
         price: 1500,
         description:"4K UHD LED Smart TV with Chromecast Built-in"
@@ -264,7 +264,7 @@ export const bestSellers = [
     },
     {
         id: 2,
-        productId: 2,
+        productId: 20,
         image: bestSeller2,
         price:1500,
         description:"Simple Mobile 5G LTE Galexy 12 Mini 512GB Gaming Phone"
@@ -281,7 +281,7 @@ export const bestSellers = [
 export const topRated = [
     {
         id: 1,
-        productId: 3,
+        productId: 18,
         image: topRated1,
         price: 1500,
         description:"Portable Wshing Machine, 11lbs capacity Model 18NMF..."
@@ -295,7 +295,7 @@ export const topRated = [
     },
     {
         id: 3,
-        productId: 4,
+        productId: 11,
         image: topRated3,
         price: 1500,
         description:"Dell Optiplex 7000x7480 All-in-One Computer Monitor"
@@ -312,7 +312,7 @@ export const newArrival = [
     },
     {
         id: 2,
-        productId: 5,
+        productId: 9,
         image: newArrival2,
         price:1500,
         description:"JBL FLIP 4 - Waterproof Portable Bluetooth Speaker..."
