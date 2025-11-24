@@ -22,6 +22,8 @@ import CheckOutSuccess from "./pages/CheckOutSuccess";
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./components/ScrollComponents/ScrollToTop";
 import Header from "./pages/Header";
+import ComparePage from "./pages/ComparePage";
+import NeedHelp from "./pages/NeedHelp";
 
 const App = () => {
   return (
@@ -40,12 +42,15 @@ const App = () => {
         <Route path="/customer-support" element={<CustomerSupport />} />
         <Route path="/blogs" element={<BlogList />} />
         <Route path="/blog-details" element={<BlogDetails />} />
+        <Route path="/blog-details/:blogId" element={<BlogDetails />} />
         <Route path="/track-order" element={<TrackOrder />} />
         <Route path="/track-order-details" element={<TrackOrderDetails />} />
         <Route path="/shoping-card" element={<ShopingCard />} />
         <Route path="/wish-list" element={<WishList />} />
         <Route path="/check-out" element={<CheckOut />} />
         <Route path="/check-out-success" element={<CheckOutSuccess />} />
+        <Route path="/compare" element={<ComparePage />} />
+        <Route path="/need-help" element={<NeedHelp />} />
         {/* Add more routes as needed */}
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:productId" element={<ProductDetails />} />
