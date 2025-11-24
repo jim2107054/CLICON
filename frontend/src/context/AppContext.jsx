@@ -101,6 +101,11 @@ export const AppContextProvider = ({ children }) => {
     }
   };
 
+  // Function to clear all items from cart
+  const clearCart = () => {
+    setCart([]);
+  };
+
   // Function to add item to wish list
   const addToWishList = (product) => {
     //check if the product is already in the wish list
@@ -185,6 +190,7 @@ export const AppContextProvider = ({ children }) => {
     addToCart,
     removeFromCart,
     updateCartQuantity,
+    clearCart,
     addToWishList,
     removeFromWishList,
     addToCompare,
