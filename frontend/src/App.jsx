@@ -24,6 +24,8 @@ import ScrollToTop from "./components/ScrollComponents/ScrollToTop";
 import Header from "./pages/Header";
 import ComparePage from "./pages/ComparePage";
 import NeedHelp from "./pages/NeedHelp";
+import MyAccount from "./pages/MyAccount";
+import Settings from "./pages/Settings";
 
 const App = () => {
   return (
@@ -51,6 +53,8 @@ const App = () => {
         <Route path="/check-out-success" element={<CheckOutSuccess />} />
         <Route path="/compare" element={<ComparePage />} />
         <Route path="/need-help" element={<NeedHelp />} />
+        <Route path="/my-account" element={<MyAccount />} />
+        <Route path="/settings" element={<Settings />} />
         {/* Add more routes as needed */}
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:productId" element={<ProductDetails />} />

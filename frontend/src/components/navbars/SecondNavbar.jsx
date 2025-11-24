@@ -84,30 +84,33 @@ const SecondNavbar = () => {
           <div className="cursor-pointer relative group rounded-full p-1 bg-gray-400">
             <img className="h-7" src={assets.user} alt="userIcon" />
             <div className="absolute flex-col w-40 z-50 bg-blue-100 top-0 mt-7 left-0 text-white rounded-sm pr-4 pl-2 py-1 hidden group-hover:block">
-              <p className="text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5">
+              <p 
+                onClick={() => navigate("/my-account")}
+                className="text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5 cursor-pointer hover:text-btnColor transition-colors"
+              >
                 My Account
               </p>
               <p
-                onClick={() => navigate("/shoping-card")}
-                className="text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5"
+                onClick={() => navigate("/track-order")}
+                className="text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5 cursor-pointer hover:text-btnColor transition-colors"
               >
-                Purchase{" "}
+                Purchase
               </p>
               <p
                 onClick={() => navigate("/shop")}
-                className="text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5"
+                className="text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5 cursor-pointer hover:text-btnColor transition-colors"
               >
                 Shop Now
               </p>
-              <p className="text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5">
+              <p 
+                onClick={() => navigate("/settings")}
+                className="text-base text-gray-800 flex font-light hover:font-medium my-0.5 mx-5 cursor-pointer hover:text-btnColor transition-colors"
+              >
                 Settings
               </p>
               <p
-                onClick={() => {
-                  navigate("/");
-                  setLogOut(!logOut);
-                }}
-                className="text-base hover:scale-105 transition-all duration-300 border font-bold justify-center items-center py-0.5 text-center rounded bg-btnColor mx-5 my-2"
+                onClick={handleLogout}
+                className="text-base hover:scale-105 transition-all duration-300 border font-bold justify-center items-center py-0.5 text-center rounded bg-btnColor mx-5 my-2 cursor-pointer"
               >
                 Logout
               </p>

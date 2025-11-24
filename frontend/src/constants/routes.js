@@ -20,6 +20,8 @@ export const ROUTES = {
   BLOGS: "/blogs",
   BLOG_DETAILS: "/blogs/:blogId",
   NEED_HELP: "/need-help",
+  MY_ACCOUNT: "/my-account",
+  SETTINGS: "/settings",
 };
 
 export const getProductDetailsRoute = (productId) => `/shop/${productId}`;
