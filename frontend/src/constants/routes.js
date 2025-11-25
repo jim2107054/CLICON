@@ -22,6 +22,8 @@ export const ROUTES = {
   NEED_HELP: "/need-help",
   MY_ACCOUNT: "/my-account",
   SETTINGS: "/settings",
+  TERMS: "/terms",
+  PRIVACY: "/privacy",
 };
 
 export const getProductDetailsRoute = (productId) => `/shop/${productId}`;
