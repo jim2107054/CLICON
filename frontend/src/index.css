@@ -50,3 +50,41 @@ body{
 .featured-products{
     @apply text-base text-gray-500 font-medium cursor-pointer hover:text-btnColor
 }
+
+/* Product Gallery Animations */
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-down {
+  animation: fade-in-down 0.3s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-in;
+}
+
+/* Image zoom effect on hover */
+.product-image-zoom {
+  transition: transform 0.3s ease;
+}
+
+.product-image-zoom:hover {
+  transform: scale(1.05);
+}
