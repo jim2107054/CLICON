@@ -63,54 +63,57 @@ const AddToCard = (props) => {
         </div>
 
         {/* Price, Quantity, and Total */}
-        <div className="flex items-center justify-between md:justify-around w-full md:w-1/2 gap-2">
-          {/* Price */}
-          <div className="flex flex-col items-center min-w-[80px]">
-            {OriginalPrice && OriginalPrice > DiscountPrice && (
-              <p className="text-xs text-gray-400 line-through">
-                ${OriginalPrice.toFixed(2)}
+        <div className="flex flex-col md:flex-row items-center md:justify-around w-full md:w-1/2 gap-3 md:gap-2">
+          {/* First Row on Mobile: Price and Quantity */}
+          <div className="flex items-center justify-between w-full md:w-auto gap-4">
+            {/* Price */}
+            <div className="flex flex-col items-center min-w-[80px]">
+              {OriginalPrice && OriginalPrice > DiscountPrice && (
+                <p className="text-xs text-gray-400 line-through">
+                  ${OriginalPrice.toFixed(2)}
+                </p>
+              )}
+              <p className="text-base md:text-lg font-semibold text-gray-800">
+                ${DiscountPrice.toFixed(2)}
               </p>
-            )}
-            <p className="text-base md:text-lg font-semibold text-gray-800">
-              ${DiscountPrice.toFixed(2)}
-            </p>
-          </div>
+            </div>
 
-          {/* Quantity Controls */}
-          <div className="flex items-center gap-2 md:gap-3">
-            <div className="flex items-center border-2 border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
-              <button
-                onClick={() => {
-                  if (quantity > 1) {
-                    updateCartQuantity(product.id, quantity - 1);
-                  }
-                }}
-                disabled={quantity <= 1}
-                className={`px-3 py-2 hover:bg-gray-100 transition-colors duration-200 ${
-                  quantity <= 1 ? "text-gray-300 cursor-not-allowed" : "text-gray-700"
-                }`}
-                aria-label="Decrease quantity"
-              >
-                <FaMinus className="text-sm" />
-              </button>
-              
-              <div className="px-4 py-2 min-w-[50px] text-center">
-                <span className="text-base md:text-lg font-semibold text-gray-800">
-                  {quantity}
-                </span>
+            {/* Quantity Controls */}
+            <div className="flex items-center gap-2 md:gap-3">
+              <div className="flex items-center border-2 border-gray-300 rounded-lg overflow-hidden bg-white shadow-sm">
+                <button
+                  onClick={() => {
+                    if (quantity > 1) {
+                      updateCartQuantity(product.id, quantity - 1);
+                    }
+                  }}
+                  disabled={quantity <= 1}
+                  className={`px-3 py-2 hover:bg-gray-100 transition-colors duration-200 ${
+                    quantity <= 1 ? "text-gray-300 cursor-not-allowed" : "text-gray-700"
+                  }`}
+                  aria-label="Decrease quantity"
+                >
+                  <FaMinus className="text-sm" />
+                </button>
+                
+                <div className="px-4 py-2 min-w-[50px] text-center">
+                  <span className="text-base md:text-lg font-semibold text-gray-800">
+                    {quantity}
+                  </span>
+                </div>
+                
+                <button
+                  onClick={() => updateCartQuantity(product.id, quantity + 1)}
+                  className="px-3 py-2 hover:bg-gray-100 text-gray-700 transition-colors duration-200"
+                  aria-label="Increase quantity"
+                >
+                  <FaPlus className="text-sm" />
+                </button>
               </div>
-              
-              <button
-                onClick={() => updateCartQuantity(product.id, quantity + 1)}
-                className="px-3 py-2 hover:bg-gray-100 text-gray-700 transition-colors duration-200"
-                aria-label="Increase quantity"
-              >
-                <FaPlus className="text-sm" />
-              </button>
             </div>
           </div>
 
-          {/* Item Total */}
+          {/* Second Row on Mobile: Item Total */}
           <div className="flex flex-col items-center min-w-[80px]">
             <p className="text-base md:text-lg font-bold text-btnColor">
               ${itemTotal.toFixed(2)}
