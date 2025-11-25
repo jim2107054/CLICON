@@ -194,7 +194,7 @@ const ShopingCard = () => {
         <div className="flex flex-col w-full lg:w-1/3 space-y-6">
           {/*--------Shipping Options----------*/}
           {cart.length > 0 && (
-            <div className="bg-white rounded-xl shadow-lg p-6">
+            <div className="hidden sm:block bg-white rounded-xl shadow-lg p-6">
               <div className="flex items-center gap-2 mb-4">
                 <MdLocalShipping className="text-2xl text-btnColor" />
                 <h3 className="text-xl font-bold text-gray-800">Shipping Method</h3>
@@ -233,7 +233,7 @@ const ShopingCard = () => {
           )}
 
           {/*--------Coupon Code----------*/}
-          <div className="bg-white rounded-xl shadow-lg p-6">
+          <div className="hidden sm:block bg-white rounded-xl shadow-lg p-6">
             <div className="flex items-center gap-2 mb-4">
               <FaTag className="text-xl text-btnColor" />
               <h3 className="text-xl font-bold text-gray-800">Discount Code</h3>
@@ -258,9 +258,9 @@ const ShopingCard = () => {
               </div>
             ) : (
               <>
-                <div className="flex gap-2 mb-2">
+                <div className="flex flex-col sm:flex-row gap-2 mb-2">
                   <input
-                    className="flex-1 h-12 border-2 border-gray-300 rounded-lg px-4 focus:border-btnColor focus:outline-none transition-colors"
+                    className="h-12 border-2 border-gray-300 rounded-lg px-4 focus:border-btnColor focus:outline-none transition-colors"
                     type="text"
                     value={couponCode}
                     onChange={(e) => {
@@ -271,7 +271,7 @@ const ShopingCard = () => {
                   />
                   <button
                     onClick={handleApplyCoupon}
-                    className="px-6 py-3 text-white bg-blueButton rounded-lg font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg"
+                    className="px-6 py-2.5 text-white bg-blueButton rounded-md font-semibold hover:bg-blue-600 transition-all duration-300 shadow-md hover:shadow-lg"
                   >
                     Apply
                   </button>
@@ -300,7 +300,7 @@ const ShopingCard = () => {
                 Order Summary
               </h3>
               
-              <div className="space-y-4 mb-4">
+              <div className="hidden sm:block space-y-4 mb-4">
                 <div className="flex justify-between text-gray-700">
                   <span className="font-medium">Subtotal</span>
                   <span className="font-semibold">${subTotal.toFixed(2)}</span>
@@ -329,7 +329,8 @@ const ShopingCard = () => {
 
               <div className="border-t-2 border-gray-200 pt-4 mb-6">
                 <div className="flex justify-between items-center">
-                  <span className="text-xl font-bold text-gray-800">Total</span>
+                  <span className="text-xl font-bold text-gray-800 sm:block hidden">Total</span>
+                  <span className="text-xl font-bold text-gray-800 sm:hidden">Checkout</span>
                   <div className="text-right">
                     <p className="text-2xl font-bold text-btnColor">
                       ${NeedToPay.toFixed(2)}
@@ -341,13 +342,14 @@ const ShopingCard = () => {
 
               <button
                 onClick={handleCheckout}
-                className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-btnColor to-orange-500 text-white font-bold rounded-lg hover:from-orange-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                className="w-full flex items-center justify-center gap-3 px-6 py-2.5 bg-gradient-to-r from-btnColor to-orange-500 text-white font-bold rounded-lg hover:from-orange-600 hover:to-orange-600 transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
               >
-                PROCEED TO CHECKOUT
+                <span className="sm:hidden">CHECKOUT</span>
+                <span className="hidden sm:inline">PROCEED TO CHECKOUT</span>
                 <FaArrowRight />
               </button>
 
-              <p className="text-center text-xs text-gray-500 mt-4">
+              <p className="text-center text-xs text-gray-500 mt-4 hidden sm:block">
                 Secure checkout powered by SSL encryption
               </p>
             </div>
