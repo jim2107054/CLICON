@@ -71,6 +71,7 @@ const ProductDetails = () => {
   const product = shopItems.find((item) => item.id === parseInt(productId));
 
   const [productImage, setProductImage] = useState(product?.image || assets.laptopDetails);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [clickedPage, setclickedPage] = useState(0);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [productQuantity, setproductQuantity] = useState(1);
@@ -82,6 +83,11 @@ const ProductDetails = () => {
   useEffect(() => {
     if (!product) {
       navigate("/shop");
+    } else {
+      // Reset to first image when product changes
+      setProductImage(smallImages[0].image);
+      setSelectedImageIndex(0);
+      setCurrentIndex(0);
     }
   }, [product, navigate]);
 
@@ -143,6 +149,35 @@ const ProductDetails = () => {
 
   const smallImageLength = smallImages.length;
   const smallImagePages = Math.ceil(smallImageLength / 5);
+
+  const handleThumbnailClick = (image, index) => {
+    setProductImage(image);
+    setSelectedImageIndex(index);
+  };
+
+  const handlePrevImage = () => {
+    const newIndex = selectedImageIndex > 0 ? selectedImageIndex - 1 : smallImageLength - 1;
+    setSelectedImageIndex(newIndex);
+    setProductImage(smallImages[newIndex].image);
+    
+    // Adjust scroll position if needed
+    if (newIndex < currentIndex) {
+      setCurrentIndex(Math.max(0, currentIndex - 1));
+      setclickedPage(Math.max(0, clickedPage - 1));
+    }
+  };
+
+  const handleNextImage = () => {
+    const newIndex = selectedImageIndex < smallImageLength - 1 ? selectedImageIndex + 1 : 0;
+    setSelectedImageIndex(newIndex);
+    setProductImage(smallImages[newIndex].image);
+    
+    // Adjust scroll position if needed
+    if (newIndex >= currentIndex + 5) {
+      setCurrentIndex(Math.min(smallImageLength - 5, currentIndex + 1));
+      setclickedPage(Math.min(smallImagePages, clickedPage + 1));
+    }
+  };
   
   return (
     <div>
@@ -155,57 +190,105 @@ const ProductDetails = () => {
       )}
       <div className="flex flex-col lg:flex-row px-36 py-5 gap-10 lg:gap-12 mb-10">
         {/*--------Left Div-----------*/}
-        <div className="flex bg-gary-500 flex-col w-full lg:w-1/2">
-          {/*--------Product large image*/}
-          <div className="flex w-[616px] h-[464px] p-5 justify-center">
-            <img className="w-full rounded-md" src={productImage} alt="" />
+        <div className="flex bg-gray-50 flex-col w-full lg:w-1/2 rounded-lg">
+          {/*--------Product large image with navigation arrows*/}
+          <div className="relative flex w-full h-[464px] p-5 justify-center items-center bg-white rounded-lg overflow-hidden group">
+            {/* Previous Arrow */}
+            <button
+              onClick={handlePrevImage}
+              className="absolute left-4 z-10 bg-white hover:bg-btnColor text-gray-800 hover:text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+              aria-label="Previous image"
+            >
+              <IoArrowBackOutline className="text-2xl" />
+            </button>
+            
+            {/* Main Product Image */}
+            <img 
+              className="w-full h-full object-contain rounded-md transition-all duration-300" 
+              src={productImage} 
+              alt={product.title}
+            />
+            
+            {/* Next Arrow */}
+            <button
+              onClick={handleNextImage}
+              className="absolute right-4 z-10 bg-white hover:bg-btnColor text-gray-800 hover:text-white p-3 rounded-full shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:scale-110"
+              aria-label="Next image"
+            >
+              <IoArrowForwardOutline className="text-2xl" />
+            </button>
+
+            {/* Image Counter */}
+            <div className="absolute bottom-4 right-4 bg-black bg-opacity-60 text-white px-3 py-1 rounded-full text-sm font-medium">
+              {selectedImageIndex + 1} / {smallImageLength}
+            </div>
           </div>
-          {/*--------Product small images*/}
-          <div className="flex relative w-full lg:w-[616px] h-[100px] items-center justify-center">
+
+          {/*--------Product thumbnail gallery*/}
+          <div className="flex relative w-full h-[120px] items-center justify-center mt-4 px-2">
             <button
               onClick={() => {
                 if (currentIndex > 0) {
                   setCurrentIndex(currentIndex - 1);
-                } else {
-                  setCurrentIndex(0);
+                  setclickedPage(clickedPage - 1);
                 }
-                setProductImage(smallImages[currentIndex].image);
-                setclickedPage(clickedPage - 1);
               }}
-              className={`text-3xl absolute text-white ${
-                clickedPage === 0 ? "bg-gray-200" : "bg-btnColor"
-              } rounded-full left-0`}
-              disabled={clickedPage === 0}
+              className={`absolute z-10 text-2xl text-white p-2 rounded-full left-0 transition-all duration-200 ${
+                currentIndex === 0 
+                  ? "bg-gray-300 cursor-not-allowed" 
+                  : "bg-btnColor hover:bg-opacity-80 hover:scale-110 shadow-md"
+              }`}
+              disabled={currentIndex === 0}
+              aria-label="Previous thumbnails"
             >
-              <IoArrowBackOutline />{" "}
+              <IoArrowBackOutline />
             </button>
-            <div className="flex px-5 gap-5 overflow-x-scroll scroll-smooth hide-scrollbar">
+
+            <div className="flex px-12 gap-3 overflow-hidden">
               {smallImages.length > 0 &&
                 smallImages
                   .slice(currentIndex, currentIndex + 5)
-                  .map((item) => (
-                    <img
-                      key={item.id}
-                      onClick={() => setProductImage(item.image)}
-                      className="w-[100px] h-[80px] rounded cursor-pointer border-gray-500 border"
-                      src={item.image}
-                      alt="PRODUCT IMAGE"
-                    />
-                  ))}
+                  .map((item, index) => {
+                    const actualIndex = currentIndex + index;
+                    return (
+                      <div
+                        key={item.id}
+                        onClick={() => handleThumbnailClick(item.image, actualIndex)}
+                        className={`relative flex-shrink-0 w-[100px] h-[90px] rounded-lg cursor-pointer overflow-hidden transition-all duration-300 ${
+                          selectedImageIndex === actualIndex
+                            ? "ring-4 ring-btnColor scale-105 shadow-lg"
+                            : "ring-2 ring-gray-300 hover:ring-gray-400 hover:scale-105"
+                        }`}
+                      >
+                        <img
+                          className="w-full h-full object-cover"
+                          src={item.image}
+                          alt={`Product thumbnail ${actualIndex + 1}`}
+                        />
+                        {selectedImageIndex === actualIndex && (
+                          <div className="absolute inset-0 bg-btnColor bg-opacity-20 flex items-center justify-center">
+                            <IoCheckmarkCircle className="text-btnColor text-3xl drop-shadow-lg" />
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
             </div>
+
             <button
               onClick={() => {
-                if (currentIndex < smallImageLength - 1) {
-                  const newIndex = currentIndex + 1;
-                  setCurrentIndex(newIndex);
-                  setProductImage(smallImages[newIndex].image);
+                if (currentIndex < smallImageLength - 5) {
+                  setCurrentIndex(currentIndex + 1);
                   setclickedPage(clickedPage + 1);
                 }
               }}
-              className={`text-3xl absolute text-white ${
-                clickedPage === smallImagePages ? "bg-gray-200" : "bg-btnColor"
-              } rounded-full right-0`}
-              disabled={clickedPage === smallImagePages}
+              className={`absolute z-10 text-2xl text-white p-2 rounded-full right-0 transition-all duration-200 ${
+                currentIndex >= smallImageLength - 5
+                  ? "bg-gray-300 cursor-not-allowed"
+                  : "bg-btnColor hover:bg-opacity-80 hover:scale-110 shadow-md"
+              }`}
+              disabled={currentIndex >= smallImageLength - 5}
+              aria-label="Next thumbnails"
             >
               <IoArrowForwardOutline />
             </button>
