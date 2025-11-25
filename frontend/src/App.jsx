@@ -26,6 +26,8 @@ import ComparePage from "./pages/ComparePage";
 import NeedHelp from "./pages/NeedHelp";
 import MyAccount from "./pages/MyAccount";
 import Settings from "./pages/Settings";
+import TermsOfService from "./pages/TermsPage";
+import PrivacyPolicy from "./pages/PrivacyPage";
 
 const App = () => {
   return (
@@ -55,6 +57,8 @@ const App = () => {
         <Route path="/need-help" element={<NeedHelp />} />
         <Route path="/my-account" element={<MyAccount />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/terms" element={<TermsOfService />} />
+        <Route path="/privacy" element={<PrivacyPolicy />} />
         {/* Add more routes as needed */}
         <Route path="/shop" element={<ShopPage />} />
         <Route path="/shop/:productId" element={<ProductDetails />} />
