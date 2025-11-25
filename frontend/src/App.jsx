@@ -21,6 +21,7 @@ import CheckOut from "./pages/CheckOut";
 import CheckOutSuccess from "./pages/CheckOutSuccess";
 import HomePage from "./pages/HomePage";
 import ScrollToTop from "./components/ScrollComponents/ScrollToTop";
+import ScrollToTopButton from "./components/ScrollComponents/ScrollToTopButton";
 import Header from "./pages/Header";
 import ComparePage from "./pages/ComparePage";
 import NeedHelp from "./pages/NeedHelp";
@@ -34,6 +35,7 @@ const App = () => {
     <div className="">
       <Header />
       <ScrollToTop />
+      <ScrollToTopButton />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<SignIn />} />
