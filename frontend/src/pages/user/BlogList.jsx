@@ -4,7 +4,7 @@ import blogArticles, { getAllCategories, getAllTags } from "../../assets/blogDat
 import { FaCalendar, FaUser, FaEye, FaHeart, FaClock, FaTag, FaSearch } from "react-icons/fa";
 import { BiTrendingUp } from "react-icons/bi";
 import SEO from "../../components/user/SEO";
-import { PAGE_SEO } from "../config/seo.config";
+import { PAGE_SEO } from "../../config/seo.config";
 
 const BlogList = () => {
   const navigate = useNavigate();

@@ -31,7 +31,7 @@ import ProductAdditionalInfo from "../../components/user/ProductAdditionalInfo";
 import ProductSpecification from "../../components/user/ProductSpecification";
 import ProductReview from "../../components/user/ProductReview";
 import SEO from "../../components/user/SEO";
-import { getProductSchema, getBreadcrumbSchema, SITE_CONFIG } from "../config/seo.config";
+import { getProductSchema, getBreadcrumbSchema, SITE_CONFIG } from "../../config/seo.config";
 
 //For Now we are using the small images here, in real project we will upload or fetch form backend
 const smallImages = [

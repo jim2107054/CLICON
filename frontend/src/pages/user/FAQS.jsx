@@ -3,7 +3,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { faqsData } from "../../assets/assets";
 import FAQItem from "../../components/user/FAQItem";
 import SEO from "../../components/user/SEO";
-import { PAGE_SEO, getFAQSchema } from "../config/seo.config";
+import { PAGE_SEO, getFAQSchema } from "../../config/seo.config";
 
 const FAQS = () => {
   // Prepare structured data for FAQs

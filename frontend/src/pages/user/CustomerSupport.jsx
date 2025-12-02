@@ -2,7 +2,7 @@ import React from "react";
 import { assets } from "../../assets/assets";
 import { FaArrowRight } from "react-icons/fa";
 import SEO from "../../components/user/SEO";
-import { PAGE_SEO, SITE_CONFIG } from "../config/seo.config";
+import { PAGE_SEO, SITE_CONFIG } from "../../config/seo.config";
 
 const CustomerSupport = () => {
   return (

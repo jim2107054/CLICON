@@ -4,7 +4,7 @@ import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
 import SEO from "../../components/user/SEO";
-import { PAGE_SEO } from "../config/seo.config";
+import { PAGE_SEO } from "../../config/seo.config";
 
 const TrackOrder = () => {
   const navigate = useNavigate();

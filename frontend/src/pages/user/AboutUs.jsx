@@ -11,7 +11,7 @@ import { FaArrowRight } from "react-icons/fa";
 import Subscribtion from "../../components/user/Subscribtion";
 import ShowRelatedProducts from "../../components/user/ShowRelatedProducts";
 import SEO from "../../components/user/SEO";
-import { PAGE_SEO, getOrganizationSchema } from "../config/seo.config";
+import { PAGE_SEO, getOrganizationSchema } from "../../config/seo.config";
 
 const AboutUs = () => {
   return (

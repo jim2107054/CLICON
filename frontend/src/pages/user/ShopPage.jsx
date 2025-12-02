@@ -9,7 +9,7 @@ import { useAppContext } from "../../context/AppContext";
 import { CATEGORIES, BRANDS, SORT_OPTIONS } from "../constants/categories";
 import { useLocation, useNavigate } from "react-router-dom";
 import SEO from "../../components/user/SEO";
-import { PAGE_SEO, CATEGORY_SEO } from "../config/seo.config";
+import { PAGE_SEO, CATEGORY_SEO } from "../../config/seo.config";
 
 const ShopPage = () => {
   const { cart, addToCart, addToWishList, wishList, addToCompare, searchQuery } = useAppContext();

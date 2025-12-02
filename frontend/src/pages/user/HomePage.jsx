@@ -9,7 +9,7 @@ import ShopWithCategorys from "../../components/user/Home/ShopWithCategorys";
 import ShowRelatedProducts from "../../components/user/ShowRelatedProducts";
 import Subscribtion from "../../components/user/Subscribtion";
 import SEO from "../../components/user/SEO";
-import { PAGE_SEO, getOrganizationSchema, getWebsiteSchema } from "../config/seo.config";
+import { PAGE_SEO, getOrganizationSchema, getWebsiteSchema } from "../../config/seo.config";
 
 const HomePage = () => {
   const structuredData = [
