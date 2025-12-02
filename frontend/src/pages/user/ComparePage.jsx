@@ -1,4 +1,4 @@
-import { useAppContext } from "../context/AppContext";
+import { useAppContext } from "../../context/AppContext";
 import { useNavigate } from "react-router-dom";
 import { IoClose } from "react-icons/io5";
 import { 

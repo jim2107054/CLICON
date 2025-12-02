@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { assets } from "./../assets/assets";
+import { assets } from "../../assets/assets";
 import ItemCard from "../../components/user/ItemCard";
 import shopItems from "../../assets/ShopItem";
 import { FaArrowRight } from "react-icons/fa";
 import { GrCart } from "react-icons/gr";
 import { BsArrowLeftSquare, BsArrowRightSquare } from "react-icons/bs";
 import { useAppContext } from "../../context/AppContext";
-import { CATEGORIES, BRANDS, SORT_OPTIONS } from "../constants/categories";
+import { CATEGORIES, BRANDS, SORT_OPTIONS } from "../../constants/categories";
 import { useLocation, useNavigate } from "react-router-dom";
 import SEO from "../../components/user/SEO";
 import { PAGE_SEO, CATEGORY_SEO } from "../../config/seo.config";
