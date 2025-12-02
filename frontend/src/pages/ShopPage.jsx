@@ -8,6 +8,8 @@ import { BsArrowLeftSquare, BsArrowRightSquare } from "react-icons/bs";
 import { useAppContext } from "../context/AppContext";
 import { CATEGORIES, BRANDS, SORT_OPTIONS } from "../constants/categories";
 import { useLocation, useNavigate } from "react-router-dom";
+import SEO from "../components/SEO";
+import { PAGE_SEO, CATEGORY_SEO } from "../config/seo.config";
 
 const ShopPage = () => {
   const { cart, addToCart, addToWishList, wishList, addToCompare, searchQuery } = useAppContext();
@@ -135,8 +137,26 @@ const ShopPage = () => {
     setLocalSearchQuery("");
     setSortOption("default");
   };
+
+  // Get SEO data based on category filter
+  const getCategorySEO = () => {
+    if (selectedCategories.length === 1) {
+      const category = selectedCategories[0];
+      return CATEGORY_SEO[category] || PAGE_SEO.shop;
+    }
+    return PAGE_SEO.shop;
+  };
+
+  const seoData = getCategorySEO();
+
   return (
     <div>
+      <SEO
+        title={seoData.title}
+        description={seoData.description}
+        keywords={seoData.keywords}
+        url={PAGE_SEO.shop.path}
+      />
       <div className="flex flex-col gap-10 md:flex-row px-1 md:px-5 lg:px-36 py-5">
         {/*------------Left Div - Filters ---------------*/}
         <div className="hidden md:block w-full md:w-2/4 lg:w-1/5 p-5">

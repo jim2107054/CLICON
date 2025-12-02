@@ -3,6 +3,8 @@ import { BsExclamationOctagon } from "react-icons/bs";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/AppContext";
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../config/seo.config";
 
 const TrackOrder = () => {
   const navigate = useNavigate();

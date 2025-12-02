@@ -29,14 +29,34 @@ const Footer = () => {
         {/*----------Second div-------*/}
         <div className="felx flex-col lg:text-start text-center text-white">
           <h1 className="text-xl font-medium mb-5">TOP CATEGORY</h1>
-          <p className="top-categories">Computer & Laptop</p>
-          <p className="top-categories">SmartPhone</p>
-          <p className="top-categories">Headphone</p>
-          <p className="top-categories">Accessories</p>
-          <p className="top-categories">TV & Homes</p>
+          <p 
+            onClick={() => navigate("/shop?category=computer")}
+            className="top-categories cursor-pointer hover:text-yellow-300 transition-colors">
+            Computer & Laptop
+          </p>
+          <p 
+            onClick={() => navigate("/shop?category=smartphone")}
+            className="top-categories cursor-pointer hover:text-yellow-300 transition-colors">
+            SmartPhone
+          </p>
+          <p 
+            onClick={() => navigate("/shop?category=headphone")}
+            className="top-categories cursor-pointer hover:text-yellow-300 transition-colors">
+            Headphone
+          </p>
+          <p 
+            onClick={() => navigate("/shop?category=accessories")}
+            className="top-categories cursor-pointer hover:text-yellow-300 transition-colors">
+            Accessories
+          </p>
+          <p 
+            onClick={() => navigate("/shop?category=tv")}
+            className="top-categories cursor-pointer hover:text-yellow-300 transition-colors">
+            TV & Homes
+          </p>
           <p 
           onClick={() => navigate("/shop")}
-          className="flex text-base text-yellow-300 font-light my-1 gap-2 cursor-pointer justify-center items-center">
+          className="flex text-base text-yellow-300 font-light my-1 gap-2 cursor-pointer justify-center lg:justify-start items-center hover:text-yellow-400 transition-colors">
             Browse All Product{" "}
             <span>
               <FaArrowRight className="text-xl text-[#f8f835]" />

@@ -1,0 +1,17 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /shoping-card
+Disallow: /wish-list
+Disallow: /check-out
+Disallow: /check-out-success
+Disallow: /my-account
+Disallow: /settings
+Disallow: /login
+Disallow: /signup
+Disallow: /password
+Disallow: /reset-password
+Disallow: /verify-email
+
+# Sitemap location
+Sitemap: https://clicon.com/sitemap.xml

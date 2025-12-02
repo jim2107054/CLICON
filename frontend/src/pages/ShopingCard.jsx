@@ -4,6 +4,8 @@ import { MdLocalShipping, MdRefresh } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import AddToCard from "../components/AddToCard";
 import { useAppContext } from "../context/AppContext";
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../config/seo.config";
 
 const ShopingCard = () => {
   const navigate = useNavigate();

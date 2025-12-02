@@ -2,10 +2,27 @@ import React from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { faqsData } from "../assets/assets";
 import FAQItem from "../components/FAQItem";
+import SEO from "../components/SEO";
+import { PAGE_SEO, getFAQSchema } from "../config/seo.config";
 
 const FAQS = () => {
+  // Prepare structured data for FAQs
+  const faqSchema = getFAQSchema(
+    faqsData.map(faq => ({
+      question: faq.question,
+      answer: faq.answer
+    }))
+  );
+
   return (
     <div>
+      <SEO
+        title={PAGE_SEO.faqs.title}
+        description={PAGE_SEO.faqs.description}
+        keywords={PAGE_SEO.faqs.keywords}
+        url={PAGE_SEO.faqs.path}
+        structuredData={faqSchema}
+      />
       <div className="flex flex-col gap-10 px-2 py-2 lg:px-36 lg:py-10">
         <div className="flex flex-col lg:flex-row lg:gap-20 gap-16">
           {/*-------Left Div-------*/}

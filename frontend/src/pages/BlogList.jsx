@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import blogArticles, { getAllCategories, getAllTags } from "../assets/blogData";
 import { FaCalendar, FaUser, FaEye, FaHeart, FaClock, FaTag, FaSearch } from "react-icons/fa";
 import { BiTrendingUp } from "react-icons/bi";
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../config/seo.config";
 
 const BlogList = () => {
   const navigate = useNavigate();

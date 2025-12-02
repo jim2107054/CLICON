@@ -1,5 +1,7 @@
 import AddToWishList from "../components/AddToWishList";
 import { useAppContext } from "../context/AppContext";
+import SEO from "../components/SEO";
+import { PAGE_SEO } from "../config/seo.config";
 
 const WishList = () => {
   const {
@@ -14,6 +16,13 @@ const WishList = () => {
   } = useAppContext();
   return (
     <div>
+      <SEO
+        title={PAGE_SEO.wishlist.title}
+        description={PAGE_SEO.wishlist.description}
+        keywords={PAGE_SEO.wishlist.keywords}
+        url={PAGE_SEO.wishlist.path}
+        noindex={true}
+      />
       <div className="flex flex-col lg:flex-row gap-5 px-1 md:px-10 lg:px-36 py-10">
         <div className="flex flex-col h-fit pb-5 rounded border-2 border-gray-300 w-full">
           <p className="text-xl px-5 font-medium my-2">Wishlist</p>

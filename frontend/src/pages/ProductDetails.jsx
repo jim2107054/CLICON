@@ -30,6 +30,8 @@ import ProductDescription from "../components/ProductDescription";
 import ProductAdditionalInfo from "../components/ProductAdditionalInfo";
 import ProductSpecification from "../components/ProductSpecification";
 import ProductReview from "../components/ProductReview";
+import SEO from "../components/SEO";
+import { getProductSchema, getBreadcrumbSchema, SITE_CONFIG } from "../config/seo.config";
 
 //For Now we are using the small images here, in real project we will upload or fetch form backend
 const smallImages = [
@@ -179,8 +181,40 @@ const ProductDetails = () => {
     }
   };
   
+  // Generate structured data for product
+  const productStructuredData = getProductSchema({
+    ...product,
+    inStock: true,
+    rating: 4.5,
+    reviews: 125
+  });
+
+  // Generate breadcrumb structured data
+  const breadcrumbData = getBreadcrumbSchema([
+    { name: "Home", url: SITE_CONFIG.siteUrl },
+    { name: "Shop", url: `${SITE_CONFIG.siteUrl}/shop` },
+    { name: product.title, url: `${SITE_CONFIG.siteUrl}/shop/${product.id}` }
+  ]);
+
+  const structuredData = [productStructuredData, breadcrumbData];
+
   return (
     <div>
+      <SEO
+        title={`${product.title} - ${product.brand} | CLICON`}
+        description={`Buy ${product.title} at best price. ${product.brand} product with warranty. Price: $${product.price}. Free shipping available.`}
+        keywords={`${product.title}, ${product.brand}, ${product.category}, buy online, best price`}
+        url={`/shop/${product.id}`}
+        image={product.image}
+        type="product"
+        product={{
+          price: product.price,
+          availability: "in stock",
+          brand: product.brand,
+          condition: "new"
+        }}
+        structuredData={structuredData}
+      />
       {/* Notification Toast */}
       {notification && (
         <div className="fixed top-24 right-4 z-50 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg animate-fade-in-down flex items-center gap-2">

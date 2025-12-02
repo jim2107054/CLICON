@@ -10,10 +10,19 @@ import AboutUsSales from "../components/AboutUsSales";
 import { FaArrowRight } from "react-icons/fa";
 import Subscribtion from "../components/Subscribtion";
 import ShowRelatedProducts from "../components/ShowRelatedProducts";
+import SEO from "../components/SEO";
+import { PAGE_SEO, getOrganizationSchema } from "../config/seo.config";
 
 const AboutUs = () => {
   return (
     <div>
+      <SEO
+        title={PAGE_SEO.about.title}
+        description={PAGE_SEO.about.description}
+        keywords={PAGE_SEO.about.keywords}
+        url={PAGE_SEO.about.path}
+        structuredData={getOrganizationSchema()}
+      />
       <div className="flex flex-col items-center gap-10 md:px-36 py-10">
         {/*------------First Div----------*/}
         <div className="flex items-center px-5 md:px-0 flex-col-reverse lg:flex-row gap-10">

@@ -1,10 +1,18 @@
 import React from "react";
 import { assets } from "../assets/assets";
 import { FaArrowRight } from "react-icons/fa";
+import SEO from "../components/SEO";
+import { PAGE_SEO, SITE_CONFIG } from "../config/seo.config";
 
 const CustomerSupport = () => {
   return (
     <div className="">
+      <SEO
+        title={PAGE_SEO.contact.title}
+        description={PAGE_SEO.contact.description}
+        keywords={PAGE_SEO.contact.keywords}
+        url={PAGE_SEO.contact.path}
+      />
       <div className="flex flex-col gap-10 md:px-36 py-10">
         {/*------------First Div----------*/}
         <div className="w-full flex flex-col-reverse lg:flex-row gap-10">
