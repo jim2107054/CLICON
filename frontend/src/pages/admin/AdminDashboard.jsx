@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
 import { 
   FiHome, FiPackage, FiShoppingCart, FiUsers, FiFolder, 
   FiBarChart2, FiSettings, FiMenu, FiX, FiLogOut, FiBell,
@@ -9,6 +9,16 @@ import {
 const AdminDashboard = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    if (window.confirm('Are you sure you want to logout?')) {
+      localStorage.removeItem('adminToken');
+      localStorage.removeItem('adminEmail');
+      localStorage.removeItem('isAdmin');
+      navigate('/admin/login');
+    }
+  };
 
   const menuItems = [
     { path: '/admin', icon: FiHome, label: 'Dashboard', exact: true },
@@ -88,7 +98,11 @@ const AdminDashboard = () => {
                   <p className="text-xs text-gray-500">admin@clicon.com</p>
                 </div>
               </div>
-              <button className="text-gray-400 hover:text-red-600 transition-colors">
+              <button 
+                onClick={handleLogout}
+                className="text-gray-400 hover:text-red-600 transition-colors"
+                title="Logout"
+              >
                 <FiLogOut className="w-5 h-5" />
               </button>
             </div>

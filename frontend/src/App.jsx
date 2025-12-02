@@ -33,6 +33,7 @@ import TermsOfService from "./pages/user/TermsPage";
 import PrivacyPolicy from "./pages/user/PrivacyPage";
 
 // Admin Pages
+import AdminLogin from "./pages/admin/AdminLogin";
 import Dashboard from "./pages/admin/Dashboard";
 import ProductsList from "./pages/admin/ProductsList";
 import AddProduct from "./pages/admin/AddProduct";
@@ -42,13 +43,21 @@ import Categories from "./pages/admin/Categories";
 import Inventory from "./pages/admin/Inventory";
 import Analytics from "./pages/admin/Analytics";
 import AdminSettings from "./pages/admin/AdminSettings";
+import ProtectedRoute from "./components/admin/ProtectedRoute";
 
 const App = () => {
   return (
     <div className="">
       <Routes>
-        {/* Admin Routes */}
-        <Route path="/admin" element={<AdminLayout />}>
+        {/* Admin Login Route */}
+        <Route path="/admin/login" element={<AdminLogin />} />
+
+        {/* Protected Admin Routes */}
+        <Route path="/admin" element={
+          <ProtectedRoute>
+            <AdminLayout />
+          </ProtectedRoute>
+        }>
           <Route index element={<Dashboard />} />
           <Route path="products" element={<ProductsList />} />
           <Route path="products/add" element={<AddProduct />} />
