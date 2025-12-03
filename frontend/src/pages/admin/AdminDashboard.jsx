@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { 
   FiHome, FiPackage, FiShoppingCart, FiUsers, FiFolder, 
   FiBarChart2, FiSettings, FiMenu, FiX, FiLogOut, FiBell,
@@ -14,9 +15,11 @@ const AdminDashboard = () => {
   const handleLogout = () => {
     if (window.confirm('Are you sure you want to logout?')) {
       localStorage.removeItem('adminToken');
-      localStorage.removeItem('adminEmail');
-      localStorage.removeItem('isAdmin');
-      navigate('/admin/login');
+      localStorage.removeItem('admin');
+      toast.success('Logged out successfully!');
+      setTimeout(() => {
+        navigate('/admin/login');
+      }, 500);
     }
   };
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiPlus, FiSearch, FiFilter, FiEdit2, FiTrash2, FiEye } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { productsService, categoriesService } from '../../services/adminService';
 
 const ProductsList = () => {
@@ -21,6 +22,7 @@ const ProductsList = () => {
   useEffect(() => {
     fetchProducts();
     fetchCategories();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagination.page, searchTerm, filterCategory, filterStatus]);
 
   const fetchProducts = async () => {
@@ -42,7 +44,9 @@ const ProductsList = () => {
       }));
     } catch (error) {
       console.error('Error fetching products:', error);
-      setError('Failed to load products');
+      const errorMsg = 'Failed to load products';
+      setError(errorMsg);
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -62,10 +66,13 @@ const ProductsList = () => {
     
     try {
       await productsService.delete(id);
+      toast.success('Product deleted successfully!');
       fetchProducts();
     } catch (error) {
       console.error('Error deleting product:', error);
-      setError('Failed to delete product');
+      const errorMsg = 'Failed to delete product';
+      setError(errorMsg);
+      toast.error(errorMsg);
     }
   };
 

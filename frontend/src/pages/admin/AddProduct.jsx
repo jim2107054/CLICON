@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { FiUpload, FiX } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { productsService, categoriesService } from '../../services/adminService';
 
 const AddProduct = () => {
@@ -35,6 +36,7 @@ const AddProduct = () => {
       setCategories(data.categories || []);
     } catch (error) {
       console.error('Error fetching categories:', error);
+      toast.error('Failed to load categories');
     }
   };
 
@@ -91,10 +93,15 @@ const AddProduct = () => {
 
       // Create product
       await productsService.create(productData);
-      navigate('/admin/products');
+      toast.success('Product created successfully!');
+      setTimeout(() => {
+        navigate('/admin/products');
+      }, 500);
     } catch (error) {
       console.error('Error creating product:', error);
-      setError(error.message || 'Failed to create product');
+      const errorMsg = error.message || 'Failed to create product';
+      setError(errorMsg);
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }

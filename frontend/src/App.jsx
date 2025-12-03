@@ -1,4 +1,6 @@
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Layouts
 import UserLayout from "./layouts/UserLayout";
@@ -100,6 +102,18 @@ const App = () => {
           <Route path="*" element={<ErrorPageNotFound />} />
         </Route>
       </Routes>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   );
 };

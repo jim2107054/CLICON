@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { FiPlus, FiEdit2, FiTrash2, FiFolder } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 import { categoriesService } from '../../services/adminService';
 
 const Categories = () => {
@@ -20,7 +21,9 @@ const Categories = () => {
       setCategories(data.categories || []);
     } catch (error) {
       console.error('Error fetching categories:', error);
-      setError('Failed to load categories');
+      const errorMsg = 'Failed to load categories';
+      setError(errorMsg);
+      toast.error(errorMsg);
     } finally {
       setLoading(false);
     }
@@ -30,12 +33,15 @@ const Categories = () => {
     e.preventDefault();
     try {
       await categoriesService.create(newCategory);
+      toast.success('Category created successfully!');
       setShowAddModal(false);
       setNewCategory({ name: '', description: '' });
       fetchCategories(); // Refresh the list
     } catch (error) {
       console.error('Error adding category:', error);
-      setError('Failed to add category');
+      const errorMsg = 'Failed to add category';
+      setError(errorMsg);
+      toast.error(errorMsg);
     }
   };
 
@@ -44,10 +50,13 @@ const Categories = () => {
     
     try {
       await categoriesService.delete(id);
+      toast.success('Category deleted successfully!');
       fetchCategories(); // Refresh the list
     } catch (error) {
       console.error('Error deleting category:', error);
-      setError('Failed to delete category');
+      const errorMsg = 'Failed to delete category';
+      setError(errorMsg);
+      toast.error(errorMsg);
     }
   };
 

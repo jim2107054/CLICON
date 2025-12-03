@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiLock, FiUser, FiEye, FiEyeOff } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 import { adminAuthService } from '../../services/adminService';
 
 const AdminLogin = () => {
@@ -21,11 +22,16 @@ const AdminLogin = () => {
     try {
       // Call the real admin authentication API
       const response = await adminAuthService.login(credentials);
+      toast.success('Login successful! Welcome back!');
       
       // Redirect to admin dashboard on success
-      navigate('/admin');
+      setTimeout(() => {
+        navigate('/admin');
+      }, 500);
     } catch (error) {
-      setError(error.message || 'Invalid email or password');
+      const errorMessage = error.message || 'Invalid email or password';
+      setError(errorMessage);
+      toast.error(errorMessage);
     } finally {
       setLoading(false);
     }
