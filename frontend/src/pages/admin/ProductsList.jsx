@@ -36,6 +36,7 @@ const ProductsList = () => {
         ...(filterStatus !== 'all' && { status: filterStatus })
       };
       const data = await productsService.getAll(params);
+      console.log('Products data:', data); // Debug log
       setProducts(data.products || []);
       setPagination(prev => ({
         ...prev,
@@ -219,7 +220,13 @@ const ProductsList = () => {
                         <div className="text-sm text-gray-600">{product.sku}</div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-600">{product.category?.name || 'N/A'}</div>
+                        <div className="text-sm text-gray-600">
+                          {product.category && typeof product.category === 'object' 
+                            ? product.category.name 
+                            : product.category 
+                            ? 'Category ID: ' + product.category.substring(0, 8)
+                            : 'N/A'}
+                        </div>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div className="text-sm font-medium text-gray-900">${product.price}</div>
