@@ -94,6 +94,7 @@ const seedDatabase = async () => {
     const products = await Product.insertMany([
       {
         name: 'MacBook Pro 16"',
+        slug: 'macbook-pro-16',
         sku: 'MBP-16-2023',
         description: 'Powerful laptop for professionals with M2 Pro chip, 16GB RAM, 512GB SSD',
         shortDescription: 'High-performance laptop for creative professionals',
@@ -118,6 +119,7 @@ const seedDatabase = async () => {
       },
       {
         name: 'iPhone 15 Pro Max',
+        slug: 'iphone-15-pro-max',
         sku: 'IP15PM-256',
         description: 'Latest iPhone with A17 Pro chip, titanium design, 256GB storage',
         shortDescription: 'Premium smartphone with advanced camera system',
@@ -142,6 +144,7 @@ const seedDatabase = async () => {
       },
       {
         name: 'Sony WH-1000XM5',
+        slug: 'sony-wh-1000xm5',
         sku: 'SONY-WH1000XM5',
         description: 'Industry-leading noise canceling headphones with exceptional sound quality',
         shortDescription: 'Premium wireless noise-canceling headphones',
@@ -166,6 +169,7 @@ const seedDatabase = async () => {
       },
       {
         name: 'Dell XPS 13',
+        slug: 'dell-xps-13',
         sku: 'DELL-XPS13-I7',
         description: 'Ultra-portable laptop with 13.4-inch InfinityEdge display',
         shortDescription: 'Premium ultrabook for everyday computing',
@@ -187,6 +191,7 @@ const seedDatabase = async () => {
       },
       {
         name: 'Samsung Galaxy S24 Ultra',
+        slug: 'samsung-galaxy-s24-ultra',
         sku: 'SGS24U-512',
         description: 'Flagship Android smartphone with S Pen and advanced AI features',
         price: 1299.99,
