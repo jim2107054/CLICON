@@ -316,14 +316,25 @@ router.get('/categories', checkPermission('categories'), asyncHandler(async (req
 }));
 
 router.post('/categories', checkPermission('categories'), asyncHandler(async (req, res) => {
-  const category = await Category.create(req.body);
-  
-  res.status(201).json({
-    id: category._id,
-    name: category.name,
-    products: 0,
-    description: category.description || 'No description'
-  });
+  try {
+    const category = await Category.create(req.body);
+    
+    res.status(201).json({
+      id: category._id,
+      name: category.name,
+      products: 0,
+      description: category.description || 'No description'
+    });
+  } catch (error) {
+    // Handle duplicate key error
+    if (error.code === 11000) {
+      const field = Object.keys(error.keyPattern)[0];
+      const value = error.keyValue[field];
+      res.status(400);
+      throw new Error(`Category with ${field} "${value}" already exists`);
+    }
+    throw error;
+  }
 }));
 
 router.put('/categories/:id', checkPermission('categories'), asyncHandler(async (req, res) => {

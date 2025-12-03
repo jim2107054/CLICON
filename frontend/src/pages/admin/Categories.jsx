@@ -48,11 +48,16 @@ const Categories = () => {
       fetchCategories(); // Refresh the list
     } catch (error) {
       console.error('Error adding category:', error);
-      console.error('Error details:', error.message, error.response?.data);
       
       // Extract meaningful error message
       let errorMsg = 'Failed to add category';
-      if (error.message) {
+      
+      // Check for duplicate key error
+      if (error.message && error.message.includes('E11000 duplicate key')) {
+        const match = error.message.match(/dup key: \{ name: "([^"]+)" \}/);
+        const categoryName = match ? match[1] : newCategory.name;
+        errorMsg = `Category "${categoryName}" already exists. Please use a different name.`;
+      } else if (error.message) {
         errorMsg = error.message;
       } else if (error.response?.data?.message) {
         errorMsg = error.response.data.message;
