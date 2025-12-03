@@ -1,24 +1,42 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { ordersService } from '../../services/adminService';
 
 const RecentOrders = () => {
-  const orders = [
-    { id: 'ORD-2023-005', customer: 'Michael Brown', product: 'MacBook Pro 16"', amount: 2499.99, status: 'Delivered' },
-    { id: 'ORD-2023-006', customer: 'Sarah Davis', product: 'iPhone 15 Pro', amount: 1199.99, status: 'Shipping' },
-    { id: 'ORD-2023-007', customer: 'David Wilson', product: 'iPad Air', amount: 599.99, status: 'Processing' },
-    { id: 'ORD-2023-008', customer: 'Emma Martinez', product: 'AirPods Pro', amount: 249.99, status: 'Pending' },
-    { id: 'ORD-2023-009', customer: 'James Garcia', product: 'Apple Watch', amount: 399.99, status: 'Delivered' },
-  ];
+  const [orders, setOrders] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchRecentOrders();
+  }, []);
+
+  const fetchRecentOrders = async () => {
+    try {
+      setLoading(true);
+      const data = await ordersService.getAll({ page: 1, limit: 5 });
+      setOrders(data.orders || []);
+    } catch (error) {
+      console.error('Error fetching recent orders:', error);
+      setOrders([]);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const getStatusColor = (status) => {
-    switch (status) {
-      case 'Delivered':
+    const statusLower = status?.toLowerCase() || '';
+    switch (statusLower) {
+      case 'delivered':
         return 'bg-green-100 text-green-700';
-      case 'Shipping':
+      case 'shipped':
+      case 'shipping':
         return 'bg-blue-100 text-blue-700';
-      case 'Processing':
+      case 'processing':
         return 'bg-yellow-100 text-yellow-700';
-      case 'Pending':
+      case 'pending':
         return 'bg-gray-100 text-gray-700';
+      case 'cancelled':
+        return 'bg-red-100 text-red-700';
       default:
         return 'bg-gray-100 text-gray-700';
     }
@@ -32,52 +50,78 @@ const RecentOrders = () => {
           View All
         </Link>
       </div>
-      <div className="overflow-x-auto">
-        <table className="w-full">
-          <thead className="bg-gray-50 border-b border-gray-200">
-            <tr>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Order ID
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Customer
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Product
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Amount
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Status
-              </th>
-            </tr>
-          </thead>
-          <tbody className="divide-y divide-gray-200">
-            {orders.map((order) => (
-              <tr key={order.id} className="hover:bg-gray-50 transition-colors">
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">{order.id}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-600">{order.customer}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm text-gray-600">{order.product}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <div className="text-sm font-medium text-gray-900">${order.amount}</div>
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(order.status)}`}>
-                    {order.status}
-                  </span>
-                </td>
+      
+      {loading ? (
+        <div className="p-6 space-y-3">
+          {[1, 2, 3, 4, 5].map((i) => (
+            <div key={i} className="animate-pulse flex space-x-4">
+              <div className="flex-1 space-y-2">
+                <div className="h-4 bg-gray-200 rounded w-1/4"></div>
+                <div className="h-3 bg-gray-200 rounded w-1/2"></div>
+              </div>
+            </div>
+          ))}
+        </div>
+      ) : orders.length === 0 ? (
+        <div className="p-6 text-center text-gray-500">
+          No orders found
+        </div>
+      ) : (
+        <div className="overflow-x-auto">
+          <table className="w-full">
+            <thead className="bg-gray-50 border-b border-gray-200">
+              <tr>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Order #
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Customer
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Items
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Total
+                </th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                  Status
+                </th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody className="divide-y divide-gray-200">
+              {orders.map((order) => (
+                <tr key={order._id} className="hover:bg-gray-50 transition-colors">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900">
+                      {order.orderNumber || `#${order._id?.slice(-6)}`}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-600">
+                      {order.user?.name || order.shippingAddress?.name || 'Guest'}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-600">
+                      {order.items?.length || 0} item{order.items?.length !== 1 ? 's' : ''}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-medium text-gray-900">
+                      ${order.total?.toFixed(2) || '0.00'}
+                    </div>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full capitalize ${getStatusColor(order.status)}`}>
+                      {order.status}
+                    </span>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </div>
   );
 };
