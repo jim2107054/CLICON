@@ -83,6 +83,26 @@ if (process.env.NODE_ENV === 'development') {
 // Apply rate limiting to all routes
 app.use(rateLimiter);
 
+// Root Route
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'CLICON API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/health',
+      auth: '/api/auth',
+      admin: '/api/admin/auth',
+      products: '/api/products',
+      categories: '/api/categories',
+      orders: '/api/orders',
+      cart: '/api/cart',
+      wishlist: '/api/wishlist',
+      reviews: '/api/reviews'
+    }
+  });
+});
+
 // Health Check Route
 app.get('/health', (req, res) => {
   res.status(200).json({ 
