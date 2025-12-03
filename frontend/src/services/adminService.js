@@ -7,7 +7,8 @@ export const adminAuthService = {
       const response = await api.post('/admin/auth/login', credentials);
       if (response.data.token) {
         localStorage.setItem('adminToken', response.data.token);
-        localStorage.setItem('admin', JSON.stringify(response.data.admin));
+        localStorage.setItem('admin', JSON.stringify(response.data));
+        localStorage.setItem('isAdmin', 'true');
       }
       return response.data;
     } catch (error) {
@@ -18,6 +19,7 @@ export const adminAuthService = {
   logout: () => {
     localStorage.removeItem('adminToken');
     localStorage.removeItem('admin');
+    localStorage.removeItem('isAdmin');
   },
 
   getCurrentAdmin: () => {
