@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiUpload, FiX } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
+import { productsService, categoriesService } from '../../services/adminService';
 
 const AddProduct = () => {
   const navigate = useNavigate();
   const [images, setImages] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     sku: '',
@@ -21,6 +25,19 @@ const AddProduct = () => {
     status: 'active'
   });
 
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const fetchCategories = async () => {
+    try {
+      const data = await categoriesService.getAll();
+      setCategories(data.categories || []);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+    }
+  };
+
   const handleImageUpload = (e) => {
     const files = Array.from(e.target.files);
     const newImages = files.map(file => ({
@@ -35,12 +52,52 @@ const AddProduct = () => {
     setImages(newImages);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Add API call here
-    console.log('Form data:', formData);
-    console.log('Images:', images);
-    navigate('/admin/products');
+    setLoading(true);
+    setError('');
+
+    try {
+      // Upload images first if any
+      const imageUrls = [];
+      for (const image of images) {
+        const formDataImage = new FormData();
+        formDataImage.append('image', image.file);
+        try {
+          const uploadResponse = await productsService.uploadImage(formDataImage);
+          imageUrls.push(uploadResponse.url);
+        } catch (uploadError) {
+          console.error('Error uploading image:', uploadError);
+        }
+      }
+
+      // Prepare product data
+      const productData = {
+        name: formData.name,
+        sku: formData.sku,
+        category: formData.category,
+        price: parseFloat(formData.price),
+        comparePrice: formData.comparePrice ? parseFloat(formData.comparePrice) : undefined,
+        stock: parseInt(formData.stock),
+        description: formData.description,
+        shortDescription: formData.shortDescription,
+        brand: formData.brand,
+        weight: formData.weight ? parseFloat(formData.weight) : undefined,
+        dimensions: formData.dimensions,
+        tags: formData.tags ? formData.tags.split(',').map(tag => tag.trim()) : [],
+        status: formData.status,
+        images: imageUrls
+      };
+
+      // Create product
+      await productsService.create(productData);
+      navigate('/admin/products');
+    } catch (error) {
+      console.error('Error creating product:', error);
+      setError(error.message || 'Failed to create product');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -59,6 +116,12 @@ const AddProduct = () => {
           <p className="text-gray-600 mt-1">Fill in the details to create a new product</p>
         </div>
       </div>
+
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          {error}
+        </div>
+      )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -252,12 +315,11 @@ const AddProduct = () => {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
                 <option value="">Select category</option>
-                <option value="laptops">Laptops</option>
-                <option value="phones">Phones</option>
-                <option value="tablets">Tablets</option>
-                <option value="accessories">Accessories</option>
-                <option value="headphones">Headphones</option>
-                <option value="smartwatch">Smart Watch</option>
+                {categories.map((cat) => (
+                  <option key={cat._id} value={cat._id}>
+                    {cat.name}
+                  </option>
+                ))}
               </select>
             </div>
 
@@ -349,9 +411,12 @@ const AddProduct = () => {
           </button>
           <button
             type="submit"
-            className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            disabled={loading}
+            className={`px-6 py-2 rounded-lg text-white transition-colors ${
+              loading ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'
+            }`}
           >
-            Add Product
+            {loading ? 'Creating...' : 'Add Product'}
           </button>
         </div>
       </form>

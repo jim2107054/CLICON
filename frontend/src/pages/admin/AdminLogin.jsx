@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiLock, FiUser, FiEye, FiEyeOff } from 'react-icons/fi';
+import { adminAuthService } from '../../services/adminService';
 
 const AdminLogin = () => {
   const navigate = useNavigate();
@@ -12,35 +13,22 @@ const AdminLogin = () => {
     password: ''
   });
 
-  // Admin credentials (in production, this should be handled by backend)
-  const ADMIN_CREDENTIALS = {
-    email: 'admin@clicon.com',
-    password: 'Admin@123'
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
     setLoading(true);
 
-    // Simulate API call delay
-    setTimeout(() => {
-      if (
-        credentials.email === ADMIN_CREDENTIALS.email &&
-        credentials.password === ADMIN_CREDENTIALS.password
-      ) {
-        // Store admin token
-        localStorage.setItem('adminToken', 'admin-jwt-token-' + Date.now());
-        localStorage.setItem('adminEmail', credentials.email);
-        localStorage.setItem('isAdmin', 'true');
-        
-        // Redirect to admin dashboard
-        navigate('/admin');
-      } else {
-        setError('Invalid email or password');
-      }
+    try {
+      // Call the real admin authentication API
+      const response = await adminAuthService.login(credentials);
+      
+      // Redirect to admin dashboard on success
+      navigate('/admin');
+    } catch (error) {
+      setError(error.message || 'Invalid email or password');
+    } finally {
       setLoading(false);
-    }, 800);
+    }
   };
 
   const handleChange = (e) => {

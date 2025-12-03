@@ -1,24 +1,66 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiPlus, FiEdit2, FiTrash2, FiFolder } from 'react-icons/fi';
+import { categoriesService } from '../../services/adminService';
 
 const Categories = () => {
   const [showAddModal, setShowAddModal] = useState(false);
   const [newCategory, setNewCategory] = useState({ name: '', description: '' });
+  const [categories, setCategories] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
 
-  const categories = [
-    { id: 1, name: 'Laptops', products: 156, description: 'Portable computers and notebooks', color: 'bg-blue-100 text-blue-700' },
-    { id: 2, name: 'Phones', products: 234, description: 'Smartphones and mobile devices', color: 'bg-purple-100 text-purple-700' },
-    { id: 3, name: 'Tablets', products: 89, description: 'iPad and tablet devices', color: 'bg-green-100 text-green-700' },
-    { id: 4, name: 'Accessories', products: 412, description: 'Cases, chargers, and cables', color: 'bg-orange-100 text-orange-700' },
-    { id: 5, name: 'Headphones', products: 145, description: 'Audio devices and earphones', color: 'bg-pink-100 text-pink-700' },
-    { id: 6, name: 'Smart Watch', products: 78, description: 'Wearable smart devices', color: 'bg-indigo-100 text-indigo-700' }
-  ];
+  useEffect(() => {
+    fetchCategories();
+  }, []);
 
-  const handleAddCategory = (e) => {
+  const fetchCategories = async () => {
+    try {
+      setLoading(true);
+      const data = await categoriesService.getAll();
+      setCategories(data.categories || []);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      setError('Failed to load categories');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAddCategory = async (e) => {
     e.preventDefault();
-    console.log('Adding category:', newCategory);
-    setShowAddModal(false);
-    setNewCategory({ name: '', description: '' });
+    try {
+      await categoriesService.create(newCategory);
+      setShowAddModal(false);
+      setNewCategory({ name: '', description: '' });
+      fetchCategories(); // Refresh the list
+    } catch (error) {
+      console.error('Error adding category:', error);
+      setError('Failed to add category');
+    }
+  };
+
+  const handleDeleteCategory = async (id) => {
+    if (!confirm('Are you sure you want to delete this category?')) return;
+    
+    try {
+      await categoriesService.delete(id);
+      fetchCategories(); // Refresh the list
+    } catch (error) {
+      console.error('Error deleting category:', error);
+      setError('Failed to delete category');
+    }
+  };
+
+  const getCategoryColor = (index) => {
+    const colors = [
+      'bg-blue-100 text-blue-700',
+      'bg-purple-100 text-purple-700',
+      'bg-green-100 text-green-700',
+      'bg-orange-100 text-orange-700',
+      'bg-pink-100 text-pink-700',
+      'bg-indigo-100 text-indigo-700'
+    ];
+    return colors[index % colors.length];
   };
 
   return (
@@ -38,32 +80,49 @@ const Categories = () => {
         </button>
       </div>
 
-      {/* Categories Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {categories.map((category) => (
-          <div key={category.id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
-            <div className="flex items-start justify-between mb-4">
-              <div className={`w-12 h-12 ${category.color} rounded-lg flex items-center justify-center`}>
-                <FiFolder className="w-6 h-6" />
+      {error && (
+        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+          {error}
+        </div>
+      )}
+
+      {loading ? (
+        <div className="text-center py-12">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+          <p className="text-gray-600 mt-4">Loading categories...</p>
+        </div>
+      ) : categories.length === 0 ? (
+        <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+          <FiFolder className="w-16 h-16 text-gray-400 mx-auto mb-4" />
+          <p className="text-gray-600">No categories found. Add your first category.</p>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {categories.map((category, index) => (
+            <div key={category._id} className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-lg transition-shadow">
+              <div className="flex items-start justify-between mb-4">
+                <div className={`w-12 h-12 ${getCategoryColor(index)} rounded-lg flex items-center justify-center`}>
+                  <FiFolder className="w-6 h-6" />
+                </div>
+                <div className="flex space-x-2">
+                  <button 
+                    onClick={() => handleDeleteCategory(category._id)}
+                    className="text-gray-400 hover:text-red-600 transition-colors"
+                  >
+                    <FiTrash2 className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
-              <div className="flex space-x-2">
-                <button className="text-gray-400 hover:text-blue-600 transition-colors">
-                  <FiEdit2 className="w-4 h-4" />
-                </button>
-                <button className="text-gray-400 hover:text-red-600 transition-colors">
-                  <FiTrash2 className="w-4 h-4" />
-                </button>
+              <h3 className="text-lg font-semibold text-gray-800 mb-2">{category.name}</h3>
+              <p className="text-sm text-gray-600 mb-4">{category.description || 'No description'}</p>
+              <div className="flex items-center justify-between pt-4 border-t border-gray-200">
+                <span className="text-sm text-gray-600">Products</span>
+                <span className="text-sm font-semibold text-gray-800">{category.productCount || 0}</span>
               </div>
             </div>
-            <h3 className="text-lg font-semibold text-gray-800 mb-2">{category.name}</h3>
-            <p className="text-sm text-gray-600 mb-4">{category.description}</p>
-            <div className="flex items-center justify-between pt-4 border-t border-gray-200">
-              <span className="text-sm text-gray-600">Products</span>
-              <span className="text-sm font-semibold text-gray-800">{category.products}</span>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Add Category Modal */}
       {showAddModal && (
