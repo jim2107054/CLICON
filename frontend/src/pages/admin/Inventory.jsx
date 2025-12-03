@@ -1,34 +1,64 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FiAlertTriangle, FiPackage, FiTrendingUp, FiTrendingDown } from 'react-icons/fi';
+import { toast } from 'react-toastify';
+import { productsService } from '../../services/adminService';
 
 const Inventory = () => {
   const [filterStatus, setFilterStatus] = useState('all');
+  const [inventoryItems, setInventoryItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState('');
+  const [stats, setStats] = useState({
+    total: 0,
+    lowStock: 0,
+    outOfStock: 0
+  });
 
-  const inventoryItems = [
-    { id: 1, name: 'MacBook Pro 16"', sku: 'MBP-16-2023', stock: 45, reorderLevel: 10, status: 'In Stock', trend: 'up' },
-    { id: 2, name: 'iPhone 15 Pro', sku: 'IPH-15-PRO', stock: 120, reorderLevel: 20, status: 'In Stock', trend: 'up' },
-    { id: 3, name: 'AirPods Pro', sku: 'APP-2023', stock: 5, reorderLevel: 15, status: 'Low Stock', trend: 'down' },
-    { id: 4, name: 'iPad Air', sku: 'IPA-AIR-2023', stock: 0, reorderLevel: 10, status: 'Out of Stock', trend: 'down' },
-    { id: 5, name: 'Apple Watch', sku: 'AW-S9', stock: 67, reorderLevel: 15, status: 'In Stock', trend: 'up' },
-    { id: 6, name: 'Magic Keyboard', sku: 'MK-2023', stock: 8, reorderLevel: 10, status: 'Low Stock', trend: 'down' }
-  ];
+  useEffect(() => {
+    fetchInventory();
+  }, [filterStatus]);
 
-  const getStatusColor = (status) => {
-    switch (status) {
-      case 'In Stock':
-        return 'bg-green-100 text-green-700';
-      case 'Low Stock':
-        return 'bg-yellow-100 text-yellow-700';
-      case 'Out of Stock':
-        return 'bg-red-100 text-red-700';
-      default:
-        return 'bg-gray-100 text-gray-700';
+  const fetchInventory = async () => {
+    try {
+      setLoading(true);
+      setError('');
+      
+      const params = {};
+      if (filterStatus !== 'all') params.status = filterStatus;
+
+      const data = await productsService.getAll(params);
+      const products = data.products || [];
+      
+      setInventoryItems(products);
+      
+      // Calculate stats from real data
+      const lowStock = products.filter(p => p.stock > 0 && p.stock <= 10).length;
+      const outOfStock = products.filter(p => p.stock === 0).length;
+      
+      setStats({
+        total: products.length,
+        lowStock,
+        outOfStock
+      });
+    } catch (err) {
+      setError(err.message || 'Failed to fetch inventory');
+      toast.error('Failed to load inventory');
+    } finally {
+      setLoading(false);
     }
   };
 
-  const lowStockCount = inventoryItems.filter(item => item.status === 'Low Stock').length;
-  const outOfStockCount = inventoryItems.filter(item => item.status === 'Out of Stock').length;
-  const totalValue = inventoryItems.reduce((sum, item) => sum + (item.stock * 100), 0);
+  const getStatusColor = (stock) => {
+    if (stock === 0) return 'bg-red-100 text-red-700';
+    if (stock <= 10) return 'bg-yellow-100 text-yellow-700';
+    return 'bg-green-100 text-green-700';
+  };
+
+  const getStatusText = (stock) => {
+    if (stock === 0) return 'Out of Stock';
+    if (stock <= 10) return 'Low Stock';
+    return 'In Stock';
+  };
 
   return (
     <div className="space-y-6">
@@ -38,18 +68,15 @@ const Inventory = () => {
           <h1 className="text-2xl font-bold text-gray-800">Inventory Management</h1>
           <p className="text-gray-600 mt-1">Monitor and manage your stock levels</p>
         </div>
-        <button className="mt-4 md:mt-0 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
-          Generate Report
-        </button>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <div className="bg-white rounded-lg border border-gray-200 p-6">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Total Products</p>
-              <p className="text-2xl font-bold text-gray-800 mt-1">{inventoryItems.length}</p>
+              <p className="text-2xl font-bold text-gray-800 mt-1">{stats.total}</p>
             </div>
             <div className="w-12 h-12 bg-blue-50 rounded-lg flex items-center justify-center">
               <FiPackage className="w-6 h-6 text-blue-600" />
@@ -60,7 +87,7 @@ const Inventory = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Low Stock Items</p>
-              <p className="text-2xl font-bold text-gray-800 mt-1">{lowStockCount}</p>
+              <p className="text-2xl font-bold text-gray-800 mt-1">{stats.lowStock}</p>
             </div>
             <div className="w-12 h-12 bg-yellow-50 rounded-lg flex items-center justify-center">
               <FiAlertTriangle className="w-6 h-6 text-yellow-600" />
@@ -71,21 +98,10 @@ const Inventory = () => {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-sm text-gray-600">Out of Stock</p>
-              <p className="text-2xl font-bold text-gray-800 mt-1">{outOfStockCount}</p>
+              <p className="text-2xl font-bold text-gray-800 mt-1">{stats.outOfStock}</p>
             </div>
             <div className="w-12 h-12 bg-red-50 rounded-lg flex items-center justify-center">
               <FiAlertTriangle className="w-6 h-6 text-red-600" />
-            </div>
-          </div>
-        </div>
-        <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600">Inventory Value</p>
-              <p className="text-2xl font-bold text-gray-800 mt-1">${totalValue.toLocaleString()}</p>
-            </div>
-            <div className="w-12 h-12 bg-green-50 rounded-lg flex items-center justify-center">
-              <FiTrendingUp className="w-6 h-6 text-green-600" />
             </div>
           </div>
         </div>
@@ -139,70 +155,83 @@ const Inventory = () => {
 
       {/* Inventory Table */}
       <div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
-              <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Product
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  SKU
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Stock
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Reorder Level
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Status
-                </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Trend
-                </th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
-                  Actions
-                </th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-gray-200">
-              {inventoryItems.map((item) => (
-                <tr key={item.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{item.name}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-600">{item.sku}</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm font-medium text-gray-900">{item.stock} units</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <div className="text-sm text-gray-600">{item.reorderLevel} units</div>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(item.status)}`}>
-                      {item.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {item.trend === 'up' ? (
-                      <FiTrendingUp className="w-5 h-5 text-green-600" />
-                    ) : (
-                      <FiTrendingDown className="w-5 h-5 text-red-600" />
-                    )}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <button className="text-blue-600 hover:text-blue-800 font-medium">
-                      Adjust Stock
-                    </button>
-                  </td>
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+          </div>
+        ) : error ? (
+          <div className="flex flex-col justify-center items-center py-20">
+            <div className="text-red-600 text-lg mb-2">Error loading inventory</div>
+            <div className="text-gray-600 mb-4">{error}</div>
+            <button
+              onClick={fetchInventory}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            >
+              Try Again
+            </button>
+          </div>
+        ) : inventoryItems.length === 0 ? (
+          <div className="flex flex-col justify-center items-center py-20">
+            <FiPackage className="w-16 h-16 text-gray-400 mb-4" />
+            <div className="text-gray-600 text-lg mb-2">No products found</div>
+            <div className="text-gray-500 text-sm">Add products to start managing inventory</div>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead className="bg-gray-50 border-b border-gray-200">
+                <tr>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Product
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    SKU
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Stock
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Price
+                  </th>
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Status
+                  </th>
+                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+              </thead>
+              <tbody className="divide-y divide-gray-200">
+                {inventoryItems.map((item) => (
+                  <tr key={item._id} className="hover:bg-gray-50 transition-colors">
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">{item.name}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-600">{item.sku || 'N/A'}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm font-medium text-gray-900">{item.stock || 0} units</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <div className="text-sm text-gray-600">${item.price?.toFixed(2) || '0.00'}</div>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap">
+                      <span className={`px-3 py-1 inline-flex text-xs leading-5 font-semibold rounded-full ${getStatusColor(item.stock)}`}>
+                        {getStatusText(item.stock)}
+                      </span>
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                      <button className="text-blue-600 hover:text-blue-800 p-2 hover:bg-blue-50 rounded-lg transition-colors">
+                        Restock
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

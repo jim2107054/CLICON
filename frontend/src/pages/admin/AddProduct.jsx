@@ -70,6 +70,7 @@ const AddProduct = () => {
           imageUrls.push(uploadResponse.url);
         } catch (uploadError) {
           console.error('Error uploading image:', uploadError);
+          toast.error('Failed to upload image: ' + (uploadError.message || 'Unknown error'));
         }
       }
 
@@ -91,15 +92,19 @@ const AddProduct = () => {
         images: imageUrls
       };
 
+      console.log('Sending product data:', productData);
+
       // Create product
-      await productsService.create(productData);
+      const result = await productsService.create(productData);
+      console.log('Product created:', result);
       toast.success('Product created successfully!');
       setTimeout(() => {
         navigate('/admin/products');
       }, 500);
     } catch (error) {
       console.error('Error creating product:', error);
-      const errorMsg = error.message || 'Failed to create product';
+      console.error('Error details:', error.response || error);
+      const errorMsg = error.message || error.response?.data?.message || 'Failed to create product';
       setError(errorMsg);
       toast.error(errorMsg);
     } finally {
