@@ -34,7 +34,7 @@ export const adminAuthService = {
 export const productsService = {
   getAll: async (params = {}) => {
     try {
-      const response = await api.get('/products', { params });
+      const response = await api.get('/admin/products', { params });
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch products' };
@@ -43,7 +43,7 @@ export const productsService = {
 
   getById: async (id) => {
     try {
-      const response = await api.get(`/products/${id}`);
+      const response = await api.get(`/admin/products/${id}`);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch product' };
@@ -52,7 +52,7 @@ export const productsService = {
 
   create: async (productData) => {
     try {
-      const response = await api.post('/products', productData);
+      const response = await api.post('/admin/products', productData);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to create product' };
@@ -61,7 +61,7 @@ export const productsService = {
 
   update: async (id, productData) => {
     try {
-      const response = await api.put(`/products/${id}`, productData);
+      const response = await api.put(`/admin/products/${id}`, productData);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to update product' };
@@ -70,7 +70,7 @@ export const productsService = {
 
   delete: async (id) => {
     try {
-      const response = await api.delete(`/products/${id}`);
+      const response = await api.delete(`/admin/products/${id}`);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to delete product' };
@@ -93,7 +93,7 @@ export const productsService = {
 export const ordersService = {
   getAll: async (params = {}) => {
     try {
-      const response = await api.get('/orders', { params });
+      const response = await api.get('/admin/orders', { params });
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch orders' };
@@ -102,7 +102,7 @@ export const ordersService = {
 
   getById: async (id) => {
     try {
-      const response = await api.get(`/orders/${id}`);
+      const response = await api.get(`/admin/orders/${id}`);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch order' };
@@ -111,7 +111,7 @@ export const ordersService = {
 
   updateStatus: async (id, status) => {
     try {
-      const response = await api.put(`/orders/${id}/status`, { status });
+      const response = await api.put(`/admin/orders/${id}/status`, { status });
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to update order status' };
@@ -132,7 +132,7 @@ export const ordersService = {
 export const customersService = {
   getAll: async (params = {}) => {
     try {
-      const response = await api.get('/customers', { params });
+      const response = await api.get('/admin/customers', { params });
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch customers' };
@@ -141,7 +141,7 @@ export const customersService = {
 
   getById: async (id) => {
     try {
-      const response = await api.get(`/customers/${id}`);
+      const response = await api.get(`/admin/customers/${id}`);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch customer' };
@@ -150,7 +150,7 @@ export const customersService = {
 
   update: async (id, customerData) => {
     try {
-      const response = await api.put(`/customers/${id}`, customerData);
+      const response = await api.put(`/admin/customers/${id}`, customerData);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to update customer' };
@@ -159,7 +159,7 @@ export const customersService = {
 
   delete: async (id) => {
     try {
-      const response = await api.delete(`/customers/${id}`);
+      const response = await api.delete(`/admin/customers/${id}`);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to delete customer' };
@@ -171,7 +171,7 @@ export const customersService = {
 export const categoriesService = {
   getAll: async () => {
     try {
-      const response = await api.get('/categories');
+      const response = await api.get('/admin/categories');
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch categories' };
@@ -180,7 +180,7 @@ export const categoriesService = {
 
   getById: async (id) => {
     try {
-      const response = await api.get(`/categories/${id}`);
+      const response = await api.get(`/admin/categories/${id}`);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch category' };
@@ -189,7 +189,7 @@ export const categoriesService = {
 
   create: async (categoryData) => {
     try {
-      const response = await api.post('/categories', categoryData);
+      const response = await api.post('/admin/categories', categoryData);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to create category' };
@@ -198,7 +198,7 @@ export const categoriesService = {
 
   update: async (id, categoryData) => {
     try {
-      const response = await api.put(`/categories/${id}`, categoryData);
+      const response = await api.put(`/admin/categories/${id}`, categoryData);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to update category' };
@@ -207,7 +207,7 @@ export const categoriesService = {
 
   delete: async (id) => {
     try {
-      const response = await api.delete(`/categories/${id}`);
+      const response = await api.delete(`/admin/categories/${id}`);
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to delete category' };
@@ -219,7 +219,7 @@ export const categoriesService = {
 export const analyticsService = {
   getDashboardStats: async () => {
     try {
-      const response = await api.get('/analytics/dashboard');
+      const response = await api.get('/admin/stats');
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch dashboard stats' };
@@ -228,7 +228,7 @@ export const analyticsService = {
 
   getRevenueData: async (period = '30d') => {
     try {
-      const response = await api.get('/analytics/revenue', { params: { period } });
+      const response = await api.get('/admin/analytics/revenue', { params: { period } });
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch revenue data' };
@@ -237,7 +237,7 @@ export const analyticsService = {
 
   getTopProducts: async (limit = 10) => {
     try {
-      const response = await api.get('/analytics/top-products', { params: { limit } });
+      const response = await api.get('/admin/analytics/top-products', { params: { limit } });
       return response.data;
     } catch (error) {
       throw error.response?.data || { message: 'Failed to fetch top products' };
