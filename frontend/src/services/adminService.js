@@ -191,10 +191,13 @@ export const categoriesService = {
 
   create: async (categoryData) => {
     try {
+      console.log('Creating category with data:', categoryData);
       const response = await api.post('/admin/categories', categoryData);
+      console.log('Category creation response:', response.data);
       return response.data;
     } catch (error) {
-      throw error.response?.data || { message: 'Failed to create category' };
+      console.error('Category creation error:', error.response?.data || error.message);
+      throw error.response?.data || { message: error.message || 'Failed to create category' };
     }
   },
 

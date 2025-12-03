@@ -31,15 +31,35 @@ const Categories = () => {
 
   const handleAddCategory = async (e) => {
     e.preventDefault();
+    
+    // Validate input
+    if (!newCategory.name || !newCategory.name.trim()) {
+      toast.error('Please enter a category name');
+      return;
+    }
+    
     try {
-      await categoriesService.create(newCategory);
+      console.log('Adding category:', newCategory);
+      const result = await categoriesService.create(newCategory);
+      console.log('Category created:', result);
       toast.success('Category created successfully!');
       setShowAddModal(false);
       setNewCategory({ name: '', description: '' });
       fetchCategories(); // Refresh the list
     } catch (error) {
       console.error('Error adding category:', error);
-      const errorMsg = 'Failed to add category';
+      console.error('Error details:', error.message, error.response?.data);
+      
+      // Extract meaningful error message
+      let errorMsg = 'Failed to add category';
+      if (error.message) {
+        errorMsg = error.message;
+      } else if (error.response?.data?.message) {
+        errorMsg = error.response.data.message;
+      } else if (error.response?.data?.error) {
+        errorMsg = error.response.data.error;
+      }
+      
       setError(errorMsg);
       toast.error(errorMsg);
     }
