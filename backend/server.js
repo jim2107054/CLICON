@@ -1,53 +1,119 @@
 import express from 'express';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import helmet from 'helmet';
+import compression from 'compression';
+import morgan from 'morgan';
+import connectDB from './src/config/database.js';
+import { errorHandler, notFound } from './src/middleware/errorMiddleware.js';
+import rateLimiter from './src/middleware/rateLimiter.js';
 
+// Import Routes
+import authRoutes from './src/routes/authRoutes.js';
+import adminAuthRoutes from './src/routes/adminAuthRoutes.js';
+import productRoutes from './src/routes/productRoutes.js';
+import categoryRoutes from './src/routes/categoryRoutes.js';
+import orderRoutes from './src/routes/orderRoutes.js';
+import customerRoutes from './src/routes/customerRoutes.js';
+import cartRoutes from './src/routes/cartRoutes.js';
+import wishlistRoutes from './src/routes/wishlistRoutes.js';
+import reviewRoutes from './src/routes/reviewRoutes.js';
+import analyticsRoutes from './src/routes/analyticsRoutes.js';
+import uploadRoutes from './src/routes/uploadRoutes.js';
+
+// Load environment variables
+dotenv.config();
+
+// Connect to database
+connectDB();
+
+// Initialize Express app
 const app = express();
-const PORT = process.env.PORT || 5000;
 
-// Middleware
+// Security Middleware
+app.use(helmet({
+  crossOriginResourcePolicy: { policy: "cross-origin" }
+}));
+
+// CORS configuration - Allow multiple origins
+const allowedOrigins = [
+  'http://localhost:5173',
+  'http://localhost:3000',
+  process.env.FRONTEND_URL,
+  // Add your Vercel frontend URLs here
+  /\.vercel\.app$/
+].filter(Boolean);
+
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+    
+    // Check if origin is allowed
+    const isAllowed = allowedOrigins.some(allowedOrigin => {
+      if (allowedOrigin instanceof RegExp) {
+        return allowedOrigin.test(origin);
+      }
+      return allowedOrigin === origin;
+    });
+    
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// CORS middleware
-app.use((req, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
-  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200);
-  }
-  next();
+// Compression Middleware
+app.use(compression());
+
+// Logging Middleware
+if (process.env.NODE_ENV === 'development') {
+  app.use(morgan('dev'));
+}
+
+// Apply rate limiting to all routes
+app.use(rateLimiter);
+
+// Health Check Route
+app.get('/health', (req, res) => {
+  res.status(200).json({ 
+    status: 'OK', 
+    message: 'CLICON API is running',
+    timestamp: new Date().toISOString()
+  });
 });
 
-// Mock data stores (replace with database in production)
-let products = [
-  {
-    id: 1,
-    name: 'MacBook Pro 16"',
-    category: 'Laptops',
-    price: 2499.99,
-    comparePrice: 2799.99,
-    stock: 45,
-    status: 'In Stock',
-    sku: 'MBP-16-2023',
-    brand: 'Apple',
-    description: 'Powerful laptop for professionals',
-    images: ['https://via.placeholder.com/400'],
-    createdAt: new Date()
-  }
-];
+// API Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/admin/auth', adminAuthRoutes);
+app.use('/api/products', productRoutes);
+app.use('/api/categories', categoryRoutes);
+app.use('/api/orders', orderRoutes);
+app.use('/api/customers', customerRoutes);
+app.use('/api/cart', cartRoutes);
+app.use('/api/wishlist', wishlistRoutes);
+app.use('/api/reviews', reviewRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/upload', uploadRoutes);
 
-let orders = [
-  {
-    id: 'ORD-2023-001',
-    customer: 'John Doe',
-    email: 'john@example.com',
-    date: '2023-12-01',
-    total: 2499.99,
-    status: 'Delivered',
-    items: 3,
-    payment: 'Paid'
-  }
-];
+// Static Files
+app.use('/uploads', express.static('uploads'));
+
+// Error Handling Middleware
+app.use(notFound);
+app.use(errorHandler);
+
+// Start Server
+const PORT = process.env.PORT || 5000;
 
 let customers = [
   {
