@@ -17,10 +17,14 @@ const Categories = () => {
   const fetchCategories = async () => {
     try {
       setLoading(true);
+      console.log('Fetching categories...');
       const data = await categoriesService.getAll();
+      console.log('Categories fetched:', data);
+      console.log('Categories array:', data.categories);
       setCategories(data.categories || []);
     } catch (error) {
       console.error('Error fetching categories:', error);
+      console.error('Error response:', error.response);
       const errorMsg = 'Failed to load categories';
       setError(errorMsg);
       toast.error(errorMsg);

@@ -173,9 +173,14 @@ export const customersService = {
 export const categoriesService = {
   getAll: async () => {
     try {
+      console.log('Making API call to /admin/categories');
       const response = await api.get('/admin/categories');
+      console.log('API Response:', response);
+      console.log('Response data:', response.data);
       return response.data;
     } catch (error) {
+      console.error('API Error:', error);
+      console.error('Error response:', error.response);
       throw error.response?.data || { message: 'Failed to fetch categories' };
     }
   },
