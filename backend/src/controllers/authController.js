@@ -24,11 +24,23 @@ export const registerUser = asyncHandler(async (req, res) => {
   });
 
   if (user) {
-    res.status(201).json({
+    // Store user in session
+    req.session.userId = user._id.toString();
+    req.session.user = {
       _id: user._id,
       name: user.name,
-      email: user.email,
+      email: user.email
+    };
+
+    res.status(201).json({
+      success: true,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+      },
       token: generateToken(user._id),
+      message: 'Registration successful'
     });
   } else {
     res.status(400);
@@ -46,17 +58,44 @@ export const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email }).select('+password');
 
   if (user && (await user.matchPassword(password))) {
-    res.json({
+    // Store user in session
+    req.session.userId = user._id.toString();
+    req.session.user = {
       _id: user._id,
       name: user.name,
       email: user.email,
-      avatar: user.avatar,
+      avatar: user.avatar
+    };
+
+    res.json({
+      success: true,
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        avatar: user.avatar,
+      },
       token: generateToken(user._id),
+      message: 'Login successful'
     });
   } else {
     res.status(401);
     throw new Error('Invalid email or password');
   }
+});
+
+// @desc    Logout user
+// @route   POST /api/auth/logout
+// @access  Private
+export const logoutUser = asyncHandler(async (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      res.status(500);
+      throw new Error('Could not log out, please try again');
+    }
+    res.clearCookie('connect.sid');
+    res.json({ success: true, message: 'Logged out successfully' });
+  });
 });
 
 // @desc    Get user profile

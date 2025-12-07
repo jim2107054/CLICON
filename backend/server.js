@@ -4,6 +4,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import compression from 'compression';
 import morgan from 'morgan';
+import session from 'express-session';
+import MongoStore from 'connect-mongo';
+import cookieParser from 'cookie-parser';
 import connectDB from './src/config/database.js';
 import { errorHandler, notFound } from './src/middleware/errorMiddleware.js';
 import rateLimiter from './src/middleware/rateLimiter.js';
@@ -21,6 +24,7 @@ import wishlistRoutes from './src/routes/wishlistRoutes.js';
 import reviewRoutes from './src/routes/reviewRoutes.js';
 import analyticsRoutes from './src/routes/analyticsRoutes.js';
 import uploadRoutes from './src/routes/uploadRoutes.js';
+import paymentRoutes from './src/routes/paymentRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -67,6 +71,29 @@ app.use(cors({
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
+// Cookie Parser Middleware
+app.use(cookieParser());
+
+// Session Middleware
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'clicon-secret-key-change-in-production',
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI || process.env.MONGO_URI,
+    touchAfter: 24 * 3600, // lazy session update
+    crypto: {
+      secret: process.env.SESSION_SECRET || 'clicon-secret-key-change-in-production'
+    }
+  }),
+  cookie: {
+    secure: process.env.NODE_ENV === 'production', // true in production with HTTPS
+    httpOnly: true,
+    maxAge: 1000 * 60 * 60 * 24 * 7, // 7 days
+    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+  }
 }));
 
 // Body Parser Middleware
@@ -126,6 +153,7 @@ app.use('/api/wishlist', wishlistRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/analytics', analyticsRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/payment', paymentRoutes);
 
 // Static Files
 app.use('/uploads', express.static('uploads'));

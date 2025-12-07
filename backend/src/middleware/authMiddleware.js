@@ -5,7 +5,9 @@ import Admin from '../models/Admin.js';
 // Protect routes - User authentication
 export const protect = async (req, res, next) => {
   let token;
+  let userId;
 
+  // Check for JWT token in Authorization header
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     try {
       token = req.headers.authorization.split(' ')[1];
@@ -15,7 +17,21 @@ export const protect = async (req, res, next) => {
         return res.status(401).json({ message: 'Not authorized, token failed' });
       }
 
-      req.user = await User.findById(decoded.id).select('-password');
+      userId = decoded.id;
+    } catch (error) {
+      console.error(error);
+      return res.status(401).json({ message: 'Not authorized, token failed' });
+    }
+  } 
+  // Check for session-based authentication
+  else if (req.session && req.session.userId) {
+    userId = req.session.userId;
+  }
+
+  // If we have a userId (from either JWT or session), get the user
+  if (userId) {
+    try {
+      req.user = await User.findById(userId).select('-password');
 
       if (!req.user) {
         return res.status(401).json({ message: 'User not found' });
@@ -25,14 +41,15 @@ export const protect = async (req, res, next) => {
         return res.status(401).json({ message: 'Account is not active' });
       }
 
-      next();
+      return next();
     } catch (error) {
       console.error(error);
-      res.status(401).json({ message: 'Not authorized, token failed' });
+      return res.status(401).json({ message: 'Not authorized' });
     }
-  } else {
-    res.status(401).json({ message: 'Not authorized, no token' });
   }
+
+  // No authentication found
+  return res.status(401).json({ message: 'Not authorized, no token or session' });
 };
 
 // Admin authentication middleware
