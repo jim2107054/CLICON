@@ -3,6 +3,7 @@ import { assets } from "../../assets/assets";
 import {FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
+import { authService } from "../../services/authService";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -13,6 +14,8 @@ const Login = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -25,6 +28,9 @@ const Login = () => {
         ...errors,
         [e.target.name]: ""
       });
+    }
+    if (serverError) {
+      setServerError("");
     }
   };
 
@@ -46,20 +52,27 @@ const Login = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     
     if (Object.keys(newErrors).length === 0) {
-      // In a real app, you would verify credentials with backend
-      const userData = {
-        name: formData.email.split("@")[0],
-        email: formData.email,
-        id: Date.now()
-      };
-      login(userData);
-      alert("Login successful!");
-      navigate("/");
+      setLoading(true);
+      setServerError("");
+      
+      try {
+        const response = await authService.login(formData);
+        
+        if (response.success && response.user) {
+          login(response.user);
+          navigate("/");
+        }
+      } catch (error) {
+        console.error('Login error:', error);
+        setServerError(error.message || 'Login failed. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     } else {
       setErrors(newErrors);
     }
@@ -72,6 +85,11 @@ const Login = () => {
           <p className="text-base font-light mb-5">
             To explore clicon please login
           </p>
+          {serverError && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {serverError}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-base font-medium" htmlFor="email">
@@ -84,6 +102,7 @@ const Login = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="clicon@gmail.com"
+                disabled={loading}
               />
               {errors.email && (
                 <span className="text-red-500 text-sm">{errors.email}</span>
@@ -101,6 +120,7 @@ const Login = () => {
                 value={formData.password}
                 onChange={handleChange}
                 placeholder="minimum six digit"
+                disabled={loading}
               />
               <img 
                 className="h-5 w-5 absolute right-3 cursor-pointer" 
@@ -121,9 +141,10 @@ const Login = () => {
             </p>
             <button
               type="submit"
-              className="bg-[#FA8232] flex items-center justify-center gap-3 h-11 rounded-md text-white font-medium mt-5 hover:bg-orange-600 transition-colors"
+              disabled={loading}
+              className={`bg-[#FA8232] flex items-center justify-center gap-3 h-11 rounded-md text-white font-medium mt-5 hover:bg-orange-600 transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              SIGN IN <span className="items-center justify-center"> <FaArrowRight/> </span>
+              {loading ? 'SIGNING IN...' : 'SIGN IN'} <span className="items-center justify-center"> <FaArrowRight/> </span>
             </button>
           </form>
           <p className="text-base font-light my-2 text-center">Create a new account <span onClick={()=>navigate('/signup')} className="text-base cursor-pointer text-blue-500 font-medium ml-2">Sign Up</span></p>

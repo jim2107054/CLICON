@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import { authService } from "../services/authService";
 
 export const AppContext = createContext();
 
@@ -148,9 +149,11 @@ export const AppContextProvider = ({ children }) => {
     setUser(userData);
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await authService.logout();
     setUser(null);
-    localStorage.removeItem("user");
+    setCart([]);
+    setWishList([]);
   };
 
   const register = (userData) => {

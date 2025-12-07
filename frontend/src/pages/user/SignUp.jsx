@@ -3,6 +3,7 @@ import { assets } from "../../assets/assets";
 import { FaArrowRight } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../../context/AppContext";
+import { authService } from "../../services/authService";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -17,6 +18,8 @@ const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [errors, setErrors] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [serverError, setServerError] = useState("");
 
   const handleChange = (e) => {
     const value = e.target.type === "checkbox" ? e.target.checked : e.target.value;
@@ -30,6 +33,9 @@ const SignUp = () => {
         ...errors,
         [e.target.name]: ""
       });
+    }
+    if (serverError) {
+      setServerError("");
     }
   };
 
@@ -65,19 +71,31 @@ const SignUp = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
     
     if (Object.keys(newErrors).length === 0) {
-      const userData = {
-        name: formData.name,
-        email: formData.email,
-        id: Date.now()
-      };
-      register(userData);
-      alert("Registration successful! Welcome to Clicon!");
-      navigate("/");
+      setLoading(true);
+      setServerError("");
+      
+      try {
+        const response = await authService.register({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password
+        });
+        
+        if (response.success && response.user) {
+          register(response.user);
+          navigate("/");
+        }
+      } catch (error) {
+        console.error('Registration error:', error);
+        setServerError(error.message || 'Registration failed. Please try again.');
+      } finally {
+        setLoading(false);
+      }
     } else {
       setErrors(newErrors);
     }
@@ -90,6 +108,11 @@ const SignUp = () => {
           <p className="text-base font-light mb-5">
             Create your clicon account
           </p>
+          {serverError && (
+            <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+              {serverError}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="flex flex-col gap-3">
             <div className="flex flex-col gap-1">
               <label className="text-base font-medium" htmlFor="name">
@@ -102,6 +125,7 @@ const SignUp = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Jahid Hasan Jim"
+                disabled={loading}
               />
               {errors.name && (
                 <span className="text-red-500 text-sm">{errors.name}</span>
@@ -118,6 +142,7 @@ const SignUp = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="clicon@gmail.com"
+                disabled={loading}
               />
               {errors.email && (
                 <span className="text-red-500 text-sm">{errors.email}</span>
@@ -135,6 +160,7 @@ const SignUp = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="minimum six digit"
+                  disabled={loading}
                 />
                 <img
                   className="h-5 w-5 absolute right-3 cursor-pointer"
@@ -159,6 +185,7 @@ const SignUp = () => {
                   value={formData.confirmPassword}
                   onChange={handleChange}
                   placeholder=""
+                  disabled={loading}
                 />
                 <img
                   className="h-5 w-5 absolute right-3 cursor-pointer"
@@ -179,6 +206,7 @@ const SignUp = () => {
                 name="agreeToTerms"
                 checked={formData.agreeToTerms}
                 onChange={handleChange}
+                disabled={loading}
               />
               Are you agree to Clicon <span className="text-blue-400">Terms of Conditions</span> and <span className="text-blue-400">Privacy Policy</span>
             </label>
@@ -187,9 +215,10 @@ const SignUp = () => {
             )}
             <button 
               type="submit"
-              className="bg-[#FA8232] flex items-center justify-center gap-3 h-11 rounded-md text-white font-medium mt-5 hover:bg-orange-600 transition-colors"
+              disabled={loading}
+              className={`bg-[#FA8232] flex items-center justify-center gap-3 h-11 rounded-md text-white font-medium mt-5 hover:bg-orange-600 transition-colors ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
             >
-              SIGN UP{" "}
+              {loading ? 'SIGNING UP...' : 'SIGN UP'}{" "}
               <span className="items-center justify-center">
                 {" "}
                 <FaArrowRight />{" "}
