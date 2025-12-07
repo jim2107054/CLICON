@@ -31,9 +31,21 @@ export const authService = {
   },
 
   // Logout user
-  logout: () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+  logout: async () => {
+    try {
+      await api.post('/auth/logout');
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('wishList');
+    } catch (error) {
+      // Even if backend fails, clear local storage
+      localStorage.removeItem('token');
+      localStorage.removeItem('user');
+      localStorage.removeItem('cart');
+      localStorage.removeItem('wishList');
+      console.error('Logout error:', error);
+    }
   },
 
   // Get current user
@@ -45,6 +57,19 @@ export const authService = {
   // Check if user is authenticated
   isAuthenticated: () => {
     return !!localStorage.getItem('token');
+  },
+
+  // Get user profile
+  getProfile: async () => {
+    try {
+      const response = await api.get('/auth/profile');
+      if (response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data));
+      }
+      return response.data;
+    } catch (error) {
+      throw error.response?.data || { message: 'Failed to get profile' };
+    }
   },
 
   // Forgot password
@@ -78,11 +103,11 @@ export const authService = {
   },
 
   // Update profile
-  updateProfile: async (userId, userData) => {
+  updateProfile: async (userData) => {
     try {
-      const response = await api.put(`/auth/profile/${userId}`, userData);
-      if (response.data.user) {
-        localStorage.setItem('user', JSON.stringify(response.data.user));
+      const response = await api.put('/auth/profile', userData);
+      if (response.data) {
+        localStorage.setItem('user', JSON.stringify(response.data));
       }
       return response.data;
     } catch (error) {
